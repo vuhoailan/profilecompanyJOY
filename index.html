@@ -1,0 +1,1916 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chỉnh sửa hồ sơ - Công ty TNHH Phần Mềm Sáng Tạo Việt | JoyWork</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* JoyWork Brand Colors */
+            --color-primary: #295892;
+            --color-accent: #BC2153;
+            --color-dark: #414B53;
+            
+            /* Extended Palette */
+            --color-primary-light: #4A7BB5;
+            --color-primary-dark: #1D3F68;
+            --color-accent-light: #D93A6B;
+            --color-secondary: #525252;
+            --color-tertiary: #A3A3A3;
+            --color-border: #E5E5E5;
+            --color-bg: #FAFAFA;
+            --color-white: #FFFFFF;
+            --color-success: #10B981;
+            --color-danger: #EF4444;
+            --color-warning: #EAB308;
+            
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            
+            --space-1: 4px;
+            --space-2: 8px;
+            --space-3: 12px;
+            --space-4: 16px;
+            --space-5: 20px;
+            --space-6: 24px;
+            --space-8: 32px;
+            --space-10: 40px;
+            --space-12: 48px;
+            --space-16: 64px;
+            --space-20: 80px;
+            --space-24: 96px;
+            
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-full: 9999px;
+            
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 2px 8px rgba(0,0,0,0.06);
+            --shadow-lg: 0 4px 16px rgba(0,0,0,0.08);
+            --shadow-xl: 0 8px 32px rgba(0,0,0,0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--color-dark);
+            background: var(--color-bg);
+            font-weight: 400;
+            padding-top: 60px; /* Space for sticky toolbar */
+        }
+
+        /* =========================
+           EDIT MODE TOOLBAR
+           ========================= */
+        .edit-toolbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: white;
+            border-bottom: 2px solid var(--color-primary);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 var(--space-6);
+            z-index: 1000;
+            box-shadow: var(--shadow-md);
+        }
+
+        .edit-toolbar-left {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+        }
+
+        .edit-status {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-weight: 600;
+            color: var(--color-success);
+        }
+
+        .edit-status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--color-success);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .edit-toolbar-actions {
+            display: flex;
+            gap: var(--space-3);
+        }
+
+        .toolbar-btn {
+            padding: var(--space-3) var(--space-5);
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .toolbar-btn-secondary {
+            background: var(--color-bg);
+            color: var(--color-dark);
+            border: 1px solid var(--color-border);
+        }
+
+        .toolbar-btn-secondary:hover {
+            background: white;
+            border-color: var(--color-primary);
+        }
+
+        .toolbar-btn-primary {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        .toolbar-btn-primary:hover {
+            background: var(--color-primary-dark);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* =========================
+           EDIT BUTTONS & CONTROLS
+           ========================= */
+        .edit-btn {
+            padding: var(--space-2) var(--space-4);
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--color-primary);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .edit-btn:hover {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+            transform: translateY(-1px);
+        }
+
+        .edit-btn-icon {
+            font-size: 14px;
+        }
+
+        .delete-btn {
+            padding: var(--space-2) var(--space-4);
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--color-danger);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .delete-btn:hover {
+            background: var(--color-danger);
+            color: white;
+            border-color: var(--color-danger);
+        }
+
+        .add-btn {
+            padding: var(--space-4) var(--space-6);
+            background: var(--color-success);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .add-btn:hover {
+            background: #059669;
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .drag-handle {
+            cursor: grab;
+            color: var(--color-tertiary);
+            padding: var(--space-2);
+            font-size: 18px;
+            line-height: 1;
+        }
+
+        .drag-handle:active {
+            cursor: grabbing;
+        }
+
+        /* =========================
+           EDIT OVERLAYS
+           ========================= */
+        .image-upload-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.6);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.2s;
+            cursor: pointer;
+            color: white;
+            font-weight: 600;
+            gap: var(--space-2);
+        }
+
+        .editable-image:hover .image-upload-overlay {
+            opacity: 1;
+        }
+
+        .upload-icon {
+            font-size: 32px;
+        }
+
+        .editable-image {
+            position: relative;
+        }
+
+        /* =========================
+           EMPTY STATES
+           ========================= */
+        .empty-state {
+            text-align: center;
+            padding: var(--space-16) var(--space-6);
+            background: var(--color-bg);
+            border: 2px dashed var(--color-border);
+            border-radius: var(--radius-lg);
+            color: var(--color-tertiary);
+        }
+
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: var(--space-4);
+            opacity: 0.5;
+        }
+
+        .empty-state-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--color-secondary);
+            margin-bottom: var(--space-2);
+        }
+
+        .empty-state-desc {
+            font-size: 14px;
+            margin-bottom: var(--space-6);
+        }
+
+        /* =========================
+           SECTION HEADERS WITH EDIT
+           ========================= */
+        .editable-section {
+            position: relative;
+        }
+
+        .section-header-edit {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-6);
+        }
+
+        .section-actions {
+            display: flex;
+            gap: var(--space-2);
+        }
+
+        /* =========================
+           INLINE EDIT
+           ========================= */
+        .inline-editable {
+            position: relative;
+            display: inline-block;
+            padding: var(--space-2) var(--space-3);
+            border-radius: var(--radius-sm);
+            transition: background 0.2s;
+        }
+
+        .inline-editable:hover {
+            background: rgba(41, 88, 146, 0.05);
+        }
+
+        .inline-edit-icon {
+            margin-left: var(--space-2);
+            color: var(--color-primary);
+            font-size: 14px;
+            opacity: 0.6;
+        }
+
+        .inline-editable:hover .inline-edit-icon {
+            opacity: 1;
+        }
+
+        /* =========================
+           MODAL
+           ========================= */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-6);
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: var(--radius-lg);
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .modal-header {
+            padding: var(--space-6);
+            border-bottom: 1px solid var(--color-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--color-tertiary);
+            cursor: pointer;
+            padding: var(--space-2);
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            color: var(--color-dark);
+        }
+
+        .modal-body {
+            padding: var(--space-6);
+        }
+
+        .modal-footer {
+            padding: var(--space-6);
+            border-top: 1px solid var(--color-border);
+            display: flex;
+            gap: var(--space-3);
+            justify-content: flex-end;
+        }
+
+        /* =========================
+           FORM ELEMENTS
+           ========================= */
+        .form-group {
+            margin-bottom: var(--space-5);
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: var(--space-2);
+            color: var(--color-dark);
+        }
+
+        .form-input,
+        .form-textarea,
+        .form-select {
+            width: 100%;
+            padding: var(--space-3) var(--space-4);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-sans);
+            font-size: 15px;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(41, 88, 146, 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-help {
+            font-size: 12px;
+            color: var(--color-tertiary);
+            margin-top: var(--space-2);
+        }
+
+        .char-count {
+            text-align: right;
+            font-size: 12px;
+            color: var(--color-tertiary);
+            margin-top: var(--space-1);
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+        }
+
+        /* Cover & Profile Header */
+        .profile-cover {
+            position: relative;
+            height: 320px;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            background-image: url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1600&h=400&fit=crop&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .profile-cover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(41, 88, 146, 0.85) 0%, rgba(29, 63, 104, 0.85) 100%);
+        }
+
+        .profile-header-content {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+            height: 100%;
+            display: flex;
+            align-items: flex-end;
+            padding-bottom: var(--space-8);
+        }
+
+        .company-logo {
+            width: 160px;
+            height: 160px;
+            background: white;
+            border-radius: var(--radius-lg);
+            border: 4px solid white;
+            box-shadow: var(--shadow-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--color-primary);
+            flex-shrink: 0;
+            margin-bottom: -60px;
+        }
+
+        .company-header-info {
+            flex: 1;
+            margin-left: var(--space-8);
+            color: white;
+            padding-bottom: 60px;
+        }
+
+        .verified-badge-inline {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            background: rgba(16, 185, 129, 0.2);
+            backdrop-filter: blur(12px);
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-full);
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: var(--space-4);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #10B981;
+        }
+
+        .verified-icon {
+            width: 16px;
+            height: 16px;
+            background: #10B981;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: white;
+        }
+
+        .company-name-header {
+            font-size: 42px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: var(--space-3);
+            text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .company-meta {
+            font-size: 15px;
+            opacity: 0.95;
+            display: flex;
+            gap: var(--space-4);
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        /* Profile Info Section */
+        .profile-info-section {
+            background: white;
+            border-bottom: 1px solid var(--color-border);
+            padding: var(--space-10) 0 0 0;
+        }
+
+        .profile-info-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: var(--space-12);
+            padding-bottom: var(--space-8);
+        }
+
+        .profile-main-info h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: var(--space-4);
+            color: var(--color-dark);
+        }
+
+        .profile-description {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--color-secondary);
+            margin-bottom: var(--space-6);
+        }
+
+        .profile-stats {
+            display: flex;
+            gap: var(--space-8);
+            padding: var(--space-6) 0;
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--color-primary);
+            line-height: 1;
+            margin-bottom: var(--space-2);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--color-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* CEO Section */
+        .ceo-section {
+            background: var(--color-bg);
+            border-radius: var(--radius-md);
+            padding: var(--space-8);
+        }
+
+        .ceo-header {
+            display: flex;
+            gap: var(--space-5);
+            margin-bottom: var(--space-6);
+        }
+
+        .ceo-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: url('https://i.pravatar.cc/80?img=12') center/cover;
+            border: 2px solid white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .ceo-info h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: var(--space-1);
+        }
+
+        .ceo-title {
+            font-size: 14px;
+            color: var(--color-tertiary);
+        }
+
+        .ceo-quote {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--color-secondary);
+            font-style: italic;
+            padding-left: var(--space-5);
+            border-left: 3px solid var(--color-primary);
+        }
+
+        /* Awards */
+        .awards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-4);
+            margin-top: var(--space-6);
+        }
+
+        .award {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            padding: var(--space-5);
+            text-align: center;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .award:hover {
+            border-color: var(--color-primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .award-badge {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto var(--space-4);
+            background: var(--color-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            font-weight: 700;
+            text-align: center;
+            line-height: 1.2;
+            padding: var(--space-3);
+            border: 2px solid var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        .award-title {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: var(--space-1);
+        }
+
+        .award-org {
+            font-size: 11px;
+            color: var(--color-tertiary);
+        }
+
+        .award-actions {
+            position: absolute;
+            top: var(--space-2);
+            right: var(--space-2);
+            display: flex;
+            gap: var(--space-1);
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .award:hover .award-actions {
+            opacity: 1;
+        }
+
+        .icon-btn {
+            width: 24px;
+            height: 24px;
+            border: none;
+            background: white;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s;
+        }
+
+        .icon-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Tags */
+        .tags-section {
+            padding: var(--space-6) 0;
+            background: linear-gradient(90deg, var(--color-bg) 0%, white 50%, var(--color-bg) 100%);
+            overflow: hidden;
+        }
+
+        .tags-scroll {
+            display: flex;
+            gap: var(--space-3);
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: var(--space-2) var(--space-4);
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-full);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--color-primary);
+            white-space: nowrap;
+        }
+
+        /* Main Navigation Tabs */
+        .main-tabs {
+            position: sticky;
+            top: 60px;
+            background: white;
+            border-bottom: 1px solid var(--color-border);
+            z-index: 100;
+        }
+
+        .main-tabs-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+            display: flex;
+            gap: var(--space-1);
+        }
+
+        .main-tab {
+            padding: var(--space-5) var(--space-8);
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--color-secondary);
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .main-tab:hover {
+            color: var(--color-primary);
+            background: rgba(41, 88, 146, 0.05);
+        }
+
+        .main-tab.active {
+            color: var(--color-primary);
+            border-bottom-color: var(--color-primary);
+        }
+
+        .tab-panel {
+            display: none;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        /* Content Section */
+        .content-section {
+            background: white;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-border);
+            padding: var(--space-16);
+            margin-bottom: var(--space-8);
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-accent);
+            margin-bottom: var(--space-5);
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-4);
+            color: var(--color-dark);
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            line-height: 1.6;
+            color: var(--color-secondary);
+            margin-bottom: var(--space-12);
+        }
+
+        /* Commitments Section */
+        .commitments-grid {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-6);
+        }
+
+        .commitment-card {
+            background: white;
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-8);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .commitment-card.verified {
+            border-color: var(--color-success);
+            background: linear-gradient(to bottom, rgba(16, 185, 129, 0.02), white);
+        }
+
+        .commitment-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        .commitment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--space-5);
+        }
+
+        .commitment-status {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-full);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .commitment-status.verified {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--color-success);
+        }
+
+        .commitment-status.pending {
+            background: rgba(234, 179, 8, 0.1);
+            color: #EAB308;
+        }
+
+        .commitment-text {
+            font-size: 18px;
+            line-height: 1.7;
+            color: var(--color-dark);
+            font-weight: 500;
+            margin-bottom: var(--space-6);
+        }
+
+        .verification-bar {
+            background: var(--color-bg);
+            border-radius: var(--radius-full);
+            height: 12px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: var(--space-4);
+        }
+
+        .verification-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-success) 0%, #34D399 100%);
+            border-radius: var(--radius-full);
+            transition: width 0.5s ease;
+        }
+
+        .verification-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .verification-percentage {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--color-success);
+        }
+
+        .verification-details {
+            font-size: 13px;
+            color: var(--color-tertiary);
+        }
+
+        .verification-badge-large {
+            position: absolute;
+            top: var(--space-6);
+            right: var(--space-6);
+            width: 60px;
+            height: 60px;
+            background: var(--color-success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 32px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .commitment-date {
+            font-size: 12px;
+            color: var(--color-tertiary);
+            margin-top: var(--space-4);
+            padding-top: var(--space-4);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .commitment-actions {
+            position: absolute;
+            top: var(--space-6);
+            right: var(--space-6);
+            display: flex;
+            gap: var(--space-2);
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-12);
+        }
+
+        /* Media */
+        .media-box {
+            aspect-ratio: 16/10;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            background: var(--color-bg);
+            position: relative;
+        }
+
+        .media-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Item with actions */
+        .item-with-actions {
+            position: relative;
+            padding: var(--space-6);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-4);
+            transition: all 0.2s;
+        }
+
+        .item-with-actions:hover {
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .item-actions {
+            position: absolute;
+            top: var(--space-4);
+            right: var(--space-4);
+            display: flex;
+            gap: var(--space-2);
+        }
+
+        /* Helper text */
+        .helper-text {
+            font-size: 13px;
+            color: var(--color-tertiary);
+            font-style: italic;
+            margin-top: var(--space-4);
+            padding: var(--space-4);
+            background: var(--color-bg);
+            border-radius: var(--radius-sm);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .profile-info-content { grid-template-columns: 1fr; }
+            .grid-2 { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .company-name-header { font-size: 32px; }
+            .section-title { font-size: 32px; }
+            .awards { grid-template-columns: 1fr; }
+            .profile-header-content { flex-direction: column; align-items: flex-start; }
+            .company-logo { margin-bottom: 0; }
+            .company-header-info { margin-left: 0; margin-top: var(--space-6); padding-bottom: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- EDIT TOOLBAR -->
+    <div class="edit-toolbar">
+        <div class="edit-toolbar-left">
+            <div class="edit-status">
+                <span class="edit-status-dot"></span>
+                <span>Đang chỉnh sửa hồ sơ</span>
+            </div>
+        </div>
+        <div class="edit-toolbar-actions">
+            <button class="toolbar-btn toolbar-btn-secondary">
+                <span>👁️</span>
+                <span>Xem trước</span>
+            </button>
+            <button class="toolbar-btn toolbar-btn-secondary">
+                <span>💾</span>
+                <span>Lưu nháp</span>
+            </button>
+            <button class="toolbar-btn toolbar-btn-primary">
+                <span>✓</span>
+                <span>Xuất bản</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- COVER & HEADER -->
+    <div class="profile-cover editable-image">
+        <div class="image-upload-overlay">
+            <span class="upload-icon">📷</span>
+            <span>Thay đổi ảnh bìa</span>
+            <span style="font-size: 12px; opacity: 0.9;">Kích thước đề xuất: 1600x400px</span>
+        </div>
+        <div class="profile-header-content">
+            <div class="company-logo editable-image">
+                STV
+                <div class="image-upload-overlay">
+                    <span class="upload-icon">📷</span>
+                    <span>Thay logo</span>
+                </div>
+            </div>
+            <div class="company-header-info">
+                <div class="verified-badge-inline">
+                    <span class="verified-icon">✓</span>
+                    <span>Đã xác minh</span>
+                </div>
+                <h1 class="company-name-header inline-editable">
+                    Công ty TNHH Phần Mềm Sáng Tạo Việt
+                    <span class="inline-edit-icon">✏️</span>
+                </h1>
+                <div class="company-meta">
+                    <span class="meta-item inline-editable">
+                        🏢 Công nghệ / Phần mềm
+                        <span class="inline-edit-icon">✏️</span>
+                    </span>
+                    <span class="meta-item inline-editable">
+                        📍 Hà Nội
+                        <span class="inline-edit-icon">✏️</span>
+                    </span>
+                    <span class="meta-item inline-editable">
+                        📅 Thành lập 2018
+                        <span class="inline-edit-icon">✏️</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROFILE INFO -->
+    <div class="profile-info-section">
+        <div class="profile-info-content">
+            <div class="profile-main-info">
+                <div class="section-header-edit">
+                    <h2>Về chúng tôi</h2>
+                    <button class="edit-btn">
+                        <span class="edit-btn-icon">✏️</span>
+                        <span>Sửa</span>
+                    </button>
+                </div>
+                <p class="profile-description">
+                    Với hơn 200 nhân viên tâm huyết, chúng tôi đang phục vụ hơn 5,000 doanh nghiệp trên toàn quốc, giúp họ chuyển đổi số và phát triển bền vững.
+                </p>
+                
+                <div class="profile-stats">
+                    <div class="stat-item inline-editable">
+                        <div class="stat-number">200+</div>
+                        <div class="stat-label">Nhân viên</div>
+                        <span class="inline-edit-icon">✏️</span>
+                    </div>
+                    <div class="stat-item inline-editable">
+                        <div class="stat-number">5,000+</div>
+                        <div class="stat-label">Khách hàng</div>
+                        <span class="inline-edit-icon">✏️</span>
+                    </div>
+                    <div class="stat-item inline-editable">
+                        <div class="stat-number">97%</div>
+                        <div class="stat-label">Hài lòng</div>
+                        <span class="inline-edit-icon">✏️</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="profile-sidebar">
+                <!-- CEO -->
+                <div class="ceo-section" style="position: relative;">
+                    <button class="edit-btn" style="position: absolute; top: var(--space-4); right: var(--space-4);">
+                        <span class="edit-btn-icon">✏️</span>
+                        <span>Sửa</span>
+                    </button>
+                    <div class="ceo-header">
+                        <div class="ceo-avatar editable-image">
+                            <div class="image-upload-overlay" style="border-radius: 50%;">
+                                <span class="upload-icon" style="font-size: 24px;">📷</span>
+                            </div>
+                        </div>
+                        <div class="ceo-info">
+                            <h3>Trần Minh Quân</h3>
+                            <div class="ceo-title">Tổng giám đốc</div>
+                        </div>
+                    </div>
+                    <p class="ceo-quote">
+                        "Công nghệ phải phục vụ con người. Mỗi sản phẩm chúng tôi tạo ra đều hướng đến việc giúp người Việt làm việc thông minh hơn, hạnh phúc hơn."
+                    </p>
+                </div>
+                
+                <!-- Awards -->
+                <div style="position: relative; margin-top: var(--space-6);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4);">
+                        <h3 style="font-size: 16px; font-weight: 600;">Giải thưởng & Chứng nhận</h3>
+                        <button class="edit-btn">
+                            <span class="edit-btn-icon">✏️</span>
+                            <span>Quản lý</span>
+                        </button>
+                    </div>
+                    <div class="awards">
+                        <div class="award">
+                            <div class="award-actions">
+                                <button class="icon-btn" style="color: var(--color-primary);">✏️</button>
+                                <button class="icon-btn" style="color: var(--color-danger);">🗑️</button>
+                            </div>
+                            <div class="award-badge">TOP 10<br>SAO KHUÊ<br>2024</div>
+                            <div class="award-title">Top 10 Sao Khuê</div>
+                            <div class="award-org">VINASA 2024</div>
+                        </div>
+                        <div class="award">
+                            <div class="award-actions">
+                                <button class="icon-btn" style="color: var(--color-primary);">✏️</button>
+                                <button class="icon-btn" style="color: var(--color-danger);">🗑️</button>
+                            </div>
+                            <div class="award-badge">NƠI LÀM VIỆC<br>TỐT NHẤT</div>
+                            <div class="award-title">Nơi làm việc tốt nhất</div>
+                            <div class="award-org">Anphabe 2024</div>
+                        </div>
+                        <div class="award">
+                            <div class="award-actions">
+                                <button class="icon-btn" style="color: var(--color-primary);">✏️</button>
+                                <button class="icon-btn" style="color: var(--color-danger);">🗑️</button>
+                            </div>
+                            <div class="award-badge">ĐỔI MỚI<br>SÁNG TẠO<br>2024</div>
+                            <div class="award-title">Đổi mới sáng tạo</div>
+                            <div class="award-org">VCCI 2024</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: var(--space-4); text-align: center;">
+                        <button class="add-btn" style="width: 100%;">
+                            <span>+</span>
+                            <span>Thêm giải thưởng</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tags -->
+        <div class="tags-section">
+            <div class="container">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4);">
+                    <div style="font-size: 14px; font-weight: 600; color: var(--color-secondary);">Giá trị cốt lõi</div>
+                    <button class="edit-btn">
+                        <span class="edit-btn-icon">✏️</span>
+                        <span>Quản lý tags</span>
+                    </button>
+                </div>
+                <div class="tags-scroll">
+                    <span class="tag">Tôn trọng</span>
+                    <span class="tag">Kiến tạo</span>
+                    <span class="tag">Cho là nhận</span>
+                    <span class="tag">Học hỏi mỗi ngày</span>
+                    <span class="tag">Khách hàng trọng tâm</span>
+                    <span class="tag">Đồng đội</span>
+                    <span class="tag">Sáng tạo</span>
+                    <span class="tag">Bền vững</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN NAVIGATION TABS -->
+    <nav class="main-tabs">
+        <div class="main-tabs-container">
+            <button class="main-tab active">Văn hóa doanh nghiệp</button>
+            <button class="main-tab">Bài viết</button>
+            <button class="main-tab">Tuyển dụng</button>
+        </div>
+    </nav>
+
+    <!-- TAB PANELS -->
+    <div class="container" style="padding-top: 64px; padding-bottom: 96px;">
+        
+        <!-- TAB: VĂN HÓA DOANH NGHIỆP -->
+        <div class="tab-panel active">
+
+            <!-- CAM KẾT ĐÃ XÁC THỰC -->
+            <div class="content-section editable-section">
+                <div class="section-header-edit">
+                    <div>
+                        <div class="section-label">CAM KẾT CỦA CHÚNG TÔI</div>
+                        <h2 class="section-title">Những tuyên bố đã được nhân viên xác thực</h2>
+                        <p class="section-subtitle">Mỗi cam kết đều được xác minh bởi nhân viên thực tế đang làm việc tại công ty</p>
+                    </div>
+                    <button class="add-btn">
+                        <span>+</span>
+                        <span>Thêm cam kết mới</span>
+                    </button>
+                </div>
+                
+                <div class="commitments-grid">
+                    <!-- Commitment 1 - Verified -->
+                    <div class="commitment-card verified">
+                        <div class="verification-badge-large">✓</div>
+                        <div class="commitment-actions">
+                            <button class="edit-btn">
+                                <span class="edit-btn-icon">✏️</span>
+                                <span>Sửa</span>
+                            </button>
+                            <button class="delete-btn">
+                                <span>🗑️</span>
+                                <span>Xóa</span>
+                            </button>
+                        </div>
+                        <div class="commitment-header">
+                            <div class="commitment-status verified">
+                                ✓ Đã xác thực
+                            </div>
+                        </div>
+                        <div class="commitment-text">
+                            "Chúng tôi không có văn hóa làm thêm giờ. Trung bình mỗi nhân viên chỉ tăng ca dưới 3 giờ/tháng. Cuối tuần là thời gian của gia đình."
+                        </div>
+                        <div class="verification-bar">
+                            <div class="verification-fill" style="width: 89%;"></div>
+                        </div>
+                        <div class="verification-stats">
+                            <div class="verification-percentage">89%</div>
+                            <div class="verification-details">156/175 nhân viên xác nhận đúng</div>
+                        </div>
+                        <div class="commitment-date">
+                            Đăng ngày 15/10/2024 • Xác thực hoàn tất 18/10/2024
+                        </div>
+                    </div>
+
+                    <!-- Empty State Example -->
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📝</div>
+                        <div class="empty-state-title">Chưa có cam kết nào</div>
+                        <div class="empty-state-desc">Thêm cam kết đầu tiên để xây dựng lòng tin với ứng viên.<br>Cam kết tốt nhất là những tuyên bố cụ thể, có thể đo lường được.</div>
+                        <button class="add-btn">
+                            <span>+</span>
+                            <span>Thêm cam kết đầu tiên</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="helper-text">
+                    <strong>💡 Mẹo:</strong> Cam kết tốt nhất là những tuyên bố cụ thể (có số liệu), có thể xác minh được, và quan trọng với ứng viên. Ví dụ: "Trung bình mỗi nhân viên làm thêm dưới 3 giờ/tháng" thay vì "Chúng tôi cân bằng công việc - cuộc sống".
+                </div>
+            </div>
+
+            <!-- TẦM NHÌN & SỨ MỆNH -->
+            <div class="content-section editable-section">
+                <div class="section-header-edit">
+                    <div>
+                        <div class="section-label">TẦM NHÌN & SỨ MỆNH</div>
+                        <h2 class="section-title">Xây dựng tương lai số cho doanh nghiệp Việt</h2>
+                        <p class="section-subtitle">Chúng tôi tin rằng mỗi doanh nghiệp Việt đều xứng đáng có công cụ quản lý hiện đại</p>
+                    </div>
+                    <button class="edit-btn">
+                        <span class="edit-btn-icon">✏️</span>
+                        <span>Sửa</span>
+                    </button>
+                </div>
+                
+                <div class="grid-2">
+                    <div>
+                        <h3>Tầm nhìn đến 2030</h3>
+                        <p style="font-size: 16px; line-height: 1.7; color: var(--color-secondary); margin-bottom: 32px;">Trở thành đối tác công nghệ tin cậy nhất của 50,000 doanh nghiệp Việt Nam, giúp họ chuyển đổi số thành công và phát triển bền vững.</p>
+                        
+                        <h3>Sứ mệnh của chúng tôi</h3>
+                        <p style="font-size: 16px; line-height: 1.7; color: var(--color-secondary); margin-bottom: 32px;">Phát triển các giải pháp công nghệ đơn giản, dễ dùng nhưng mạnh mẽ, giúp doanh nghiệp Việt tối ưu hóa vận hành và tăng năng suất.</p>
+                        
+                        <h3>Cam kết trách nhiệm</h3>
+                        <p style="font-size: 16px; line-height: 1.7; color: var(--color-secondary);">Đến năm 2026: tạo 5,000 việc làm chất lượng cao, đào tạo miễn phí lập trình cho 10,000 sinh viên, đóng góp 3% doanh thu cho giáo dục công nghệ.</p>
+                    </div>
+                    <div>
+                        <div class="media-box editable-image">
+                            <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=500&fit=crop&q=80" alt="Video giới thiệu">
+                            <div class="image-upload-overlay">
+                                <span class="upload-icon">📷</span>
+                                <span>Thay đổi ảnh/video</span>
+                                <span style="font-size: 12px; opacity: 0.9;">Video hoặc ảnh minh họa</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HÀNH TRÌNH PHÁT TRIỂN - WITH EMPTY STATE EXAMPLE -->
+            <div class="content-section editable-section">
+                <div class="section-header-edit">
+                    <div>
+                        <div class="section-label">HÀNH TRÌNH PHÁT TRIỂN</div>
+                        <h2 class="section-title">Từ 3 người đến 200+ thành viên</h2>
+                        <p class="section-subtitle">6 năm không ngừng lớn mạnh và sáng tạo</p>
+                    </div>
+                    <button class="add-btn">
+                        <span>+</span>
+                        <span>Thêm mốc thời gian</span>
+                    </button>
+                </div>
+
+                <!-- Timeline Items with Edit Controls -->
+                <div class="item-with-actions">
+                    <div class="item-actions">
+                        <span class="drag-handle">⋮⋮</span>
+                        <button class="edit-btn">
+                            <span class="edit-btn-icon">✏️</span>
+                        </button>
+                        <button class="delete-btn">
+                            <span>🗑️</span>
+                        </button>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 100px 1fr 300px; gap: var(--space-6); align-items: start;">
+                        <div>
+                            <div style="font-size: 36px; font-weight: 800; color: var(--color-primary);">2018</div>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 20px; font-weight: 700; margin-bottom: var(--space-3);">Khởi đầu từ căn phòng nhỏ</h4>
+                            <p style="font-size: 15px; line-height: 1.7; color: var(--color-secondary);">3 người bạn cùng chung niềm đam mê công nghệ quyết định rời công ty lớn để khởi nghiệp. Sản phẩm đầu tiên phục vụ 10 doanh nghiệp SME.</p>
+                        </div>
+                        <div class="editable-image" style="aspect-ratio: 3/2; border-radius: var(--radius-md); overflow: hidden; background: var(--color-bg);">
+                            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop&q=80" alt="2018" style="width: 100%; height: 100%; object-fit: cover;">
+                            <div class="image-upload-overlay">
+                                <span class="upload-icon">📷</span>
+                                <span>Thay ảnh</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Empty State for Timeline -->
+                <div class="empty-state">
+                    <div class="empty-state-icon">📅</div>
+                    <div class="empty-state-title">Chưa có mốc thời gian nào</div>
+                    <div class="empty-state-desc">Thêm các mốc quan trọng trong hành trình phát triển của công ty.<br>Ví dụ: thành lập, vòng gọi vốn, mở chi nhánh, giải thưởng...</div>
+                    <button class="add-btn">
+                        <span>+</span>
+                        <span>Thêm mốc thời gian đầu tiên</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- GIÁ TRỊ CỐT LÕI -->
+            <div class="content-section editable-section">
+                <div class="section-header-edit">
+                    <div>
+                        <div class="section-label">GIÁ TRỊ CỐT LÕI</div>
+                        <h2 class="section-title">6 nguyên tắc định hình văn hóa</h2>
+                        <p class="section-subtitle">Những giá trị chúng tôi sống mỗi ngày, với ví dụ thực tế</p>
+                    </div>
+                    <button class="add-btn">
+                        <span>+</span>
+                        <span>Thêm giá trị</span>
+                    </button>
+                </div>
+
+                <!-- Value Item with Edit Controls -->
+                <div class="item-with-actions">
+                    <div class="item-actions">
+                        <span class="drag-handle">⋮⋮</span>
+                        <button class="edit-btn">
+                            <span class="edit-btn-icon">✏️</span>
+                        </button>
+                        <button class="delete-btn">
+                            <span>🗑️</span>
+                        </button>
+                    </div>
+                    <div style="font-size: 14px; font-weight: 700; color: var(--color-accent); margin-bottom: var(--space-3);">01</div>
+                    <h3 style="font-size: 22px; font-weight: 700; margin-bottom: var(--space-4); color: var(--color-dark);">Làm nhanh, học nhanh hơn</h3>
+                    <p style="font-size: 16px; line-height: 1.7; color: var(--color-secondary); margin-bottom: var(--space-5);">Chúng tôi tin vào hành động nhanh, triển khai sớm và học hỏi từ thực tế. Sai là bình thường, quan trọng là học được gì.</p>
+                    <div style="background: white; padding: var(--space-5); border-radius: var(--radius-sm); font-size: 14px; line-height: 1.7; color: var(--color-secondary); font-style: italic; border: 1px solid var(--color-border);">
+                        <strong style="font-weight: 600; color: var(--color-primary); font-style: normal;">Ví dụ thực tế:</strong> Tháng 10/2024, đội phát hiện lỗi nghiêm trọng ở module báo cáo. Thay vì chờ sprint kế tiếp, chúng tôi họp khẩn trong 2 giờ, triển khai bản sửa lỗi trong 4 giờ. Kết quả: không khách hàng nào bị ảnh hưởng.
+                    </div>
+                </div>
+
+                <!-- Empty State -->
+                <div class="empty-state">
+                    <div class="empty-state-icon">⭐</div>
+                    <div class="empty-state-title">Chưa có giá trị cốt lõi nào</div>
+                    <div class="empty-state-desc">Thêm các giá trị định hình văn hóa công ty.<br>Mỗi giá trị nên có: Tên, Mô tả và Ví dụ thực tế để ứng viên hiểu rõ hơn.</div>
+                    <button class="add-btn">
+                        <span>+</span>
+                        <span>Thêm giá trị đầu tiên</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- MỘT NGÀY LÀM VIỆC -->
+            <div class="content-section editable-section">
+                <div class="section-header-edit">
+                    <div>
+                        <div class="section-label">MỘT NGÀY LÀM VIỆC</div>
+                        <h2 class="section-title">Trải nghiệm một ngày điển hình</h2>
+                        <p class="section-subtitle">Theo chân một Quản lý sản phẩm tại Sáng Tạo Việt</p>
+                    </div>
+                    <button class="add-btn">
+                        <span>+</span>
+                        <span>Thêm hoạt động</span>
+                    </button>
+                </div>
+
+                <!-- Day Item with Edit Controls -->
+                <div class="item-with-actions">
+                    <div class="item-actions">
+                        <span class="drag-handle">⋮⋮</span>
+                        <button class="edit-btn">
+                            <span class="edit-btn-icon">✏️</span>
+                        </button>
+                        <button class="delete-btn">
+                            <span>🗑️</span>
+                        </button>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 100px 1fr; gap: var(--space-6);">
+                        <div style="font-size: 24px; font-weight: 700; color: var(--color-primary);">8:30</div>
+                        <div>
+                            <h4 style="font-size: 18px; font-weight: 600; margin-bottom: var(--space-2);">Điểm danh & Cà phê sáng</h4>
+                            <p style="font-size: 15px; line-height: 1.6; color: var(--color-secondary); margin-bottom: var(--space-3);">Đến văn phòng, lấy ly cà phê miễn phí tại pantry, chào hỏi đồng nghiệp và chuẩn bị tinh thần cho ngày mới. Đọc nhanh Slack để cập nhật thông tin qua đêm.</p>
+                            <div style="display: flex; gap: var(--space-2); flex-wrap: wrap;">
+                                <span style="padding: var(--space-1) var(--space-3); background: white; border: 1px solid var(--color-border); border-radius: var(--radius-sm); font-size: 12px; font-weight: 500; color: var(--color-tertiary);">Slack</span>
+                                <span style="padding: var(--space-1) var(--space-3); background: white; border: 1px solid var(--color-border); border-radius: var(--radius-sm); font-size: 12px; font-weight: 500; color: var(--color-tertiary);">Gmail</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Empty State -->
+                <div class="empty-state">
+                    <div class="empty-state-icon">🕐</div>
+                    <div class="empty-state-title">Chưa có hoạt động nào</div>
+                    <div class="empty-state-desc">Thêm các hoạt động trong ngày để ứng viên hình dung được một ngày làm việc tại công ty.<br>Bao gồm: Thời gian, Tên hoạt động, Mô tả và Công cụ sử dụng.</div>
+                    <button class="add-btn">
+                        <span>+</span>
+                        <span>Thêm hoạt động đầu tiên</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- BAN LÃNH ĐẠO -->
+            <div class="content-section editable-section">
+                <div class="section-header-edit">
+                    <div>
+                        <div class="section-label">BAN LÃNH ĐẠO</div>
+                        <h2 class="section-title">Những người định hướng văn hóa</h2>
+                        <p class="section-subtitle">Lắng nghe từ đội ngũ điều hành về triết lý xây dựng Sáng Tạo Việt</p>
+                    </div>
+                    <button class="add-btn">
+                        <span>+</span>
+                        <span>Thêm thành viên</span>
+                    </button>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-8);">
+                    <!-- Leader Card with Edit -->
+                    <div style="background: var(--color-bg); border-radius: var(--radius-md); padding: var(--space-8); text-align: center; position: relative;">
+                        <div style="position: absolute; top: var(--space-4); right: var(--space-4); display: flex; gap: var(--space-2);">
+                            <button class="icon-btn" style="color: var(--color-primary);">✏️</button>
+                            <button class="icon-btn" style="color: var(--color-danger);">🗑️</button>
+                        </div>
+                        <div class="editable-image" style="width: 120px; height: 120px; border-radius: 50%; margin: 0 auto var(--space-5); background: url('https://i.pravatar.cc/120?img=12') center/cover; border: 3px solid white; box-shadow: var(--shadow-md);">
+                            <div class="image-upload-overlay" style="border-radius: 50%;">
+                                <span class="upload-icon" style="font-size: 24px;">📷</span>
+                            </div>
+                        </div>
+                        <div style="font-size: 20px; font-weight: 700; margin-bottom: var(--space-2);">Trần Minh Quân</div>
+                        <div style="font-size: 14px; color: var(--color-tertiary); margin-bottom: var(--space-4);">Tổng giám đốc & Người sáng lập</div>
+                        <p style="font-size: 15px; line-height: 1.6; color: var(--color-secondary); font-style: italic;">"Thành công của Sáng Tạo Việt là khi mỗi nhân viên cảm thấy hạnh phúc mỗi ngày đến làm việc."</p>
+                    </div>
+
+                    <!-- Empty State Card -->
+                    <div class="empty-state" style="padding: var(--space-8);">
+                        <div class="empty-state-icon" style="font-size: 32px;">👤</div>
+                        <div class="empty-state-title" style="font-size: 16px;">Thêm thành viên lãnh đạo</div>
+                        <button class="add-btn" style="margin-top: var(--space-4);">
+                            <span>+</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BẢNG MINH BẠCH -->
+            <div class="content-section editable-section">
+                <div class="section-header-edit">
+                    <div>
+                        <div class="section-label">BẢNG MINH BẠCH</div>
+                        <h2 class="section-title">Những con số thực tế</h2>
+                        <p class="section-subtitle">Dữ liệu cập nhật Quý 3/2024 - Không che giấu, không bóp méo</p>
+                    </div>
+                    <div class="section-actions">
+                        <button class="add-btn">
+                            <span>+</span>
+                            <span>Thêm chỉ số</span>
+                        </button>
+                        <button class="edit-btn">
+                            <span class="edit-btn-icon">✏️</span>
+                            <span>Sửa tất cả</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6);">
+                    <!-- Metric Card with Edit -->
+                    <div style="background: var(--color-bg); padding: var(--space-8); border-radius: var(--radius-md); border: 1px solid var(--color-border); text-align: center; position: relative;">
+                        <button class="edit-btn" style="position: absolute; top: var(--space-3); right: var(--space-3);">
+                            <span class="edit-btn-icon">✏️</span>
+                        </button>
+                        <div style="font-size: 48px; font-weight: 800; line-height: 1; color: var(--color-primary); margin-bottom: var(--space-3);">2.8%</div>
+                        <div style="display: inline-flex; align-items: center; gap: var(--space-1); font-size: 14px; font-weight: 600; margin-bottom: var(--space-3); color: var(--color-danger);">
+                            <span>↓</span>
+                            <span>Giảm từ 8%</span>
+                        </div>
+                        <div style="font-size: 14px; color: var(--color-secondary); line-height: 1.4;">Tỉ lệ nghỉ việc năm 2024</div>
+                        <div style="font-size: 12px; color: var(--color-tertiary); margin-top: var(--space-2);">Đo lường: Số nhân viên nghỉ / Tổng số nhân viên</div>
+                    </div>
+
+                    <!-- Empty Metric Card -->
+                    <div class="empty-state" style="padding: var(--space-8); min-height: auto;">
+                        <div class="empty-state-icon" style="font-size: 32px; margin-bottom: var(--space-3);">📊</div>
+                        <div class="empty-state-title" style="font-size: 14px;">Thêm chỉ số minh bạch</div>
+                        <button class="add-btn" style="margin-top: var(--space-3); padding: var(--space-2) var(--space-4); font-size: 13px;">
+                            <span>+</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TIẾNG NÓI NHÂN VIÊN -->
+            <div class="content-section editable-section">
+                <div class="section-header-edit">
+                    <div>
+                        <div class="section-label">TIẾNG NÓI NHÂN VIÊN</div>
+                        <h2 class="section-title">Nghe từ chính người trong cuộc</h2>
+                        <p class="section-subtitle">Những câu chuyện thật, không qua chỉnh sửa</p>
+                    </div>
+                    <button class="add-btn">
+                        <span>+</span>
+                        <span>Thêm testimonial</span>
+                    </button>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6);">
+                    <!-- Testimonial Card with Edit -->
+                    <div style="background: var(--color-bg); padding: var(--space-8); border-radius: var(--radius-md); position: relative;">
+                        <div style="position: absolute; top: var(--space-4); right: var(--space-4); display: flex; gap: var(--space-2);">
+                            <button class="icon-btn" style="color: var(--color-primary);">✏️</button>
+                            <button class="icon-btn" style="color: var(--color-danger);">🗑️</button>
+                        </div>
+                        <p style="font-size: 16px; line-height: 1.7; color: var(--color-secondary); font-style: italic; margin-bottom: var(--space-6);">"Mình từng làm ở công ty nước ngoài 4 năm. Về đây vì thấy công việc có ý nghĩa thực sự. Tính năng mình làm hôm nay, ngày mai có hàng ngàn người dùng ở Việt Nam."</p>
+                        <div style="display: flex; align-items: center; gap: var(--space-4);">
+                            <div class="editable-image" style="width: 48px; height: 48px; border-radius: 50%; overflow: hidden; flex-shrink: 0; background: url('https://i.pravatar.cc/48?img=33') center/cover;">
+                                <div class="image-upload-overlay" style="border-radius: 50%;">
+                                    <span style="font-size: 16px;">📷</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="font-size: 15px; font-weight: 600; margin-bottom: var(--space-1);">Nguyễn Hoàng Nam</div>
+                                <div style="font-size: 13px; color: var(--color-tertiary);">Kỹ sư Backend • 2.5 năm</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Empty Testimonial Card -->
+                    <div class="empty-state">
+                        <div class="empty-state-icon">💬</div>
+                        <div class="empty-state-title">Thêm lời nhận xét</div>
+                        <div class="empty-state-desc">Có thể là text hoặc video testimonial từ nhân viên thực tế</div>
+                        <button class="add-btn">
+                            <span>+</span>
+                            <span>Thêm testimonial</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PHÚC LỢI -->
+            <div class="content-section editable-section">
+                <div class="section-header-edit">
+                    <div>
+                        <div class="section-label">PHÚC LỢI & PHONG CÁCH</div>
+                        <h2 class="section-title">Chúng tôi đầu tư vào con người</h2>
+                        <p class="section-subtitle">Gói phúc lợi toàn diện với lý do đằng sau mỗi quyền lợi</p>
+                    </div>
+                    <button class="add-btn">
+                        <span>+</span>
+                        <span>Thêm phúc lợi</span>
+                    </button>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6);">
+                    <!-- Benefit Card with Edit -->
+                    <div style="background: white; border: 1px solid var(--color-border); border-radius: var(--radius-md); overflow: hidden; transition: all 0.2s; position: relative;">
+                        <div style="position: absolute; top: var(--space-4); right: var(--space-4); z-index: 10; display: flex; gap: var(--space-2);">
+                            <button class="icon-btn" style="color: var(--color-primary); background: white;">✏️</button>
+                            <button class="icon-btn" style="color: var(--color-danger); background: white;">🗑️</button>
+                        </div>
+                        <div class="editable-image" style="width: 100%; height: 200px; background: url('https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=600&h=300&fit=crop&q=80') center/cover;">
+                            <div class="image-upload-overlay">
+                                <span class="upload-icon">📷</span>
+                                <span>Thay ảnh</span>
+                            </div>
+                        </div>
+                        <div style="padding: var(--space-6);">
+                            <h4 style="font-size: 18px; font-weight: 700; margin-bottom: var(--space-2);">Lương thưởng hấp dẫn</h4>
+                            <p style="font-size: 13px; color: var(--color-accent); font-weight: 600; margin-bottom: var(--space-3);">Vì sao: Nhân viên xứng đáng được trả công xứng đáng</p>
+                            <p style="font-size: 14px; line-height: 1.7; color: var(--color-secondary); margin-bottom: var(--space-4);">Mức lương hàng đầu thị trường, 13-15 tháng lương/năm, thưởng hiệu suất hàng quý, cổ phiếu cho tất cả vị trí.</p>
+                            <p style="font-size: 12px; color: var(--color-tertiary); font-style: italic;">Lưu ý: Chỉ tiêu hiệu suất được thiết lập cùng với Quản lý, không áp đặt từ trên xuống</p>
+                        </div>
+                    </div>
+
+                    <!-- Empty Benefit Card -->
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🎁</div>
+                        <div class="empty-state-title">Thêm phúc lợi</div>
+                        <div class="empty-state-desc">Mỗi phúc lợi nên có: Ảnh, Tiêu đề, Lý do, Mô tả chi tiết và Lưu ý (nếu có)</div>
+                        <button class="add-btn">
+                            <span>+</span>
+                            <span>Thêm phúc lợi</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CÂU HỎI THƯỜNG GẶP -->
+            <div class="content-section editable-section">
+                <div class="section-header-edit">
+                    <div>
+                        <div class="section-label">CÂU HỎI THƯỜNG GẶP</div>
+                        <h2 class="section-title">Những điều được hỏi nhiều nhất</h2>
+                        <p class="section-subtitle">Câu trả lời thẳng thắn và trung thực</p>
+                    </div>
+                    <button class="add-btn">
+                        <span>+</span>
+                        <span>Thêm câu hỏi</span>
+                    </button>
+                </div>
+
+                <!-- FAQ Item with Edit -->
+                <div class="item-with-actions">
+                    <div class="item-actions">
+                        <span class="drag-handle">⋮⋮</span>
+                        <button class="edit-btn">
+                            <span class="edit-btn-icon">✏️</span>
+                        </button>
+                        <button class="delete-btn">
+                            <span>🗑️</span>
+                        </button>
+                    </div>
+                    <div>
+                        <div style="font-size: 17px; font-weight: 600; margin-bottom: var(--space-3); display: flex; justify-content: space-between; align-items: center;">
+                            <span>Quy trình phỏng vấn diễn ra như thế nào?</span>
+                        </div>
+                        <div style="font-size: 15px; line-height: 1.7; color: var(--color-secondary);">
+                            Sàng lọc hồ sơ (2 ngày) → Phỏng vấn qua điện thoại với Nhân sự (30 phút) → Phỏng vấn kỹ thuật với đội (90 phút) → Phỏng vấn văn hóa với ban lãnh đạo (45 phút). Toàn bộ quy trình mất 2-3 tuần. Chúng tôi phản hồi trong vòng 48 giờ sau mỗi vòng.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Empty FAQ -->
+                <div class="empty-state">
+                    <div class="empty-state-icon">❓</div>
+                    <div class="empty-state-title">Chưa có câu hỏi nào</div>
+                    <div class="empty-state-desc">Thêm các câu hỏi thường gặp và trả lời thẳng thắn, chi tiết để ứng viên hiểu rõ hơn về công ty</div>
+                    <button class="add-btn">
+                        <span>+</span>
+                        <span>Thêm câu hỏi đầu tiên</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- VĂN PHÒNG (GALLERY) -->
+            <div class="content-section editable-section">
+                <div class="section-header-edit">
+                    <div>
+                        <div class="section-label">VĂN PHÒNG</div>
+                        <h2 class="section-title">Không gian làm việc</h2>
+                        <p class="section-subtitle">Được thiết kế để tối đa hóa sáng tạo và cộng tác</p>
+                    </div>
+                    <button class="add-btn">
+                        <span>+</span>
+                        <span>Thêm ảnh</span>
+                    </button>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4);">
+                    <!-- Gallery Item with Edit -->
+                    <div class="editable-image" style="aspect-ratio: 4/3; border-radius: var(--radius-md); overflow: hidden; cursor: pointer; background: url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=600&h=450&fit=crop&q=80') center/cover;">
+                        <div class="image-upload-overlay">
+                            <span class="upload-icon">📷</span>
+                            <span>Thay ảnh</span>
+                            <button style="position: absolute; top: var(--space-3); right: var(--space-3); background: white; border: none; border-radius: 50%; width: 32px; height: 32px; cursor: pointer; color: var(--color-danger); font-size: 16px;">×</button>
+                        </div>
+                    </div>
+
+                    <!-- Empty Gallery Slot -->
+                    <div class="empty-state" style="aspect-ratio: 4/3; padding: var(--space-6);">
+                        <div class="empty-state-icon" style="font-size: 32px; margin-bottom: var(--space-2);">📷</div>
+                        <button class="add-btn" style="padding: var(--space-2) var(--space-4); font-size: 13px;">
+                            <span>+</span>
+                            <span>Thêm ảnh</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- MODAL EXAMPLE (for editing) -->
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Chỉnh sửa cam kết</h3>
+                <button class="modal-close">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Nội dung cam kết *</label>
+                    <textarea class="form-textarea" placeholder="Ví dụ: Chúng tôi không có văn hóa làm thêm giờ. Trung bình mỗi nhân viên chỉ tăng ca dưới 3 giờ/tháng..." maxlength="300"></textarea>
+                    <div class="char-count">0/300 ký tự</div>
+                    <div class="form-help">💡 Cam kết tốt nhất là cụ thể và có thể đo lường được</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Loại cam kết</label>
+                    <select class="form-select">
+                        <option>Chọn loại cam kết</option>
+                        <option>Cân bằng công việc - cuộc sống</option>
+                        <option>Phát triển nghề nghiệp</option>
+                        <option>Phúc lợi & đãi ngộ</option>
+                        <option>Văn hóa làm việc</option>
+                        <option>Minh bạch & công bằng</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="toolbar-btn toolbar-btn-secondary">Hủy</button>
+                <button class="toolbar-btn toolbar-btn-primary">Lưu thay đổi</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Basic interactions demo
+        document.addEventListener('DOMContentLoaded', function() {
+            // Empty states can be clicked to trigger add action
+            document.querySelectorAll('.empty-state .add-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    alert('Mở form thêm mới. Trong thực tế sẽ mở modal/form tương ứng.');
+                });
+            });
+
+            // Edit buttons
+            document.querySelectorAll('.edit-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    alert('Mở form chỉnh sửa. Trong thực tế sẽ load dữ liệu hiện tại vào form.');
+                });
+            });
+
+            // Delete buttons
+            document.querySelectorAll('.delete-btn, .icon-btn').forEach(btn => {
+                if (btn.innerHTML.includes('🗑️') || btn.innerHTML.includes('×')) {
+                    btn.addEventListener('click', function() {
+                        if (confirm('Bạn có chắc chắn muốn xóa?')) {
+                            alert('Đã xóa. Trong thực tế sẽ xóa khỏi database.');
+                        }
+                    });
+                }
+            });
+
+            // Image upload overlays
+            document.querySelectorAll('.image-upload-overlay').forEach(overlay => {
+                overlay.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    alert('Mở file picker để chọn ảnh mới. Trong thực tế sẽ upload và preview.');
+                });
+            });
+
+            // Inline edit
+            document.querySelectorAll('.inline-editable').forEach(el => {
+                el.addEventListener('click', function() {
+                    alert('Chuyển sang chế độ edit inline. Trong thực tế sẽ hiện input field.');
+                });
+            });
+
+            // Toolbar actions
+            document.querySelector('.toolbar-btn-primary').addEventListener('click', function() {
+                if (confirm('Xuất bản hồ sơ công ty? Thông tin sẽ được hiển thị công khai.')) {
+                    alert('Đã xuất bản thành công! Hồ sơ của bạn đã được công khai.');
+                }
+            });
+
+            // Add buttons
+            document.querySelectorAll('.add-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const section = btn.closest('.content-section').querySelector('.section-title').textContent;
+                    alert(`Mở form thêm mới cho section: ${section}`);
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
