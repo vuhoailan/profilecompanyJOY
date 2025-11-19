@@ -214,7 +214,7 @@
 
         .add-btn {
             padding: var(--space-4) var(--space-6);
-            background: var(--color-success);
+            background: var(--color-primary);
             color: white;
             border: none;
             border-radius: var(--radius-md);
@@ -228,7 +228,7 @@
         }
 
         .add-btn:hover {
-            background: #059669;
+            background: var(--color-primary-dark);
             transform: translateY(-1px);
             box-shadow: var(--shadow-md);
         }
@@ -1068,19 +1068,328 @@
             border-radius: var(--radius-sm);
         }
 
+        /* Badge System Styles */
+        .badge-section-header {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-secondary);
+            margin: var(--space-8) 0 var(--space-4) 0;
+            padding-bottom: var(--space-3);
+            border-bottom: 2px solid var(--color-border);
+        }
+
+        .badge-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-4);
+        }
+
+        .badge-card {
+            background: white;
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-md);
+            padding: var(--space-6);
+            text-align: center;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .badge-card.achieved {
+            border-color: var(--color-primary);
+            background: linear-gradient(to bottom, rgba(41, 88, 146, 0.02), white);
+        }
+
+        .badge-card.locked {
+            opacity: 0.6;
+            background: var(--color-bg);
+        }
+
+        .badge-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .badge-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto var(--space-4);
+            background: var(--color-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            text-align: center;
+            line-height: 1.2;
+            padding: var(--space-3);
+            border: 3px solid var(--color-border);
+            color: var(--color-tertiary);
+            position: relative;
+        }
+
+        .badge-card.achieved .badge-icon {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+            background: white;
+        }
+
+        .badge-checkmark {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            width: 28px;
+            height: 28px;
+            background: var(--color-success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            border: 3px solid white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .badge-lock {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            opacity: 0.5;
+        }
+
+        .badge-name {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: var(--space-2);
+            color: var(--color-dark);
+        }
+
+        .badge-card.locked .badge-name {
+            color: var(--color-tertiary);
+        }
+
+        .badge-progress {
+            font-size: 12px;
+            color: var(--color-tertiary);
+            margin-top: var(--space-2);
+        }
+
+        .badge-card.achieved .badge-progress {
+            color: var(--color-success);
+            font-weight: 600;
+        }
+
+        .badge-unlock-hint {
+            font-size: 11px;
+            color: var(--color-tertiary);
+            margin-top: var(--space-2);
+            font-style: italic;
+        }
+
+        .info-banner {
+            background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+            border-left: 4px solid var(--color-primary);
+            padding: var(--space-5);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-8);
+            display: flex;
+            align-items: start;
+            gap: var(--space-4);
+        }
+
+        .info-banner-icon {
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .info-banner-content {
+            flex: 1;
+        }
+
+        .info-banner-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: var(--space-2);
+        }
+
+        .info-banner-text {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--color-secondary);
+        }
+
+        /* Achieved Badges Hero Section */
+        .badges-hero {
+            background: linear-gradient(to bottom, #FFFBEB 0%, #FEF3C7 100%);
+            border-bottom: 1px solid #FDE68A;
+            padding: var(--space-10) 0;
+            position: relative;
+        }
+
+        .badges-hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .badges-hero-header {
+            margin-bottom: var(--space-6);
+        }
+
+        .badges-hero-icon {
+            font-size: 32px;
+            margin-bottom: var(--space-3);
+            display: inline-block;
+        }
+
+        .badges-hero-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #92400E;
+            margin-bottom: var(--space-2);
+            line-height: 1.2;
+        }
+
+        .badges-hero-subtitle {
+            font-size: 14px;
+            color: #B45309;
+            line-height: 1.6;
+        }
+
+        .badges-hero-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-5);
+        }
+
+        .badge-hero-card {
+            background: white;
+            border: 2px solid #F59E0B;
+            border-radius: var(--radius-md);
+            padding: var(--space-6);
+            text-align: center;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.1);
+            transition: all 0.3s;
+        }
+
+        .badge-hero-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(245, 158, 11, 0.2);
+        }
+
+        .badge-hero-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto var(--space-4);
+            background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 800;
+            text-align: center;
+            line-height: 1.2;
+            padding: var(--space-4);
+            border: 3px solid #F59E0B;
+            color: #92400E;
+            position: relative;
+        }
+
+        .badge-hero-checkmark {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            width: 28px;
+            height: 28px;
+            background: var(--color-success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            border: 3px solid white;
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+        }
+
+        .badge-hero-name {
+            font-size: 15px;
+            font-weight: 700;
+            color: #92400E;
+            margin-bottom: var(--space-2);
+        }
+
+        .badge-hero-progress {
+            font-size: 12px;
+            color: var(--color-success);
+            font-weight: 600;
+        }
+
+        .badges-hero-actions {
+            margin-top: var(--space-6);
+            text-align: right;
+        }
+
+        /* Locked Badges Section */
+        .locked-badges-section {
+            background: var(--color-bg);
+            padding: var(--space-12) 0;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .locked-badges-header {
+            text-align: center;
+            margin-bottom: var(--space-8);
+        }
+
+        .locked-badges-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-secondary);
+            margin-bottom: var(--space-3);
+        }
+
+        .locked-badges-subtitle {
+            font-size: 15px;
+            color: var(--color-tertiary);
+            line-height: 1.6;
+        }
+
+        .locked-badges-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-6);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
         /* Responsive */
         @media (max-width: 1024px) {
             .profile-info-content { grid-template-columns: 1fr; }
             .grid-2 { grid-template-columns: 1fr; }
+            .badge-grid { grid-template-columns: repeat(2, 1fr); }
+            .locked-badges-grid { grid-template-columns: repeat(3, 1fr); }
         }
 
         @media (max-width: 768px) {
             .company-name-header { font-size: 32px; }
             .section-title { font-size: 32px; }
-            .awards { grid-template-columns: 1fr; }
+            .badge-grid { grid-template-columns: 1fr; }
+            .locked-badges-grid { grid-template-columns: repeat(2, 1fr); }
             .profile-header-content { flex-direction: column; align-items: flex-start; }
             .company-logo { margin-bottom: 0; }
             .company-header-info { margin-left: 0; margin-top: var(--space-6); padding-bottom: 0; }
+        }
+
+        @media (max-width: 480px) {
+            .locked-badges-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -1107,6 +1416,19 @@
                 <span>✓</span>
                 <span>Xuất bản</span>
             </button>
+        </div>
+    </div>
+
+    <!-- INFO BANNER -->
+    <div class="container" style="padding-top: 24px;">
+        <div class="info-banner">
+            <div class="info-banner-icon">ℹ️</div>
+            <div class="info-banner-content">
+                <div class="info-banner-title">Thông tin cơ bản đã được điền sẵn</div>
+                <div class="info-banner-text">
+                    Chúng tôi đã tự động điền các thông tin cơ bản từ tài khoản của bạn (tên công ty, ngành nghề, địa điểm, logo...). Bạn chỉ cần xem lại và bổ sung thêm các thông tin về văn hóa, phúc lợi và đội ngũ.
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1208,50 +1530,40 @@
                         "Công nghệ phải phục vụ con người. Mỗi sản phẩm chúng tôi tạo ra đều hướng đến việc giúp người Việt làm việc thông minh hơn, hạnh phúc hơn."
                     </p>
                 </div>
-                
-                <!-- Awards -->
+
+                <!-- Badges -->
                 <div style="position: relative; margin-top: var(--space-6);">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4);">
-                        <h3 style="font-size: 16px; font-weight: 600;">Giải thưởng & Chứng nhận</h3>
+                        <h3 style="font-size: 16px; font-weight: 600;">Huy hiệu của công ty</h3>
                         <button class="edit-btn">
-                            <span class="edit-btn-icon">✏️</span>
+                            <span class="edit-btn-icon">📋</span>
                             <span>Quản lý</span>
                         </button>
                     </div>
-                    <div class="awards">
-                        <div class="award">
-                            <div class="award-actions">
-                                <button class="icon-btn" style="color: var(--color-primary);">✏️</button>
-                                <button class="icon-btn" style="color: var(--color-danger);">🗑️</button>
-                            </div>
-                            <div class="award-badge">TOP 10<br>SAO KHUÊ<br>2024</div>
-                            <div class="award-title">Top 10 Sao Khuê</div>
-                            <div class="award-org">VINASA 2024</div>
-                        </div>
-                        <div class="award">
-                            <div class="award-actions">
-                                <button class="icon-btn" style="color: var(--color-primary);">✏️</button>
-                                <button class="icon-btn" style="color: var(--color-danger);">🗑️</button>
-                            </div>
-                            <div class="award-badge">NƠI LÀM VIỆC<br>TỐT NHẤT</div>
-                            <div class="award-title">Nơi làm việc tốt nhất</div>
-                            <div class="award-org">Anphabe 2024</div>
-                        </div>
-                        <div class="award">
-                            <div class="award-actions">
-                                <button class="icon-btn" style="color: var(--color-primary);">✏️</button>
-                                <button class="icon-btn" style="color: var(--color-danger);">🗑️</button>
-                            </div>
-                            <div class="award-badge">ĐỔI MỚI<br>SÁNG TẠO<br>2024</div>
-                            <div class="award-title">Đổi mới sáng tạo</div>
-                            <div class="award-org">VCCI 2024</div>
-                        </div>
+
+                    <div style="font-size: 13px; color: var(--color-tertiary); margin-bottom: var(--space-5); line-height: 1.6;">
+                        Huy hiệu được cấp tự động khi công ty xác thực đủ cam kết trong mỗi nhóm
                     </div>
-                    <div style="margin-top: var(--space-4); text-align: center;">
-                        <button class="add-btn" style="width: 100%;">
-                            <span>+</span>
-                            <span>Thêm giải thưởng</span>
-                        </button>
+
+                    <!-- Achieved Badges Only -->
+                    <div class="badge-grid">
+                        <div class="badge-card achieved">
+                            <div class="badge-icon">
+                                VĂN HÓA<br>CÂN BẰNG
+                                <div class="badge-checkmark">✓</div>
+                            </div>
+                            <div class="badge-name">Văn hóa cân bằng</div>
+                            <div class="badge-progress">3/3 cam kết đã xác thực</div>
+                        </div>
+
+                        <div class="badge-card achieved">
+                            <div class="badge-icon">
+                                ĐẦU TƯ<br>CON NGƯỜI
+                                <div class="badge-checkmark">✓</div>
+                            </div>
+                            <div class="badge-name">Đầu tư con người</div>
+                            <div class="badge-progress">4/3 cam kết đã xác thực</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1818,6 +2130,109 @@
         </div>
     </div>
 
+    <!-- LOCKED BADGES SECTION -->
+    <div class="locked-badges-section">
+        <div class="container">
+            <div class="locked-badges-header">
+                <h3 class="locked-badges-title">🔒 Huy hiệu chưa đạt được</h3>
+                <p class="locked-badges-subtitle">
+                    Tiếp tục xác thực cam kết để mở khóa các huy hiệu này
+                </p>
+            </div>
+
+            <div class="locked-badges-grid">
+                <div class="badge-card locked">
+                    <div class="badge-icon">
+                        MINH BẠCH<br>TÀI CHÍNH
+                        <div class="badge-lock">🔒</div>
+                    </div>
+                    <div class="badge-name">Minh bạch tài chính</div>
+                    <div class="badge-progress">1/3 cam kết đã xác thực</div>
+                    <div class="badge-unlock-hint">Cần thêm 2 cam kết về minh bạch</div>
+                </div>
+
+                <div class="badge-card locked">
+                    <div class="badge-icon">
+                        ĐA DẠNG<br>& HÒA NHẬP
+                        <div class="badge-lock">🔒</div>
+                    </div>
+                    <div class="badge-name">Đa dạng & hòa nhập</div>
+                    <div class="badge-progress">0/3 cam kết đã xác thực</div>
+                    <div class="badge-unlock-hint">Thêm cam kết về DEI để mở khóa</div>
+                </div>
+
+                <div class="badge-card locked">
+                    <div class="badge-icon">
+                        PHÚC LỢI<br>VƯỢT TRỘI
+                        <div class="badge-lock">🔒</div>
+                    </div>
+                    <div class="badge-name">Phúc lợi vượt trội</div>
+                    <div class="badge-progress">2/3 cam kết đã xác thực</div>
+                    <div class="badge-unlock-hint">Cần thêm 1 cam kết về phúc lợi</div>
+                </div>
+
+                <div class="badge-card locked">
+                    <div class="badge-icon">
+                        SÁNG TẠO<br>& ĐỔI MỚI
+                        <div class="badge-lock">🔒</div>
+                    </div>
+                    <div class="badge-name">Sáng tạo & đổi mới</div>
+                    <div class="badge-progress">1/3 cam kết đã xác thực</div>
+                    <div class="badge-unlock-hint">Cần thêm 2 cam kết về innovation</div>
+                </div>
+            </div>
+
+            <div style="margin-top: var(--space-8); max-width: 800px; margin-left: auto; margin-right: auto;">
+                <div style="padding: var(--space-5); background: white; border-radius: var(--radius-md); border-left: 4px solid var(--color-warning);">
+                    <div style="display: flex; align-items: start; gap: var(--space-3);">
+                        <span style="font-size: 20px;">💡</span>
+                        <div>
+                            <strong style="color: var(--color-secondary); font-size: 14px;">Cách mở khóa huy hiệu:</strong>
+                            <p style="margin-top: var(--space-2); font-size: 13px; color: var(--color-tertiary); line-height: 1.6;">
+                                Mỗi nhóm cần tối thiểu 3 cam kết đã được nhân viên xác thực (≥75% đồng ý). Huy hiệu sẽ tự động hiển thị khi đạt điều kiện. 
+                                Bạn cũng có thể <button class="edit-btn" style="display: inline-flex; padding: var(--space-1) var(--space-2); font-size: 12px; margin: 0 var(--space-1);"><span>📋</span> Đề xuất xét duyệt</button> nếu nghĩ công ty đủ điều kiện.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL EXAMPLE (for editing) -->
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Chỉnh sửa cam kết</h3>
+                <button class="modal-close">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Nội dung cam kết *</label>
+                    <textarea class="form-textarea" placeholder="Ví dụ: Chúng tôi không có văn hóa làm thêm giờ. Trung bình mỗi nhân viên chỉ tăng ca dưới 3 giờ/tháng..." maxlength="300"></textarea>
+                    <div class="char-count">0/300 ký tự</div>
+                    <div class="form-help">💡 Cam kết tốt nhất là cụ thể và có thể đo lường được</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Loại cam kết</label>
+                    <select class="form-select">
+                        <option>Chọn loại cam kết</option>
+                        <option>Cân bằng công việc - cuộc sống</option>
+                        <option>Phát triển nghề nghiệp</option>
+                        <option>Phúc lợi & đãi ngộ</option>
+                        <option>Văn hóa làm việc</option>
+                        <option>Minh bạch & công bằng</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="toolbar-btn toolbar-btn-secondary">Hủy</button>
+                <button class="toolbar-btn toolbar-btn-primary">Lưu thay đổi</button>
+            </div>
+        </div>
+    </div>
+
     <!-- MODAL EXAMPLE (for editing) -->
     <div class="modal" id="editModal">
         <div class="modal-content">
@@ -1865,7 +2280,14 @@
             // Edit buttons
             document.querySelectorAll('.edit-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
-                    alert('Mở form chỉnh sửa. Trong thực tế sẽ load dữ liệu hiện tại vào form.');
+                    const text = btn.textContent;
+                    if (text.includes('Đề xuất xét duyệt')) {
+                        alert('Mở form đề xuất xét duyệt huy hiệu.\n\nDN có thể giải thích tại sao họ nghĩ mình đủ điều kiện nhận huy hiệu này, kể cả khi chưa đủ 3/3 cam kết đã xác thực.');
+                    } else if (text.includes('Quản lý') && btn.closest('.badges-hero')) {
+                        alert('Mở trang quản lý huy hiệu.\n\nXem tất cả huy hiệu (achieved + locked), theo dõi tiến độ, và đề xuất xét duyệt.');
+                    } else {
+                        alert('Mở form chỉnh sửa. Trong thực tế sẽ load dữ liệu hiện tại vào form.');
+                    }
                 });
             });
 
@@ -1905,8 +2327,24 @@
             // Add buttons
             document.querySelectorAll('.add-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
-                    const section = btn.closest('.content-section').querySelector('.section-title').textContent;
-                    alert(`Mở form thêm mới cho section: ${section}`);
+                    const section = btn.closest('.content-section, .profile-sidebar')?.querySelector('.section-title, h3')?.textContent || 'section';
+                    alert(`Mở form thêm mới cho: ${section}`);
+                });
+            });
+
+            // Badge cards click
+            document.querySelectorAll('.badge-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const badgeName = this.querySelector('.badge-name').textContent;
+                    const isAchieved = this.classList.contains('achieved');
+                    const progress = this.querySelector('.badge-progress').textContent;
+                    
+                    if (isAchieved) {
+                        alert(`🎉 Huy hiệu: ${badgeName}\n\nTrạng thái: Đã đạt được\n${progress}\n\nHuy hiệu này đang hiển thị công khai trên hồ sơ công ty của bạn.`);
+                    } else {
+                        const hint = this.querySelector('.badge-unlock-hint')?.textContent || '';
+                        alert(`🔒 Huy hiệu: ${badgeName}\n\nTrạng thái: Chưa mở khóa\n${progress}\n\n${hint}\n\nBạn có thể đề xuất xét duyệt nếu nghĩ mình đủ điều kiện.`);
+                    }
                 });
             });
         });
