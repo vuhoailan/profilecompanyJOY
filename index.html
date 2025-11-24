@@ -3,2352 +3,1133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chỉnh sửa hồ sơ - Công ty TNHH Phần Mềm Sáng Tạo Việt | JoyWork</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>JoyWork - Wireframe Edit Mode</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* JoyWork Brand Colors */
-            --color-primary: #295892;
-            --color-accent: #BC2153;
-            --color-dark: #414B53;
-            
-            /* Extended Palette */
-            --color-primary-light: #4A7BB5;
-            --color-primary-dark: #1D3F68;
-            --color-accent-light: #D93A6B;
-            --color-secondary: #525252;
-            --color-tertiary: #A3A3A3;
-            --color-border: #E5E5E5;
-            --color-bg: #FAFAFA;
-            --color-white: #FFFFFF;
-            --color-success: #10B981;
-            --color-danger: #EF4444;
-            --color-warning: #EAB308;
-            
-            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            
-            --space-1: 4px;
-            --space-2: 8px;
-            --space-3: 12px;
-            --space-4: 16px;
-            --space-5: 20px;
-            --space-6: 24px;
-            --space-8: 32px;
-            --space-10: 40px;
-            --space-12: 48px;
-            --space-16: 64px;
-            --space-20: 80px;
-            --space-24: 96px;
-            
-            --radius-sm: 8px;
-            --radius-md: 12px;
-            --radius-lg: 16px;
-            --radius-full: 9999px;
-            
-            --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
-            --shadow-md: 0 2px 8px rgba(0,0,0,0.06);
-            --shadow-lg: 0 4px 16px rgba(0,0,0,0.08);
-            --shadow-xl: 0 8px 32px rgba(0,0,0,0.12);
+            --primary: #295892;
+            --accent: #BC2153;
+            --dark: #333;
+            --gray: #666;
+            --light-gray: #999;
+            --border: #DDD;
+            --bg: #F5F5F5;
+            --white: #FFF;
+            --edit: #F59E0B;
+            --success: #10B981;
+            --danger: #EF4444;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            text-rendering: optimizeLegibility;
-            scroll-behavior: smooth;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: var(--font-sans);
-            font-size: 16px;
-            line-height: 1.6;
-            color: var(--color-dark);
-            background: var(--color-bg);
-            font-weight: 400;
-            padding-top: 60px; /* Space for sticky toolbar */
-        }
-
-        /* =========================
-           EDIT MODE TOOLBAR
-           ========================= */
-        .edit-toolbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 60px;
-            background: white;
-            border-bottom: 2px solid var(--color-primary);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 var(--space-6);
-            z-index: 1000;
-            box-shadow: var(--shadow-md);
-        }
-
-        .edit-toolbar-left {
-            display: flex;
-            align-items: center;
-            gap: var(--space-4);
-        }
-
-        .edit-status {
-            display: flex;
-            align-items: center;
-            gap: var(--space-2);
-            font-weight: 600;
-            color: var(--color-success);
-        }
-
-        .edit-status-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--color-success);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        .edit-toolbar-actions {
-            display: flex;
-            gap: var(--space-3);
-        }
-
-        .toolbar-btn {
-            padding: var(--space-3) var(--space-5);
-            border-radius: var(--radius-md);
-            font-size: 14px;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-2);
-        }
-
-        .toolbar-btn-secondary {
-            background: var(--color-bg);
-            color: var(--color-dark);
-            border: 1px solid var(--color-border);
-        }
-
-        .toolbar-btn-secondary:hover {
-            background: white;
-            border-color: var(--color-primary);
-        }
-
-        .toolbar-btn-primary {
-            background: var(--color-primary);
-            color: white;
-        }
-
-        .toolbar-btn-primary:hover {
-            background: var(--color-primary-dark);
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-md);
-        }
-
-        /* =========================
-           EDIT BUTTONS & CONTROLS
-           ========================= */
-        .edit-btn {
-            padding: var(--space-2) var(--space-4);
-            background: white;
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-sm);
+            font-family: 'Inter', sans-serif;
             font-size: 13px;
-            font-weight: 600;
-            color: var(--color-primary);
-            cursor: pointer;
-            transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-2);
+            line-height: 1.5;
+            color: var(--dark);
+            background: #E8E8E8;
+            padding: 40px 20px;
         }
 
-        .edit-btn:hover {
-            background: var(--color-primary);
-            color: white;
-            border-color: var(--color-primary);
-            transform: translateY(-1px);
-        }
-
-        .edit-btn-icon {
-            font-size: 14px;
-        }
-
-        .delete-btn {
-            padding: var(--space-2) var(--space-4);
+        /* Wireframe Section Container */
+        .wireframe-section {
+            max-width: 900px;
+            margin: 0 auto 60px;
             background: white;
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-sm);
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--color-danger);
-            cursor: pointer;
-            transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-2);
-        }
-
-        .delete-btn:hover {
-            background: var(--color-danger);
-            color: white;
-            border-color: var(--color-danger);
-        }
-
-        .add-btn {
-            padding: var(--space-4) var(--space-6);
-            background: var(--color-primary);
-            color: white;
-            border: none;
-            border-radius: var(--radius-md);
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-2);
-        }
-
-        .add-btn:hover {
-            background: var(--color-primary-dark);
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .drag-handle {
-            cursor: grab;
-            color: var(--color-tertiary);
-            padding: var(--space-2);
-            font-size: 18px;
-            line-height: 1;
-        }
-
-        .drag-handle:active {
-            cursor: grabbing;
-        }
-
-        /* =========================
-           EDIT OVERLAYS
-           ========================= */
-        .image-upload-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.6);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.2s;
-            cursor: pointer;
-            color: white;
-            font-weight: 600;
-            gap: var(--space-2);
-        }
-
-        .editable-image:hover .image-upload-overlay {
-            opacity: 1;
-        }
-
-        .upload-icon {
-            font-size: 32px;
-        }
-
-        .editable-image {
-            position: relative;
-        }
-
-        /* =========================
-           EMPTY STATES
-           ========================= */
-        .empty-state {
-            text-align: center;
-            padding: var(--space-16) var(--space-6);
-            background: var(--color-bg);
-            border: 2px dashed var(--color-border);
-            border-radius: var(--radius-lg);
-            color: var(--color-tertiary);
-        }
-
-        .empty-state-icon {
-            font-size: 48px;
-            margin-bottom: var(--space-4);
-            opacity: 0.5;
-        }
-
-        .empty-state-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--color-secondary);
-            margin-bottom: var(--space-2);
-        }
-
-        .empty-state-desc {
-            font-size: 14px;
-            margin-bottom: var(--space-6);
-        }
-
-        /* =========================
-           SECTION HEADERS WITH EDIT
-           ========================= */
-        .editable-section {
-            position: relative;
-        }
-
-        .section-header-edit {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: var(--space-6);
-        }
-
-        .section-actions {
-            display: flex;
-            gap: var(--space-2);
-        }
-
-        /* =========================
-           INLINE EDIT
-           ========================= */
-        .inline-editable {
-            position: relative;
-            display: inline-block;
-            padding: var(--space-2) var(--space-3);
-            border-radius: var(--radius-sm);
-            transition: background 0.2s;
-        }
-
-        .inline-editable:hover {
-            background: rgba(41, 88, 146, 0.05);
-        }
-
-        .inline-edit-icon {
-            margin-left: var(--space-2);
-            color: var(--color-primary);
-            font-size: 14px;
-            opacity: 0.6;
-        }
-
-        .inline-editable:hover .inline-edit-icon {
-            opacity: 1;
-        }
-
-        /* =========================
-           MODAL
-           ========================= */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.5);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: var(--space-6);
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: white;
-            border-radius: var(--radius-lg);
-            max-width: 800px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: var(--shadow-xl);
-        }
-
-        .modal-header {
-            padding: var(--space-6);
-            border-bottom: 1px solid var(--color-border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .modal-title {
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        .modal-close {
-            background: none;
-            border: none;
-            font-size: 24px;
-            color: var(--color-tertiary);
-            cursor: pointer;
-            padding: var(--space-2);
-            line-height: 1;
-        }
-
-        .modal-close:hover {
-            color: var(--color-dark);
-        }
-
-        .modal-body {
-            padding: var(--space-6);
-        }
-
-        .modal-footer {
-            padding: var(--space-6);
-            border-top: 1px solid var(--color-border);
-            display: flex;
-            gap: var(--space-3);
-            justify-content: flex-end;
-        }
-
-        /* =========================
-           FORM ELEMENTS
-           ========================= */
-        .form-group {
-            margin-bottom: var(--space-5);
-        }
-
-        .form-label {
-            display: block;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: var(--space-2);
-            color: var(--color-dark);
-        }
-
-        .form-input,
-        .form-textarea,
-        .form-select {
-            width: 100%;
-            padding: var(--space-3) var(--space-4);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-sm);
-            font-family: var(--font-sans);
-            font-size: 15px;
-            transition: border-color 0.2s;
-        }
-
-        .form-input:focus,
-        .form-textarea:focus,
-        .form-select:focus {
-            outline: none;
-            border-color: var(--color-primary);
-            box-shadow: 0 0 0 3px rgba(41, 88, 146, 0.1);
-        }
-
-        .form-textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .form-help {
-            font-size: 12px;
-            color: var(--color-tertiary);
-            margin-top: var(--space-2);
-        }
-
-        .char-count {
-            text-align: right;
-            font-size: 12px;
-            color: var(--color-tertiary);
-            margin-top: var(--space-1);
-        }
-
-        /* Layout */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 var(--space-6);
-        }
-
-        /* Cover & Profile Header */
-        .profile-cover {
-            position: relative;
-            height: 320px;
-            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
-            background-image: url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1600&h=400&fit=crop&q=80');
-            background-size: cover;
-            background-position: center;
-        }
-
-        .profile-cover::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(41, 88, 146, 0.85) 0%, rgba(29, 63, 104, 0.85) 100%);
-        }
-
-        .profile-header-content {
-            position: relative;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 var(--space-6);
-            height: 100%;
-            display: flex;
-            align-items: flex-end;
-            padding-bottom: var(--space-8);
-        }
-
-        .company-logo {
-            width: 160px;
-            height: 160px;
-            background: white;
-            border-radius: var(--radius-lg);
-            border: 4px solid white;
-            box-shadow: var(--shadow-xl);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            font-weight: 800;
-            color: var(--color-primary);
-            flex-shrink: 0;
-            margin-bottom: -60px;
-        }
-
-        .company-header-info {
-            flex: 1;
-            margin-left: var(--space-8);
-            color: white;
-            padding-bottom: 60px;
-        }
-
-        .verified-badge-inline {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-2);
-            background: rgba(16, 185, 129, 0.2);
-            backdrop-filter: blur(12px);
-            padding: var(--space-2) var(--space-4);
-            border-radius: var(--radius-full);
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: var(--space-4);
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            color: #10B981;
-        }
-
-        .verified-icon {
-            width: 16px;
-            height: 16px;
-            background: #10B981;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
-            color: white;
-        }
-
-        .company-name-header {
-            font-size: 42px;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: var(--space-3);
-            text-shadow: 0 2px 8px rgba(0,0,0,0.2);
-        }
-
-        .company-meta {
-            font-size: 15px;
-            opacity: 0.95;
-            display: flex;
-            gap: var(--space-4);
-            flex-wrap: wrap;
-        }
-
-        .meta-item {
-            display: flex;
-            align-items: center;
-            gap: var(--space-2);
-        }
-
-        /* Profile Info Section */
-        .profile-info-section {
-            background: white;
-            border-bottom: 1px solid var(--color-border);
-            padding: var(--space-10) 0 0 0;
-        }
-
-        .profile-info-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 var(--space-6);
-            display: grid;
-            grid-template-columns: 1fr 400px;
-            gap: var(--space-12);
-            padding-bottom: var(--space-8);
-        }
-
-        .profile-main-info h2 {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: var(--space-4);
-            color: var(--color-dark);
-        }
-
-        .profile-description {
-            font-size: 16px;
-            line-height: 1.7;
-            color: var(--color-secondary);
-            margin-bottom: var(--space-6);
-        }
-
-        .profile-stats {
-            display: flex;
-            gap: var(--space-8);
-            padding: var(--space-6) 0;
-            border-top: 1px solid var(--color-border);
-            border-bottom: 1px solid var(--color-border);
-        }
-
-        .stat-item {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .stat-number {
-            font-size: 32px;
-            font-weight: 800;
-            color: var(--color-primary);
-            line-height: 1;
-            margin-bottom: var(--space-2);
-        }
-
-        .stat-label {
-            font-size: 14px;
-            color: var(--color-tertiary);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        /* CEO Section */
-        .ceo-section {
-            background: var(--color-bg);
-            border-radius: var(--radius-md);
-            padding: var(--space-8);
-        }
-
-        .ceo-header {
-            display: flex;
-            gap: var(--space-5);
-            margin-bottom: var(--space-6);
-        }
-
-        .ceo-avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: url('https://i.pravatar.cc/80?img=12') center/cover;
-            border: 2px solid white;
-            box-shadow: var(--shadow-md);
-        }
-
-        .ceo-info h3 {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: var(--space-1);
-        }
-
-        .ceo-title {
-            font-size: 14px;
-            color: var(--color-tertiary);
-        }
-
-        .ceo-quote {
-            font-size: 15px;
-            line-height: 1.7;
-            color: var(--color-secondary);
-            font-style: italic;
-            padding-left: var(--space-5);
-            border-left: 3px solid var(--color-primary);
-        }
-
-        /* Awards */
-        .awards {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: var(--space-4);
-            margin-top: var(--space-6);
-        }
-
-        .award {
-            background: white;
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-md);
-            padding: var(--space-5);
-            text-align: center;
-            transition: all 0.2s;
-            position: relative;
-        }
-
-        .award:hover {
-            border-color: var(--color-primary);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .award-badge {
-            width: 64px;
-            height: 64px;
-            margin: 0 auto var(--space-4);
-            background: var(--color-bg);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 9px;
-            font-weight: 700;
-            text-align: center;
-            line-height: 1.2;
-            padding: var(--space-3);
-            border: 2px solid var(--color-primary);
-            color: var(--color-primary);
-        }
-
-        .award-title {
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: var(--space-1);
-        }
-
-        .award-org {
-            font-size: 11px;
-            color: var(--color-tertiary);
-        }
-
-        .award-actions {
-            position: absolute;
-            top: var(--space-2);
-            right: var(--space-2);
-            display: flex;
-            gap: var(--space-1);
-            opacity: 0;
-            transition: opacity 0.2s;
-        }
-
-        .award:hover .award-actions {
-            opacity: 1;
-        }
-
-        .icon-btn {
-            width: 24px;
-            height: 24px;
-            border: none;
-            background: white;
-            border-radius: var(--radius-sm);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            box-shadow: var(--shadow-sm);
-            transition: all 0.2s;
-        }
-
-        .icon-btn:hover {
-            transform: scale(1.1);
-        }
-
-        /* Tags */
-        .tags-section {
-            padding: var(--space-6) 0;
-            background: linear-gradient(90deg, var(--color-bg) 0%, white 50%, var(--color-bg) 100%);
+            border-radius: 12px;
             overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+        .wireframe-title {
+            background: var(--dark);
+            color: white;
+            padding: 16px 24px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+        .wireframe-content {
+            padding: 24px;
         }
 
-        .tags-scroll {
-            display: flex;
-            gap: var(--space-3);
+        /* Dev Note */
+        .dev-note {
+            background: #FEF3C7;
+            border-left: 4px solid var(--edit);
+            padding: 12px 16px;
+            margin-top: 16px;
+            font-size: 12px;
+            line-height: 1.7;
+            color: #92400E;
+        }
+        .dev-note strong {
+            display: block;
+            margin-bottom: 6px;
+            color: #78350F;
+        }
+        .dev-note code {
+            background: rgba(0,0,0,0.1);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 11px;
         }
 
-        .tag {
+        /* Edit Button */
+        .edit-btn {
             display: inline-flex;
             align-items: center;
-            padding: var(--space-2) var(--space-4);
-            background: white;
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-full);
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--color-primary);
-            white-space: nowrap;
-        }
-
-        /* Main Navigation Tabs */
-        .main-tabs {
-            position: sticky;
-            top: 60px;
-            background: white;
-            border-bottom: 1px solid var(--color-border);
-            z-index: 100;
-        }
-
-        .main-tabs-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 var(--space-6);
-            display: flex;
-            gap: var(--space-1);
-        }
-
-        .main-tab {
-            padding: var(--space-5) var(--space-8);
-            font-size: 15px;
-            font-weight: 600;
-            color: var(--color-secondary);
-            background: none;
+            gap: 5px;
+            padding: 6px 12px;
+            background: var(--edit);
+            color: white;
             border: none;
-            border-bottom: 3px solid transparent;
-            cursor: pointer;
-            transition: all 0.2s;
-            white-space: nowrap;
-        }
-
-        .main-tab:hover {
-            color: var(--color-primary);
-            background: rgba(41, 88, 146, 0.05);
-        }
-
-        .main-tab.active {
-            color: var(--color-primary);
-            border-bottom-color: var(--color-primary);
-        }
-
-        .tab-panel {
-            display: none;
-        }
-
-        .tab-panel.active {
-            display: block;
-        }
-
-        /* Content Section */
-        .content-section {
-            background: white;
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--color-border);
-            padding: var(--space-16);
-            margin-bottom: var(--space-8);
-        }
-
-        .section-label {
-            display: inline-block;
+            border-radius: 6px;
             font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--color-accent);
-            margin-bottom: var(--space-5);
+            font-weight: 600;
         }
-
-        .section-title {
-            font-size: 42px;
-            font-weight: 800;
-            line-height: 1.15;
-            letter-spacing: -0.02em;
-            margin-bottom: var(--space-4);
-            color: var(--color-dark);
-        }
-
-        .section-subtitle {
-            font-size: 18px;
-            line-height: 1.6;
-            color: var(--color-secondary);
-            margin-bottom: var(--space-12);
-        }
-
-        /* Commitments Section */
-        .commitments-grid {
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-6);
-        }
-
-        .commitment-card {
+        .edit-btn.sm { padding: 4px 8px; font-size: 10px; }
+        .edit-btn.outline {
             background: white;
-            border: 2px solid var(--color-border);
-            border-radius: var(--radius-lg);
-            padding: var(--space-8);
-            transition: all 0.3s;
+            color: var(--edit);
+            border: 1.5px solid var(--edit);
+        }
+        .edit-btn.danger { background: var(--danger); }
+
+        /* Add Button */
+        .add-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px;
+            border: 2px dashed var(--border);
+            border-radius: 8px;
+            background: var(--bg);
+            color: var(--light-gray);
+            font-size: 12px;
+            font-weight: 600;
+            width: 100%;
+            margin-top: 12px;
+        }
+
+        /* Grid */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+        .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; }
+        .full { grid-column: span 2; }
+        .full-3 { grid-column: span 3; }
+
+        /* Placeholder Box */
+        .placeholder {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px;
             position: relative;
         }
-
-        .commitment-card.verified {
-            border-color: var(--color-success);
-            background: linear-gradient(to bottom, rgba(16, 185, 129, 0.02), white);
+        .placeholder-img {
+            background: linear-gradient(135deg, #E2E8F0 25%, #CBD5E1 100%);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light-gray);
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .placeholder h4 {
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .placeholder p {
+            font-size: 11px;
+            color: var(--gray);
+            line-height: 1.5;
+        }
+        .placeholder .edit-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
         }
 
-        .commitment-card:hover {
-            box-shadow: var(--shadow-lg);
-            transform: translateY(-2px);
-        }
-
-        .commitment-header {
+        /* Section Header */
+        .section-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: var(--space-5);
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 16px;
         }
-
-        .commitment-status {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-2);
-            padding: var(--space-2) var(--space-4);
-            border-radius: var(--radius-full);
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .commitment-status.verified {
-            background: rgba(16, 185, 129, 0.1);
-            color: var(--color-success);
-        }
-
-        .commitment-status.pending {
-            background: rgba(234, 179, 8, 0.1);
-            color: #EAB308;
-        }
-
-        .commitment-text {
-            font-size: 18px;
-            line-height: 1.7;
-            color: var(--color-dark);
-            font-weight: 500;
-            margin-bottom: var(--space-6);
-        }
-
-        .verification-bar {
-            background: var(--color-bg);
-            border-radius: var(--radius-full);
-            height: 12px;
-            position: relative;
-            overflow: hidden;
-            margin-bottom: var(--space-4);
-        }
-
-        .verification-fill {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            background: linear-gradient(90deg, var(--color-success) 0%, #34D399 100%);
-            border-radius: var(--radius-full);
-            transition: width 0.5s ease;
-        }
-
-        .verification-stats {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .verification-percentage {
-            font-size: 24px;
-            font-weight: 800;
-            color: var(--color-success);
-        }
-
-        .verification-details {
-            font-size: 13px;
-            color: var(--color-tertiary);
-        }
-
-        .verification-badge-large {
-            position: absolute;
-            top: var(--space-6);
-            right: var(--space-6);
-            width: 60px;
-            height: 60px;
-            background: var(--color-success);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 32px;
-            box-shadow: var(--shadow-md);
-        }
-
-        .commitment-date {
-            font-size: 12px;
-            color: var(--color-tertiary);
-            margin-top: var(--space-4);
-            padding-top: var(--space-4);
-            border-top: 1px solid var(--color-border);
-        }
-
-        .commitment-actions {
-            position: absolute;
-            top: var(--space-6);
-            right: var(--space-6);
-            display: flex;
-            gap: var(--space-2);
-        }
-
-        /* Grid Layouts */
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: var(--space-12);
-        }
-
-        /* Media */
-        .media-box {
-            aspect-ratio: 16/10;
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            background: var(--color-bg);
-            position: relative;
-        }
-
-        .media-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Item with actions */
-        .item-with-actions {
-            position: relative;
-            padding: var(--space-6);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-md);
-            margin-bottom: var(--space-4);
-            transition: all 0.2s;
-        }
-
-        .item-with-actions:hover {
-            border-color: var(--color-primary);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .item-actions {
-            position: absolute;
-            top: var(--space-4);
-            right: var(--space-4);
-            display: flex;
-            gap: var(--space-2);
-        }
-
-        /* Helper text */
-        .helper-text {
-            font-size: 13px;
-            color: var(--color-tertiary);
-            font-style: italic;
-            margin-top: var(--space-4);
-            padding: var(--space-4);
-            background: var(--color-bg);
-            border-radius: var(--radius-sm);
-        }
-
-        /* Badge System Styles */
-        .badge-section-header {
-            font-size: 14px;
+        .section-label {
+            font-size: 10px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--color-secondary);
-            margin: var(--space-8) 0 var(--space-4) 0;
-            padding-bottom: var(--space-3);
-            border-bottom: 2px solid var(--color-border);
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 4px;
         }
-
-        .badge-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: var(--space-4);
+        .section-title {
+            font-size: 18px;
+            font-weight: 800;
         }
-
-        .badge-card {
-            background: white;
-            border: 2px solid var(--color-border);
-            border-radius: var(--radius-md);
-            padding: var(--space-6);
-            text-align: center;
-            transition: all 0.2s;
-            position: relative;
-        }
-
-        .badge-card.achieved {
-            border-color: var(--color-primary);
-            background: linear-gradient(to bottom, rgba(41, 88, 146, 0.02), white);
-        }
-
-        .badge-card.locked {
-            opacity: 0.6;
-            background: var(--color-bg);
-        }
-
-        .badge-card:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .badge-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto var(--space-4);
-            background: var(--color-bg);
-            border-radius: 50%;
+        .section-controls {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 11px;
-            font-weight: 700;
-            text-align: center;
-            line-height: 1.2;
-            padding: var(--space-3);
-            border: 3px solid var(--color-border);
-            color: var(--color-tertiary);
+            gap: 8px;
+        }
+
+        /* Specific Components */
+        .cover-area {
+            height: 140px;
+            background: linear-gradient(135deg, var(--primary) 0%, #1D3F68 100%);
+            border-radius: 8px;
             position: relative;
-        }
-
-        .badge-card.achieved .badge-icon {
-            border-color: var(--color-primary);
-            color: var(--color-primary);
-            background: white;
-        }
-
-        .badge-checkmark {
-            position: absolute;
-            top: -6px;
-            right: -6px;
-            width: 28px;
-            height: 28px;
-            background: var(--color-success);
-            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 16px;
-            border: 3px solid white;
-            box-shadow: var(--shadow-md);
-        }
-
-        .badge-lock {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 24px;
-            opacity: 0.5;
-        }
-
-        .badge-name {
-            font-size: 15px;
-            font-weight: 700;
-            margin-bottom: var(--space-2);
-            color: var(--color-dark);
-        }
-
-        .badge-card.locked .badge-name {
-            color: var(--color-tertiary);
-        }
-
-        .badge-progress {
             font-size: 12px;
-            color: var(--color-tertiary);
-            margin-top: var(--space-2);
+        }
+        .cover-area .edit-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
         }
 
-        .badge-card.achieved .badge-progress {
-            color: var(--color-success);
-            font-weight: 600;
-        }
-
-        .badge-unlock-hint {
-            font-size: 11px;
-            color: var(--color-tertiary);
-            margin-top: var(--space-2);
-            font-style: italic;
-        }
-
-        .info-banner {
-            background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
-            border-left: 4px solid var(--color-primary);
-            padding: var(--space-5);
-            border-radius: var(--radius-md);
-            margin-bottom: var(--space-8);
-            display: flex;
-            align-items: start;
-            gap: var(--space-4);
-        }
-
-        .info-banner-icon {
-            font-size: 24px;
-            flex-shrink: 0;
-        }
-
-        .info-banner-content {
-            flex: 1;
-        }
-
-        .info-banner-title {
-            font-size: 15px;
-            font-weight: 700;
-            color: var(--color-primary);
-            margin-bottom: var(--space-2);
-        }
-
-        .info-banner-text {
-            font-size: 14px;
-            line-height: 1.6;
-            color: var(--color-secondary);
-        }
-
-        /* Achieved Badges Hero Section */
-        .badges-hero {
-            background: linear-gradient(to bottom, #FFFBEB 0%, #FEF3C7 100%);
-            border-bottom: 1px solid #FDE68A;
-            padding: var(--space-10) 0;
-            position: relative;
-        }
-
-        .badges-hero-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .badges-hero-header {
-            margin-bottom: var(--space-6);
-        }
-
-        .badges-hero-icon {
-            font-size: 32px;
-            margin-bottom: var(--space-3);
-            display: inline-block;
-        }
-
-        .badges-hero-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: #92400E;
-            margin-bottom: var(--space-2);
-            line-height: 1.2;
-        }
-
-        .badges-hero-subtitle {
-            font-size: 14px;
-            color: #B45309;
-            line-height: 1.6;
-        }
-
-        .badges-hero-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: var(--space-5);
-        }
-
-        .badge-hero-card {
-            background: white;
-            border: 2px solid #F59E0B;
-            border-radius: var(--radius-md);
-            padding: var(--space-6);
-            text-align: center;
-            position: relative;
-            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.1);
-            transition: all 0.3s;
-        }
-
-        .badge-hero-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(245, 158, 11, 0.2);
-        }
-
-        .badge-hero-icon {
+        .logo-box {
             width: 80px;
             height: 80px;
-            margin: 0 auto var(--space-4);
-            background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
+            background: white;
+            border-radius: 12px;
+            border: 2px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .logo-box span { font-size: 24px; font-weight: 800; color: var(--primary); }
+        .logo-box .edit-btn {
+            position: absolute;
+            bottom: -8px;
+            right: -8px;
+        }
+
+        .avatar-box {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #E2E8F0, #CBD5E1);
             border-radius: 50%;
+            position: relative;
+        }
+        .avatar-box .edit-btn {
+            position: absolute;
+            bottom: -4px;
+            right: -4px;
+            width: 20px;
+            height: 20px;
+            padding: 0;
+            border-radius: 50%;
+            font-size: 10px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            background: var(--bg);
+            border-radius: 16px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-right: 6px;
+            margin-bottom: 6px;
+        }
+
+        .badge-box {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+            opacity: 0.5;
+        }
+        .badge-box .icon {
+            width: 36px;
+            height: 36px;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            margin: 0 auto 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .badge-box .name { font-size: 10px; font-weight: 600; }
+        .badge-box .no-edit { font-size: 9px; color: var(--danger); font-style: italic; margin-top: 4px; }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+        }
+        .data-table th {
+            background: var(--primary);
+            color: white;
+            padding: 8px;
+            text-align: left;
+        }
+        .data-table td {
+            padding: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .stat-box {
+            background: var(--bg);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+            position: relative;
+        }
+        .stat-box .value { font-size: 22px; font-weight: 800; color: var(--primary); }
+        .stat-box .label { font-size: 10px; color: var(--gray); margin-top: 2px; }
+        .stat-box .edit-btn { position: absolute; top: 4px; right: 4px; }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            grid-template-rows: 70px 70px;
+            gap: 8px;
+        }
+        .gallery-item {
+            background: linear-gradient(135deg, #E2E8F0, #CBD5E1);
+            border-radius: 6px;
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 10px;
-            font-weight: 800;
-            text-align: center;
-            line-height: 1.2;
-            padding: var(--space-4);
-            border: 3px solid #F59E0B;
-            color: #92400E;
+            color: var(--light-gray);
+        }
+        .gallery-item:first-child { grid-row: span 2; }
+        .gallery-item .btns {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            display: flex;
+            gap: 4px;
+        }
+
+        .info-box {
+            background: #EFF6FF;
+            border: 1px solid var(--primary);
+            border-radius: 8px;
+            padding: 12px;
             position: relative;
         }
+        .info-box strong { color: var(--primary); display: block; margin-bottom: 6px; font-size: 12px; }
+        .info-box p { font-size: 11px; color: var(--gray); }
 
-        .badge-hero-checkmark {
-            position: absolute;
-            top: -6px;
-            right: -6px;
-            width: 28px;
-            height: 28px;
-            background: var(--color-success);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 16px;
-            border: 3px solid white;
-            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+        .warning-box {
+            background: #FEF3C7;
+            border-left: 4px solid var(--edit);
+            border-radius: 6px;
+            padding: 12px;
+            position: relative;
+        }
+        .warning-box h4 { font-size: 12px; font-weight: 700; color: #92400E; margin-bottom: 6px; }
+        .warning-box p { font-size: 11px; color: #78350F; line-height: 1.5; }
+
+        .honest-card {
+            background: #FEF2F2;
+            border: 1px solid #FECACA;
+            border-left: 4px solid #EF4444;
         }
 
-        .badge-hero-name {
-            font-size: 15px;
-            font-weight: 700;
-            color: #92400E;
-            margin-bottom: var(--space-2);
+        .commit-card {
+            border: 1px solid var(--success);
+            background: rgba(16, 185, 129, 0.03);
         }
-
-        .badge-hero-progress {
-            font-size: 12px;
-            color: var(--color-success);
+        .commit-status {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 9px;
             font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .commit-bar {
+            height: 5px;
+            background: var(--bg);
+            border-radius: 3px;
+            margin-top: 10px;
+        }
+        .commit-bar-fill {
+            height: 100%;
+            background: var(--success);
+            border-radius: 3px;
         }
 
-        .badges-hero-actions {
-            margin-top: var(--space-6);
-            text-align: right;
+        .value-card .content {
+            border-left: 3px solid var(--primary);
+            padding-left: 12px;
         }
+        .value-num { font-size: 10px; font-weight: 700; color: var(--accent); }
 
-        /* Locked Badges Section */
-        .locked-badges-section {
-            background: var(--color-bg);
-            padding: var(--space-12) 0;
-            border-top: 1px solid var(--color-border);
+        .problem-card {
+            border-left: 4px solid var(--edit);
         }
-
-        .locked-badges-header {
-            text-align: center;
-            margin-bottom: var(--space-8);
-        }
-
-        .locked-badges-title {
-            font-size: 24px;
+        .problem-score {
+            display: inline-block;
+            background: var(--edit);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 9px;
             font-weight: 700;
-            color: var(--color-secondary);
-            margin-bottom: var(--space-3);
+            margin-bottom: 6px;
         }
 
-        .locked-badges-subtitle {
-            font-size: 15px;
-            color: var(--color-tertiary);
-            line-height: 1.6;
-        }
-
-        .locked-badges-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: var(--space-6);
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .profile-info-content { grid-template-columns: 1fr; }
-            .grid-2 { grid-template-columns: 1fr; }
-            .badge-grid { grid-template-columns: repeat(2, 1fr); }
-            .locked-badges-grid { grid-template-columns: repeat(3, 1fr); }
-        }
-
-        @media (max-width: 768px) {
-            .company-name-header { font-size: 32px; }
-            .section-title { font-size: 32px; }
-            .badge-grid { grid-template-columns: 1fr; }
-            .locked-badges-grid { grid-template-columns: repeat(2, 1fr); }
-            .profile-header-content { flex-direction: column; align-items: flex-start; }
-            .company-logo { margin-bottom: 0; }
-            .company-header-info { margin-left: 0; margin-top: var(--space-6); padding-bottom: 0; }
-        }
-
-        @media (max-width: 480px) {
-            .locked-badges-grid { grid-template-columns: 1fr; }
+        .job-tag {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 9px;
+            font-weight: 700;
+            margin-bottom: 6px;
         }
     </style>
 </head>
 <body>
 
-    <!-- EDIT TOOLBAR -->
-    <div class="edit-toolbar">
-        <div class="edit-toolbar-left">
-            <div class="edit-status">
-                <span class="edit-status-dot"></span>
-                <span>Đang chỉnh sửa hồ sơ</span>
+<!-- ============================================================ -->
+<!-- SECTION 1: HERO (Cover + Logo + Thông tin công ty) -->
+<!-- ============================================================ -->
+<div class="wireframe-section">
+    <div class="wireframe-title">SECTION 1: Hero — Ảnh bìa + Logo + Thông tin công ty</div>
+    <div class="wireframe-content">
+        
+        <!-- Cover -->
+        <div class="cover-area">
+            Ảnh bìa 1600×400
+            <button class="edit-btn">📷 Đổi ảnh bìa</button>
+        </div>
+        
+        <div style="display: flex; gap: 20px; margin-top: -30px; padding: 0 20px; position: relative; z-index: 2;">
+            <!-- Logo -->
+            <div class="logo-box">
+                <span>STV</span>
+                <button class="edit-btn sm">📷</button>
+            </div>
+            
+            <!-- Company Info -->
+            <div style="flex: 1; padding-top: 40px;">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                    <span style="font-size: 20px; font-weight: 800;">Tên công ty</span>
+                    <span style="background: rgba(16,185,129,0.15); color: #10B981; padding: 2px 10px; border-radius: 12px; font-size: 10px; font-weight: 600;">✓ Đã xác minh (Auto)</span>
+                    <button class="edit-btn sm">✏️ Sửa thông tin</button>
+                </div>
+                <div style="font-size: 12px; color: var(--gray); margin-bottom: 12px;">
+                    🏢 Ngành nghề · 📍 Địa điểm · 📅 Năm thành lập
+                </div>
+                <div style="display: flex; gap: 24px;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 20px; font-weight: 800; color: var(--primary);">200+</div>
+                        <div style="font-size: 10px; color: var(--gray);">Nhân viên</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 20px; font-weight: 800; color: var(--primary);">5,000+</div>
+                        <div style="font-size: 10px; color: var(--gray);">Khách hàng</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 20px; font-weight: 800; color: var(--primary);">97%</div>
+                        <div style="font-size: 10px; color: var(--gray);">Hài lòng</div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="edit-toolbar-actions">
-            <button class="toolbar-btn toolbar-btn-secondary">
-                <span>👁️</span>
-                <span>Xem trước</span>
-            </button>
-            <button class="toolbar-btn toolbar-btn-secondary">
-                <span>💾</span>
-                <span>Lưu nháp</span>
-            </button>
-            <button class="toolbar-btn toolbar-btn-primary">
-                <span>✓</span>
-                <span>Xuất bản</span>
-            </button>
+        
+        <div class="dev-note">
+            <strong>📝 Ghi chú cho Dev:</strong>
+            • Ảnh bìa: <code>cover_image</code> — Kích thước khuyến nghị 1600×400px<br>
+            • Logo: <code>logo</code> — Tỷ lệ 1:1, crop thành hình vuông<br>
+            • Thông tin: <code>name</code>, <code>industry</code>, <code>location</code>, <code>founded_year</code><br>
+            • Thống kê: <code>employee_count</code>, <code>customer_count</code>, <code>satisfaction_rate</code><br>
+            • Badge "Đã xác minh" = tự động từ hệ thống, KHÔNG có nút sửa
         </div>
     </div>
+</div>
 
-    <!-- INFO BANNER -->
-    <div class="container" style="padding-top: 24px;">
-        <div class="info-banner">
-            <div class="info-banner-icon">ℹ️</div>
-            <div class="info-banner-content">
-                <div class="info-banner-title">Thông tin cơ bản đã được điền sẵn</div>
-                <div class="info-banner-text">
-                    Chúng tôi đã tự động điền các thông tin cơ bản từ tài khoản của bạn (tên công ty, ngành nghề, địa điểm, logo...). Bạn chỉ cần xem lại và bổ sung thêm các thông tin về văn hóa, phúc lợi và đội ngũ.
+<!-- ============================================================ -->
+<!-- SECTION 2: Giới thiệu + CEO + Badges -->
+<!-- ============================================================ -->
+<div class="wireframe-section">
+    <div class="wireframe-title">SECTION 2: Giới thiệu + CEO + Badges</div>
+    <div class="wireframe-content">
+        
+        <div class="grid-2">
+            <!-- Về chúng tôi -->
+            <div class="placeholder">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <h4>Về chúng tôi</h4>
+                    <button class="edit-btn sm">✏️ Sửa</button>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- COVER & HEADER -->
-    <div class="profile-cover editable-image">
-        <div class="image-upload-overlay">
-            <span class="upload-icon">📷</span>
-            <span>Thay đổi ảnh bìa</span>
-            <span style="font-size: 12px; opacity: 0.9;">Kích thước đề xuất: 1600x400px</span>
-        </div>
-        <div class="profile-header-content">
-            <div class="company-logo editable-image">
-                STV
-                <div class="image-upload-overlay">
-                    <span class="upload-icon">📷</span>
-                    <span>Thay logo</span>
-                </div>
-            </div>
-            <div class="company-header-info">
-                <div class="verified-badge-inline">
-                    <span class="verified-icon">✓</span>
-                    <span>Đã xác minh</span>
-                </div>
-                <h1 class="company-name-header inline-editable">
-                    Công ty TNHH Phần Mềm Sáng Tạo Việt
-                    <span class="inline-edit-icon">✏️</span>
-                </h1>
-                <div class="company-meta">
-                    <span class="meta-item inline-editable">
-                        🏢 Công nghệ / Phần mềm
-                        <span class="inline-edit-icon">✏️</span>
-                    </span>
-                    <span class="meta-item inline-editable">
-                        📍 Hà Nội
-                        <span class="inline-edit-icon">✏️</span>
-                    </span>
-                    <span class="meta-item inline-editable">
-                        📅 Thành lập 2018
-                        <span class="inline-edit-icon">✏️</span>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- PROFILE INFO -->
-    <div class="profile-info-section">
-        <div class="profile-info-content">
-            <div class="profile-main-info">
-                <div class="section-header-edit">
-                    <h2>Về chúng tôi</h2>
-                    <button class="edit-btn">
-                        <span class="edit-btn-icon">✏️</span>
-                        <span>Sửa</span>
-                    </button>
-                </div>
-                <p class="profile-description">
-                    Với hơn 200 nhân viên tâm huyết, chúng tôi đang phục vụ hơn 5,000 doanh nghiệp trên toàn quốc, giúp họ chuyển đổi số và phát triển bền vững.
-                </p>
+                <p style="margin-bottom: 12px;">Mô tả ngắn về công ty, tối đa 500 ký tự...</p>
                 
-                <div class="profile-stats">
-                    <div class="stat-item inline-editable">
-                        <div class="stat-number">200+</div>
-                        <div class="stat-label">Nhân viên</div>
-                        <span class="inline-edit-icon">✏️</span>
-                    </div>
-                    <div class="stat-item inline-editable">
-                        <div class="stat-number">5,000+</div>
-                        <div class="stat-label">Khách hàng</div>
-                        <span class="inline-edit-icon">✏️</span>
-                    </div>
-                    <div class="stat-item inline-editable">
-                        <div class="stat-number">97%</div>
-                        <div class="stat-label">Hài lòng</div>
-                        <span class="inline-edit-icon">✏️</span>
-                    </div>
+                <div style="position: relative;">
+                    <div class="placeholder-img" style="height: 100px;">Ảnh team 600×340</div>
+                    <button class="edit-btn sm" style="position: absolute; top: 8px; right: 8px;">📷 Đổi ảnh</button>
                 </div>
             </div>
             
-            <div class="profile-sidebar">
-                <!-- CEO -->
-                <div class="ceo-section" style="position: relative;">
-                    <button class="edit-btn" style="position: absolute; top: var(--space-4); right: var(--space-4);">
-                        <span class="edit-btn-icon">✏️</span>
-                        <span>Sửa</span>
-                    </button>
-                    <div class="ceo-header">
-                        <div class="ceo-avatar editable-image">
-                            <div class="image-upload-overlay" style="border-radius: 50%;">
-                                <span class="upload-icon" style="font-size: 24px;">📷</span>
-                            </div>
-                        </div>
-                        <div class="ceo-info">
-                            <h3>Trần Minh Quân</h3>
-                            <div class="ceo-title">Tổng giám đốc</div>
-                        </div>
+            <!-- CEO + Badges -->
+            <div>
+                <!-- CEO Card -->
+                <div class="placeholder" style="display: flex; gap: 12px; margin-bottom: 12px;">
+                    <div class="avatar-box">
+                        <button class="edit-btn sm" style="font-size: 8px;">📷</button>
                     </div>
-                    <p class="ceo-quote">
-                        "Công nghệ phải phục vụ con người. Mỗi sản phẩm chúng tôi tạo ra đều hướng đến việc giúp người Việt làm việc thông minh hơn, hạnh phúc hơn."
-                    </p>
-                </div>
-
-                <!-- Badges -->
-                <div style="position: relative; margin-top: var(--space-6);">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4);">
-                        <h3 style="font-size: 16px; font-weight: 600;">Huy hiệu của công ty</h3>
-                        <button class="edit-btn">
-                            <span class="edit-btn-icon">📋</span>
-                            <span>Quản lý</span>
-                        </button>
+                    <div style="flex: 1;">
+                        <div style="font-size: 14px; font-weight: 700;">Tên CEO</div>
+                        <div style="font-size: 10px; color: var(--gray); margin-bottom: 6px;">Chức danh</div>
+                        <div style="font-size: 11px; color: var(--gray); font-style: italic;">"Quote của CEO, tối đa 200 ký tự..."</div>
                     </div>
-
-                    <div style="font-size: 13px; color: var(--color-tertiary); margin-bottom: var(--space-5); line-height: 1.6;">
-                        Huy hiệu được cấp tự động khi công ty xác thực đủ cam kết trong mỗi nhóm
-                    </div>
-
-                    <!-- Achieved Badges Only -->
-                    <div class="badge-grid">
-                        <div class="badge-card achieved">
-                            <div class="badge-icon">
-                                VĂN HÓA<br>CÂN BẰNG
-                                <div class="badge-checkmark">✓</div>
-                            </div>
-                            <div class="badge-name">Văn hóa cân bằng</div>
-                            <div class="badge-progress">3/3 cam kết đã xác thực</div>
-                        </div>
-
-                        <div class="badge-card achieved">
-                            <div class="badge-icon">
-                                ĐẦU TƯ<br>CON NGƯỜI
-                                <div class="badge-checkmark">✓</div>
-                            </div>
-                            <div class="badge-name">Đầu tư con người</div>
-                            <div class="badge-progress">4/3 cam kết đã xác thực</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tags -->
-        <div class="tags-section">
-            <div class="container">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4);">
-                    <div style="font-size: 14px; font-weight: 600; color: var(--color-secondary);">Giá trị cốt lõi</div>
-                    <button class="edit-btn">
-                        <span class="edit-btn-icon">✏️</span>
-                        <span>Quản lý tags</span>
-                    </button>
-                </div>
-                <div class="tags-scroll">
-                    <span class="tag">Tôn trọng</span>
-                    <span class="tag">Kiến tạo</span>
-                    <span class="tag">Cho là nhận</span>
-                    <span class="tag">Học hỏi mỗi ngày</span>
-                    <span class="tag">Khách hàng trọng tâm</span>
-                    <span class="tag">Đồng đội</span>
-                    <span class="tag">Sáng tạo</span>
-                    <span class="tag">Bền vững</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- MAIN NAVIGATION TABS -->
-    <nav class="main-tabs">
-        <div class="main-tabs-container">
-            <button class="main-tab active">Văn hóa doanh nghiệp</button>
-            <button class="main-tab">Bài viết</button>
-            <button class="main-tab">Tuyển dụng</button>
-        </div>
-    </nav>
-
-    <!-- TAB PANELS -->
-    <div class="container" style="padding-top: 64px; padding-bottom: 96px;">
-        
-        <!-- TAB: VĂN HÓA DOANH NGHIỆP -->
-        <div class="tab-panel active">
-
-            <!-- CAM KẾT ĐÃ XÁC THỰC -->
-            <div class="content-section editable-section">
-                <div class="section-header-edit">
-                    <div>
-                        <div class="section-label">CAM KẾT CỦA CHÚNG TÔI</div>
-                        <h2 class="section-title">Những tuyên bố đã được nhân viên xác thực</h2>
-                        <p class="section-subtitle">Mỗi cam kết đều được xác minh bởi nhân viên thực tế đang làm việc tại công ty</p>
-                    </div>
-                    <button class="add-btn">
-                        <span>+</span>
-                        <span>Thêm cam kết mới</span>
-                    </button>
+                    <button class="edit-btn sm" style="position: absolute; top: 8px; right: 8px;">✏️ Sửa</button>
                 </div>
                 
-                <div class="commitments-grid">
-                    <!-- Commitment 1 - Verified -->
-                    <div class="commitment-card verified">
-                        <div class="verification-badge-large">✓</div>
-                        <div class="commitment-actions">
-                            <button class="edit-btn">
-                                <span class="edit-btn-icon">✏️</span>
-                                <span>Sửa</span>
-                            </button>
-                            <button class="delete-btn">
-                                <span>🗑️</span>
-                                <span>Xóa</span>
-                            </button>
-                        </div>
-                        <div class="commitment-header">
-                            <div class="commitment-status verified">
-                                ✓ Đã xác thực
-                            </div>
-                        </div>
-                        <div class="commitment-text">
-                            "Chúng tôi không có văn hóa làm thêm giờ. Trung bình mỗi nhân viên chỉ tăng ca dưới 3 giờ/tháng. Cuối tuần là thời gian của gia đình."
-                        </div>
-                        <div class="verification-bar">
-                            <div class="verification-fill" style="width: 89%;"></div>
-                        </div>
-                        <div class="verification-stats">
-                            <div class="verification-percentage">89%</div>
-                            <div class="verification-details">156/175 nhân viên xác nhận đúng</div>
-                        </div>
-                        <div class="commitment-date">
-                            Đăng ngày 15/10/2024 • Xác thực hoàn tất 18/10/2024
-                        </div>
-                    </div>
-
-                    <!-- Empty State Example -->
-                    <div class="empty-state">
-                        <div class="empty-state-icon">📝</div>
-                        <div class="empty-state-title">Chưa có cam kết nào</div>
-                        <div class="empty-state-desc">Thêm cam kết đầu tiên để xây dựng lòng tin với ứng viên.<br>Cam kết tốt nhất là những tuyên bố cụ thể, có thể đo lường được.</div>
-                        <button class="add-btn">
-                            <span>+</span>
-                            <span>Thêm cam kết đầu tiên</span>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="helper-text">
-                    <strong>💡 Mẹo:</strong> Cam kết tốt nhất là những tuyên bố cụ thể (có số liệu), có thể xác minh được, và quan trọng với ứng viên. Ví dụ: "Trung bình mỗi nhân viên làm thêm dưới 3 giờ/tháng" thay vì "Chúng tôi cân bằng công việc - cuộc sống".
-                </div>
-            </div>
-
-            <!-- TẦM NHÌN & SỨ MỆNH -->
-            <div class="content-section editable-section">
-                <div class="section-header-edit">
-                    <div>
-                        <div class="section-label">TẦM NHÌN & SỨ MỆNH</div>
-                        <h2 class="section-title">Xây dựng tương lai số cho doanh nghiệp Việt</h2>
-                        <p class="section-subtitle">Chúng tôi tin rằng mỗi doanh nghiệp Việt đều xứng đáng có công cụ quản lý hiện đại</p>
-                    </div>
-                    <button class="edit-btn">
-                        <span class="edit-btn-icon">✏️</span>
-                        <span>Sửa</span>
-                    </button>
-                </div>
-                
+                <!-- Badges - KHÔNG EDIT -->
                 <div class="grid-2">
-                    <div>
-                        <h3>Tầm nhìn đến 2030</h3>
-                        <p style="font-size: 16px; line-height: 1.7; color: var(--color-secondary); margin-bottom: 32px;">Trở thành đối tác công nghệ tin cậy nhất của 50,000 doanh nghiệp Việt Nam, giúp họ chuyển đổi số thành công và phát triển bền vững.</p>
-                        
-                        <h3>Sứ mệnh của chúng tôi</h3>
-                        <p style="font-size: 16px; line-height: 1.7; color: var(--color-secondary); margin-bottom: 32px;">Phát triển các giải pháp công nghệ đơn giản, dễ dùng nhưng mạnh mẽ, giúp doanh nghiệp Việt tối ưu hóa vận hành và tăng năng suất.</p>
-                        
-                        <h3>Cam kết trách nhiệm</h3>
-                        <p style="font-size: 16px; line-height: 1.7; color: var(--color-secondary);">Đến năm 2026: tạo 5,000 việc làm chất lượng cao, đào tạo miễn phí lập trình cho 10,000 sinh viên, đóng góp 3% doanh thu cho giáo dục công nghệ.</p>
+                    <div class="badge-box">
+                        <div class="icon">BADGE</div>
+                        <div class="name">Tên badge</div>
+                        <div class="no-edit">⚠️ Không sửa được</div>
                     </div>
-                    <div>
-                        <div class="media-box editable-image">
-                            <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=500&fit=crop&q=80" alt="Video giới thiệu">
-                            <div class="image-upload-overlay">
-                                <span class="upload-icon">📷</span>
-                                <span>Thay đổi ảnh/video</span>
-                                <span style="font-size: 12px; opacity: 0.9;">Video hoặc ảnh minh họa</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- HÀNH TRÌNH PHÁT TRIỂN - WITH EMPTY STATE EXAMPLE -->
-            <div class="content-section editable-section">
-                <div class="section-header-edit">
-                    <div>
-                        <div class="section-label">HÀNH TRÌNH PHÁT TRIỂN</div>
-                        <h2 class="section-title">Từ 3 người đến 200+ thành viên</h2>
-                        <p class="section-subtitle">6 năm không ngừng lớn mạnh và sáng tạo</p>
-                    </div>
-                    <button class="add-btn">
-                        <span>+</span>
-                        <span>Thêm mốc thời gian</span>
-                    </button>
-                </div>
-
-                <!-- Timeline Items with Edit Controls -->
-                <div class="item-with-actions">
-                    <div class="item-actions">
-                        <span class="drag-handle">⋮⋮</span>
-                        <button class="edit-btn">
-                            <span class="edit-btn-icon">✏️</span>
-                        </button>
-                        <button class="delete-btn">
-                            <span>🗑️</span>
-                        </button>
-                    </div>
-                    <div style="display: grid; grid-template-columns: 100px 1fr 300px; gap: var(--space-6); align-items: start;">
-                        <div>
-                            <div style="font-size: 36px; font-weight: 800; color: var(--color-primary);">2018</div>
-                        </div>
-                        <div>
-                            <h4 style="font-size: 20px; font-weight: 700; margin-bottom: var(--space-3);">Khởi đầu từ căn phòng nhỏ</h4>
-                            <p style="font-size: 15px; line-height: 1.7; color: var(--color-secondary);">3 người bạn cùng chung niềm đam mê công nghệ quyết định rời công ty lớn để khởi nghiệp. Sản phẩm đầu tiên phục vụ 10 doanh nghiệp SME.</p>
-                        </div>
-                        <div class="editable-image" style="aspect-ratio: 3/2; border-radius: var(--radius-md); overflow: hidden; background: var(--color-bg);">
-                            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop&q=80" alt="2018" style="width: 100%; height: 100%; object-fit: cover;">
-                            <div class="image-upload-overlay">
-                                <span class="upload-icon">📷</span>
-                                <span>Thay ảnh</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Empty State for Timeline -->
-                <div class="empty-state">
-                    <div class="empty-state-icon">📅</div>
-                    <div class="empty-state-title">Chưa có mốc thời gian nào</div>
-                    <div class="empty-state-desc">Thêm các mốc quan trọng trong hành trình phát triển của công ty.<br>Ví dụ: thành lập, vòng gọi vốn, mở chi nhánh, giải thưởng...</div>
-                    <button class="add-btn">
-                        <span>+</span>
-                        <span>Thêm mốc thời gian đầu tiên</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- GIÁ TRỊ CỐT LÕI -->
-            <div class="content-section editable-section">
-                <div class="section-header-edit">
-                    <div>
-                        <div class="section-label">GIÁ TRỊ CỐT LÕI</div>
-                        <h2 class="section-title">6 nguyên tắc định hình văn hóa</h2>
-                        <p class="section-subtitle">Những giá trị chúng tôi sống mỗi ngày, với ví dụ thực tế</p>
-                    </div>
-                    <button class="add-btn">
-                        <span>+</span>
-                        <span>Thêm giá trị</span>
-                    </button>
-                </div>
-
-                <!-- Value Item with Edit Controls -->
-                <div class="item-with-actions">
-                    <div class="item-actions">
-                        <span class="drag-handle">⋮⋮</span>
-                        <button class="edit-btn">
-                            <span class="edit-btn-icon">✏️</span>
-                        </button>
-                        <button class="delete-btn">
-                            <span>🗑️</span>
-                        </button>
-                    </div>
-                    <div style="font-size: 14px; font-weight: 700; color: var(--color-accent); margin-bottom: var(--space-3);">01</div>
-                    <h3 style="font-size: 22px; font-weight: 700; margin-bottom: var(--space-4); color: var(--color-dark);">Làm nhanh, học nhanh hơn</h3>
-                    <p style="font-size: 16px; line-height: 1.7; color: var(--color-secondary); margin-bottom: var(--space-5);">Chúng tôi tin vào hành động nhanh, triển khai sớm và học hỏi từ thực tế. Sai là bình thường, quan trọng là học được gì.</p>
-                    <div style="background: white; padding: var(--space-5); border-radius: var(--radius-sm); font-size: 14px; line-height: 1.7; color: var(--color-secondary); font-style: italic; border: 1px solid var(--color-border);">
-                        <strong style="font-weight: 600; color: var(--color-primary); font-style: normal;">Ví dụ thực tế:</strong> Tháng 10/2024, đội phát hiện lỗi nghiêm trọng ở module báo cáo. Thay vì chờ sprint kế tiếp, chúng tôi họp khẩn trong 2 giờ, triển khai bản sửa lỗi trong 4 giờ. Kết quả: không khách hàng nào bị ảnh hưởng.
-                    </div>
-                </div>
-
-                <!-- Empty State -->
-                <div class="empty-state">
-                    <div class="empty-state-icon">⭐</div>
-                    <div class="empty-state-title">Chưa có giá trị cốt lõi nào</div>
-                    <div class="empty-state-desc">Thêm các giá trị định hình văn hóa công ty.<br>Mỗi giá trị nên có: Tên, Mô tả và Ví dụ thực tế để ứng viên hiểu rõ hơn.</div>
-                    <button class="add-btn">
-                        <span>+</span>
-                        <span>Thêm giá trị đầu tiên</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- MỘT NGÀY LÀM VIỆC -->
-            <div class="content-section editable-section">
-                <div class="section-header-edit">
-                    <div>
-                        <div class="section-label">MỘT NGÀY LÀM VIỆC</div>
-                        <h2 class="section-title">Trải nghiệm một ngày điển hình</h2>
-                        <p class="section-subtitle">Theo chân một Quản lý sản phẩm tại Sáng Tạo Việt</p>
-                    </div>
-                    <button class="add-btn">
-                        <span>+</span>
-                        <span>Thêm hoạt động</span>
-                    </button>
-                </div>
-
-                <!-- Day Item with Edit Controls -->
-                <div class="item-with-actions">
-                    <div class="item-actions">
-                        <span class="drag-handle">⋮⋮</span>
-                        <button class="edit-btn">
-                            <span class="edit-btn-icon">✏️</span>
-                        </button>
-                        <button class="delete-btn">
-                            <span>🗑️</span>
-                        </button>
-                    </div>
-                    <div style="display: grid; grid-template-columns: 100px 1fr; gap: var(--space-6);">
-                        <div style="font-size: 24px; font-weight: 700; color: var(--color-primary);">8:30</div>
-                        <div>
-                            <h4 style="font-size: 18px; font-weight: 600; margin-bottom: var(--space-2);">Điểm danh & Cà phê sáng</h4>
-                            <p style="font-size: 15px; line-height: 1.6; color: var(--color-secondary); margin-bottom: var(--space-3);">Đến văn phòng, lấy ly cà phê miễn phí tại pantry, chào hỏi đồng nghiệp và chuẩn bị tinh thần cho ngày mới. Đọc nhanh Slack để cập nhật thông tin qua đêm.</p>
-                            <div style="display: flex; gap: var(--space-2); flex-wrap: wrap;">
-                                <span style="padding: var(--space-1) var(--space-3); background: white; border: 1px solid var(--color-border); border-radius: var(--radius-sm); font-size: 12px; font-weight: 500; color: var(--color-tertiary);">Slack</span>
-                                <span style="padding: var(--space-1) var(--space-3); background: white; border: 1px solid var(--color-border); border-radius: var(--radius-sm); font-size: 12px; font-weight: 500; color: var(--color-tertiary);">Gmail</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Empty State -->
-                <div class="empty-state">
-                    <div class="empty-state-icon">🕐</div>
-                    <div class="empty-state-title">Chưa có hoạt động nào</div>
-                    <div class="empty-state-desc">Thêm các hoạt động trong ngày để ứng viên hình dung được một ngày làm việc tại công ty.<br>Bao gồm: Thời gian, Tên hoạt động, Mô tả và Công cụ sử dụng.</div>
-                    <button class="add-btn">
-                        <span>+</span>
-                        <span>Thêm hoạt động đầu tiên</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- BAN LÃNH ĐẠO -->
-            <div class="content-section editable-section">
-                <div class="section-header-edit">
-                    <div>
-                        <div class="section-label">BAN LÃNH ĐẠO</div>
-                        <h2 class="section-title">Những người định hướng văn hóa</h2>
-                        <p class="section-subtitle">Lắng nghe từ đội ngũ điều hành về triết lý xây dựng Sáng Tạo Việt</p>
-                    </div>
-                    <button class="add-btn">
-                        <span>+</span>
-                        <span>Thêm thành viên</span>
-                    </button>
-                </div>
-
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-8);">
-                    <!-- Leader Card with Edit -->
-                    <div style="background: var(--color-bg); border-radius: var(--radius-md); padding: var(--space-8); text-align: center; position: relative;">
-                        <div style="position: absolute; top: var(--space-4); right: var(--space-4); display: flex; gap: var(--space-2);">
-                            <button class="icon-btn" style="color: var(--color-primary);">✏️</button>
-                            <button class="icon-btn" style="color: var(--color-danger);">🗑️</button>
-                        </div>
-                        <div class="editable-image" style="width: 120px; height: 120px; border-radius: 50%; margin: 0 auto var(--space-5); background: url('https://i.pravatar.cc/120?img=12') center/cover; border: 3px solid white; box-shadow: var(--shadow-md);">
-                            <div class="image-upload-overlay" style="border-radius: 50%;">
-                                <span class="upload-icon" style="font-size: 24px;">📷</span>
-                            </div>
-                        </div>
-                        <div style="font-size: 20px; font-weight: 700; margin-bottom: var(--space-2);">Trần Minh Quân</div>
-                        <div style="font-size: 14px; color: var(--color-tertiary); margin-bottom: var(--space-4);">Tổng giám đốc & Người sáng lập</div>
-                        <p style="font-size: 15px; line-height: 1.6; color: var(--color-secondary); font-style: italic;">"Thành công của Sáng Tạo Việt là khi mỗi nhân viên cảm thấy hạnh phúc mỗi ngày đến làm việc."</p>
-                    </div>
-
-                    <!-- Empty State Card -->
-                    <div class="empty-state" style="padding: var(--space-8);">
-                        <div class="empty-state-icon" style="font-size: 32px;">👤</div>
-                        <div class="empty-state-title" style="font-size: 16px;">Thêm thành viên lãnh đạo</div>
-                        <button class="add-btn" style="margin-top: var(--space-4);">
-                            <span>+</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- BẢNG MINH BẠCH -->
-            <div class="content-section editable-section">
-                <div class="section-header-edit">
-                    <div>
-                        <div class="section-label">BẢNG MINH BẠCH</div>
-                        <h2 class="section-title">Những con số thực tế</h2>
-                        <p class="section-subtitle">Dữ liệu cập nhật Quý 3/2024 - Không che giấu, không bóp méo</p>
-                    </div>
-                    <div class="section-actions">
-                        <button class="add-btn">
-                            <span>+</span>
-                            <span>Thêm chỉ số</span>
-                        </button>
-                        <button class="edit-btn">
-                            <span class="edit-btn-icon">✏️</span>
-                            <span>Sửa tất cả</span>
-                        </button>
-                    </div>
-                </div>
-
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6);">
-                    <!-- Metric Card with Edit -->
-                    <div style="background: var(--color-bg); padding: var(--space-8); border-radius: var(--radius-md); border: 1px solid var(--color-border); text-align: center; position: relative;">
-                        <button class="edit-btn" style="position: absolute; top: var(--space-3); right: var(--space-3);">
-                            <span class="edit-btn-icon">✏️</span>
-                        </button>
-                        <div style="font-size: 48px; font-weight: 800; line-height: 1; color: var(--color-primary); margin-bottom: var(--space-3);">2.8%</div>
-                        <div style="display: inline-flex; align-items: center; gap: var(--space-1); font-size: 14px; font-weight: 600; margin-bottom: var(--space-3); color: var(--color-danger);">
-                            <span>↓</span>
-                            <span>Giảm từ 8%</span>
-                        </div>
-                        <div style="font-size: 14px; color: var(--color-secondary); line-height: 1.4;">Tỉ lệ nghỉ việc năm 2024</div>
-                        <div style="font-size: 12px; color: var(--color-tertiary); margin-top: var(--space-2);">Đo lường: Số nhân viên nghỉ / Tổng số nhân viên</div>
-                    </div>
-
-                    <!-- Empty Metric Card -->
-                    <div class="empty-state" style="padding: var(--space-8); min-height: auto;">
-                        <div class="empty-state-icon" style="font-size: 32px; margin-bottom: var(--space-3);">📊</div>
-                        <div class="empty-state-title" style="font-size: 14px;">Thêm chỉ số minh bạch</div>
-                        <button class="add-btn" style="margin-top: var(--space-3); padding: var(--space-2) var(--space-4); font-size: 13px;">
-                            <span>+</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- TIẾNG NÓI NHÂN VIÊN -->
-            <div class="content-section editable-section">
-                <div class="section-header-edit">
-                    <div>
-                        <div class="section-label">TIẾNG NÓI NHÂN VIÊN</div>
-                        <h2 class="section-title">Nghe từ chính người trong cuộc</h2>
-                        <p class="section-subtitle">Những câu chuyện thật, không qua chỉnh sửa</p>
-                    </div>
-                    <button class="add-btn">
-                        <span>+</span>
-                        <span>Thêm testimonial</span>
-                    </button>
-                </div>
-
-                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6);">
-                    <!-- Testimonial Card with Edit -->
-                    <div style="background: var(--color-bg); padding: var(--space-8); border-radius: var(--radius-md); position: relative;">
-                        <div style="position: absolute; top: var(--space-4); right: var(--space-4); display: flex; gap: var(--space-2);">
-                            <button class="icon-btn" style="color: var(--color-primary);">✏️</button>
-                            <button class="icon-btn" style="color: var(--color-danger);">🗑️</button>
-                        </div>
-                        <p style="font-size: 16px; line-height: 1.7; color: var(--color-secondary); font-style: italic; margin-bottom: var(--space-6);">"Mình từng làm ở công ty nước ngoài 4 năm. Về đây vì thấy công việc có ý nghĩa thực sự. Tính năng mình làm hôm nay, ngày mai có hàng ngàn người dùng ở Việt Nam."</p>
-                        <div style="display: flex; align-items: center; gap: var(--space-4);">
-                            <div class="editable-image" style="width: 48px; height: 48px; border-radius: 50%; overflow: hidden; flex-shrink: 0; background: url('https://i.pravatar.cc/48?img=33') center/cover;">
-                                <div class="image-upload-overlay" style="border-radius: 50%;">
-                                    <span style="font-size: 16px;">📷</span>
-                                </div>
-                            </div>
-                            <div>
-                                <div style="font-size: 15px; font-weight: 600; margin-bottom: var(--space-1);">Nguyễn Hoàng Nam</div>
-                                <div style="font-size: 13px; color: var(--color-tertiary);">Kỹ sư Backend • 2.5 năm</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Empty Testimonial Card -->
-                    <div class="empty-state">
-                        <div class="empty-state-icon">💬</div>
-                        <div class="empty-state-title">Thêm lời nhận xét</div>
-                        <div class="empty-state-desc">Có thể là text hoặc video testimonial từ nhân viên thực tế</div>
-                        <button class="add-btn">
-                            <span>+</span>
-                            <span>Thêm testimonial</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PHÚC LỢI -->
-            <div class="content-section editable-section">
-                <div class="section-header-edit">
-                    <div>
-                        <div class="section-label">PHÚC LỢI & PHONG CÁCH</div>
-                        <h2 class="section-title">Chúng tôi đầu tư vào con người</h2>
-                        <p class="section-subtitle">Gói phúc lợi toàn diện với lý do đằng sau mỗi quyền lợi</p>
-                    </div>
-                    <button class="add-btn">
-                        <span>+</span>
-                        <span>Thêm phúc lợi</span>
-                    </button>
-                </div>
-
-                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6);">
-                    <!-- Benefit Card with Edit -->
-                    <div style="background: white; border: 1px solid var(--color-border); border-radius: var(--radius-md); overflow: hidden; transition: all 0.2s; position: relative;">
-                        <div style="position: absolute; top: var(--space-4); right: var(--space-4); z-index: 10; display: flex; gap: var(--space-2);">
-                            <button class="icon-btn" style="color: var(--color-primary); background: white;">✏️</button>
-                            <button class="icon-btn" style="color: var(--color-danger); background: white;">🗑️</button>
-                        </div>
-                        <div class="editable-image" style="width: 100%; height: 200px; background: url('https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=600&h=300&fit=crop&q=80') center/cover;">
-                            <div class="image-upload-overlay">
-                                <span class="upload-icon">📷</span>
-                                <span>Thay ảnh</span>
-                            </div>
-                        </div>
-                        <div style="padding: var(--space-6);">
-                            <h4 style="font-size: 18px; font-weight: 700; margin-bottom: var(--space-2);">Lương thưởng hấp dẫn</h4>
-                            <p style="font-size: 13px; color: var(--color-accent); font-weight: 600; margin-bottom: var(--space-3);">Vì sao: Nhân viên xứng đáng được trả công xứng đáng</p>
-                            <p style="font-size: 14px; line-height: 1.7; color: var(--color-secondary); margin-bottom: var(--space-4);">Mức lương hàng đầu thị trường, 13-15 tháng lương/năm, thưởng hiệu suất hàng quý, cổ phiếu cho tất cả vị trí.</p>
-                            <p style="font-size: 12px; color: var(--color-tertiary); font-style: italic;">Lưu ý: Chỉ tiêu hiệu suất được thiết lập cùng với Quản lý, không áp đặt từ trên xuống</p>
-                        </div>
-                    </div>
-
-                    <!-- Empty Benefit Card -->
-                    <div class="empty-state">
-                        <div class="empty-state-icon">🎁</div>
-                        <div class="empty-state-title">Thêm phúc lợi</div>
-                        <div class="empty-state-desc">Mỗi phúc lợi nên có: Ảnh, Tiêu đề, Lý do, Mô tả chi tiết và Lưu ý (nếu có)</div>
-                        <button class="add-btn">
-                            <span>+</span>
-                            <span>Thêm phúc lợi</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CÂU HỎI THƯỜNG GẶP -->
-            <div class="content-section editable-section">
-                <div class="section-header-edit">
-                    <div>
-                        <div class="section-label">CÂU HỎI THƯỜNG GẶP</div>
-                        <h2 class="section-title">Những điều được hỏi nhiều nhất</h2>
-                        <p class="section-subtitle">Câu trả lời thẳng thắn và trung thực</p>
-                    </div>
-                    <button class="add-btn">
-                        <span>+</span>
-                        <span>Thêm câu hỏi</span>
-                    </button>
-                </div>
-
-                <!-- FAQ Item with Edit -->
-                <div class="item-with-actions">
-                    <div class="item-actions">
-                        <span class="drag-handle">⋮⋮</span>
-                        <button class="edit-btn">
-                            <span class="edit-btn-icon">✏️</span>
-                        </button>
-                        <button class="delete-btn">
-                            <span>🗑️</span>
-                        </button>
-                    </div>
-                    <div>
-                        <div style="font-size: 17px; font-weight: 600; margin-bottom: var(--space-3); display: flex; justify-content: space-between; align-items: center;">
-                            <span>Quy trình phỏng vấn diễn ra như thế nào?</span>
-                        </div>
-                        <div style="font-size: 15px; line-height: 1.7; color: var(--color-secondary);">
-                            Sàng lọc hồ sơ (2 ngày) → Phỏng vấn qua điện thoại với Nhân sự (30 phút) → Phỏng vấn kỹ thuật với đội (90 phút) → Phỏng vấn văn hóa với ban lãnh đạo (45 phút). Toàn bộ quy trình mất 2-3 tuần. Chúng tôi phản hồi trong vòng 48 giờ sau mỗi vòng.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Empty FAQ -->
-                <div class="empty-state">
-                    <div class="empty-state-icon">❓</div>
-                    <div class="empty-state-title">Chưa có câu hỏi nào</div>
-                    <div class="empty-state-desc">Thêm các câu hỏi thường gặp và trả lời thẳng thắn, chi tiết để ứng viên hiểu rõ hơn về công ty</div>
-                    <button class="add-btn">
-                        <span>+</span>
-                        <span>Thêm câu hỏi đầu tiên</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- VĂN PHÒNG (GALLERY) -->
-            <div class="content-section editable-section">
-                <div class="section-header-edit">
-                    <div>
-                        <div class="section-label">VĂN PHÒNG</div>
-                        <h2 class="section-title">Không gian làm việc</h2>
-                        <p class="section-subtitle">Được thiết kế để tối đa hóa sáng tạo và cộng tác</p>
-                    </div>
-                    <button class="add-btn">
-                        <span>+</span>
-                        <span>Thêm ảnh</span>
-                    </button>
-                </div>
-
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4);">
-                    <!-- Gallery Item with Edit -->
-                    <div class="editable-image" style="aspect-ratio: 4/3; border-radius: var(--radius-md); overflow: hidden; cursor: pointer; background: url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=600&h=450&fit=crop&q=80') center/cover;">
-                        <div class="image-upload-overlay">
-                            <span class="upload-icon">📷</span>
-                            <span>Thay ảnh</span>
-                            <button style="position: absolute; top: var(--space-3); right: var(--space-3); background: white; border: none; border-radius: 50%; width: 32px; height: 32px; cursor: pointer; color: var(--color-danger); font-size: 16px;">×</button>
-                        </div>
-                    </div>
-
-                    <!-- Empty Gallery Slot -->
-                    <div class="empty-state" style="aspect-ratio: 4/3; padding: var(--space-6);">
-                        <div class="empty-state-icon" style="font-size: 32px; margin-bottom: var(--space-2);">📷</div>
-                        <button class="add-btn" style="padding: var(--space-2) var(--space-4); font-size: 13px;">
-                            <span>+</span>
-                            <span>Thêm ảnh</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- LOCKED BADGES SECTION -->
-    <div class="locked-badges-section">
-        <div class="container">
-            <div class="locked-badges-header">
-                <h3 class="locked-badges-title">🔒 Huy hiệu chưa đạt được</h3>
-                <p class="locked-badges-subtitle">
-                    Tiếp tục xác thực cam kết để mở khóa các huy hiệu này
-                </p>
-            </div>
-
-            <div class="locked-badges-grid">
-                <div class="badge-card locked">
-                    <div class="badge-icon">
-                        MINH BẠCH<br>TÀI CHÍNH
-                        <div class="badge-lock">🔒</div>
-                    </div>
-                    <div class="badge-name">Minh bạch tài chính</div>
-                    <div class="badge-progress">1/3 cam kết đã xác thực</div>
-                    <div class="badge-unlock-hint">Cần thêm 2 cam kết về minh bạch</div>
-                </div>
-
-                <div class="badge-card locked">
-                    <div class="badge-icon">
-                        ĐA DẠNG<br>& HÒA NHẬP
-                        <div class="badge-lock">🔒</div>
-                    </div>
-                    <div class="badge-name">Đa dạng & hòa nhập</div>
-                    <div class="badge-progress">0/3 cam kết đã xác thực</div>
-                    <div class="badge-unlock-hint">Thêm cam kết về DEI để mở khóa</div>
-                </div>
-
-                <div class="badge-card locked">
-                    <div class="badge-icon">
-                        PHÚC LỢI<br>VƯỢT TRỘI
-                        <div class="badge-lock">🔒</div>
-                    </div>
-                    <div class="badge-name">Phúc lợi vượt trội</div>
-                    <div class="badge-progress">2/3 cam kết đã xác thực</div>
-                    <div class="badge-unlock-hint">Cần thêm 1 cam kết về phúc lợi</div>
-                </div>
-
-                <div class="badge-card locked">
-                    <div class="badge-icon">
-                        SÁNG TẠO<br>& ĐỔI MỚI
-                        <div class="badge-lock">🔒</div>
-                    </div>
-                    <div class="badge-name">Sáng tạo & đổi mới</div>
-                    <div class="badge-progress">1/3 cam kết đã xác thực</div>
-                    <div class="badge-unlock-hint">Cần thêm 2 cam kết về innovation</div>
-                </div>
-            </div>
-
-            <div style="margin-top: var(--space-8); max-width: 800px; margin-left: auto; margin-right: auto;">
-                <div style="padding: var(--space-5); background: white; border-radius: var(--radius-md); border-left: 4px solid var(--color-warning);">
-                    <div style="display: flex; align-items: start; gap: var(--space-3);">
-                        <span style="font-size: 20px;">💡</span>
-                        <div>
-                            <strong style="color: var(--color-secondary); font-size: 14px;">Cách mở khóa huy hiệu:</strong>
-                            <p style="margin-top: var(--space-2); font-size: 13px; color: var(--color-tertiary); line-height: 1.6;">
-                                Mỗi nhóm cần tối thiểu 3 cam kết đã được nhân viên xác thực (≥75% đồng ý). Huy hiệu sẽ tự động hiển thị khi đạt điều kiện. 
-                                Bạn cũng có thể <button class="edit-btn" style="display: inline-flex; padding: var(--space-1) var(--space-2); font-size: 12px; margin: 0 var(--space-1);"><span>📋</span> Đề xuất xét duyệt</button> nếu nghĩ công ty đủ điều kiện.
-                            </p>
-                        </div>
+                    <div class="badge-box">
+                        <div class="icon">BADGE</div>
+                        <div class="name">Tên badge</div>
+                        <div class="no-edit">⚠️ Auto từ hệ thống</div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- MODAL EXAMPLE (for editing) -->
-    <div class="modal" id="editModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Chỉnh sửa cam kết</h3>
-                <button class="modal-close">×</button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label class="form-label">Nội dung cam kết *</label>
-                    <textarea class="form-textarea" placeholder="Ví dụ: Chúng tôi không có văn hóa làm thêm giờ. Trung bình mỗi nhân viên chỉ tăng ca dưới 3 giờ/tháng..." maxlength="300"></textarea>
-                    <div class="char-count">0/300 ký tự</div>
-                    <div class="form-help">💡 Cam kết tốt nhất là cụ thể và có thể đo lường được</div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Loại cam kết</label>
-                    <select class="form-select">
-                        <option>Chọn loại cam kết</option>
-                        <option>Cân bằng công việc - cuộc sống</option>
-                        <option>Phát triển nghề nghiệp</option>
-                        <option>Phúc lợi & đãi ngộ</option>
-                        <option>Văn hóa làm việc</option>
-                        <option>Minh bạch & công bằng</option>
-                    </select>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="toolbar-btn toolbar-btn-secondary">Hủy</button>
-                <button class="toolbar-btn toolbar-btn-primary">Lưu thay đổi</button>
-            </div>
+        
+        <div class="dev-note">
+            <strong>📝 Ghi chú cho Dev:</strong>
+            • Giới thiệu: <code>about_text</code> (max 500 ký tự) + <code>team_preview_image</code><br>
+            • CEO: <code>ceo_avatar</code>, <code>ceo_name</code>, <code>ceo_title</code>, <code>ceo_quote</code> (max 200)<br>
+            • Badges: Tự động sinh từ hệ thống xác thực → KHÔNG hiển thị nút edit
         </div>
     </div>
+</div>
 
-    <!-- MODAL EXAMPLE (for editing) -->
-    <div class="modal" id="editModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Chỉnh sửa cam kết</h3>
-                <button class="modal-close">×</button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label class="form-label">Nội dung cam kết *</label>
-                    <textarea class="form-textarea" placeholder="Ví dụ: Chúng tôi không có văn hóa làm thêm giờ. Trung bình mỗi nhân viên chỉ tăng ca dưới 3 giờ/tháng..." maxlength="300"></textarea>
-                    <div class="char-count">0/300 ký tự</div>
-                    <div class="form-help">💡 Cam kết tốt nhất là cụ thể và có thể đo lường được</div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Loại cam kết</label>
-                    <select class="form-select">
-                        <option>Chọn loại cam kết</option>
-                        <option>Cân bằng công việc - cuộc sống</option>
-                        <option>Phát triển nghề nghiệp</option>
-                        <option>Phúc lợi & đãi ngộ</option>
-                        <option>Văn hóa làm việc</option>
-                        <option>Minh bạch & công bằng</option>
-                    </select>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="toolbar-btn toolbar-btn-secondary">Hủy</button>
-                <button class="toolbar-btn toolbar-btn-primary">Lưu thay đổi</button>
-            </div>
+<!-- ============================================================ -->
+<!-- SECTION 3: Tags -->
+<!-- ============================================================ -->
+<div class="wireframe-section">
+    <div class="wireframe-title">SECTION 3: Tags văn hóa</div>
+    <div class="wireframe-content">
+        
+        <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 8px;">
+            <span class="tag">Tag 1</span>
+            <span class="tag">Tag 2</span>
+            <span class="tag">Tag 3</span>
+            <span class="tag">Tag 4</span>
+            <span class="tag">Tag 5</span>
+            <button class="edit-btn sm">✏️ Quản lý tags</button>
+        </div>
+        
+        <div class="dev-note">
+            <strong>📝 Ghi chú cho Dev:</strong>
+            • Field: <code>company_tags[]</code> — Mảng các tag<br>
+            • Cho phép chọn từ danh sách có sẵn hoặc nhập tùy chỉnh<br>
+            • Tối đa 10 tags
         </div>
     </div>
+</div>
 
-    <script>
-        // Basic interactions demo
-        document.addEventListener('DOMContentLoaded', function() {
-            // Empty states can be clicked to trigger add action
-            document.querySelectorAll('.empty-state .add-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    alert('Mở form thêm mới. Trong thực tế sẽ mở modal/form tương ứng.');
-                });
-            });
+<!-- ============================================================ -->
+<!-- SECTION 4: Thẳng thắn trước tiên (Honest) -->
+<!-- ============================================================ -->
+<div class="wireframe-section">
+    <div class="wireframe-title">SECTION 4: Thẳng thắn trước tiên</div>
+    <div class="wireframe-content">
+        
+        <div class="section-header">
+            <div>
+                <div class="section-label">THẲNG THẮN TRƯỚC TIÊN</div>
+                <div class="section-title">Bạn KHÔNG nên làm việc ở đây nếu...</div>
+            </div>
+            <div class="section-controls">
+                <button class="edit-btn sm outline">👁️ Ẩn</button>
+                <button class="edit-btn sm outline">↕️ Vị trí</button>
+                <button class="edit-btn sm">✏️ Sửa tiêu đề</button>
+            </div>
+        </div>
+        
+        <div class="grid-2">
+            <div class="placeholder honest-card">
+                <div class="placeholder-img" style="height: 70px; margin-bottom: 10px;">Ảnh 600×200</div>
+                <h4>❌ Tiêu đề điều không phù hợp</h4>
+                <p>Mô tả chi tiết tại sao không phù hợp...</p>
+                <button class="edit-btn sm">✏️ Sửa</button>
+            </div>
+            
+            <div class="placeholder honest-card">
+                <div class="placeholder-img" style="height: 70px; margin-bottom: 10px;">Ảnh 600×200</div>
+                <h4>❌ Tiêu đề điều không phù hợp</h4>
+                <p>Mô tả chi tiết tại sao không phù hợp...</p>
+                <button class="edit-btn sm">✏️ Sửa</button>
+            </div>
+            
+            <button class="add-btn full">➕ Thêm điều "không phù hợp" mới</button>
+            
+            <div class="info-box full">
+                <strong>🎯 Tại sao chúng tôi viết phần này?</strong>
+                <p>Giải thích lý do viết section này...</p>
+                <button class="edit-btn sm" style="position: absolute; top: 8px; right: 8px;">✏️ Sửa</button>
+            </div>
+        </div>
+        
+        <div class="dev-note">
+            <strong>📝 Ghi chú cho Dev:</strong>
+            • Mảng <code>honest_items[]</code> gồm: <code>image</code> (600×200), <code>title</code> (max 100), <code>description</code> (max 300), <code>fit_for</code> (max 150)<br>
+            • Box giải thích: <code>honest_why_text</code><br>
+            • Section controls: <code>is_visible</code>, <code>order</code>
+        </div>
+    </div>
+</div>
 
-            // Edit buttons
-            document.querySelectorAll('.edit-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const text = btn.textContent;
-                    if (text.includes('Đề xuất xét duyệt')) {
-                        alert('Mở form đề xuất xét duyệt huy hiệu.\n\nDN có thể giải thích tại sao họ nghĩ mình đủ điều kiện nhận huy hiệu này, kể cả khi chưa đủ 3/3 cam kết đã xác thực.');
-                    } else if (text.includes('Quản lý') && btn.closest('.badges-hero')) {
-                        alert('Mở trang quản lý huy hiệu.\n\nXem tất cả huy hiệu (achieved + locked), theo dõi tiến độ, và đề xuất xét duyệt.');
-                    } else {
-                        alert('Mở form chỉnh sửa. Trong thực tế sẽ load dữ liệu hiện tại vào form.');
-                    }
-                });
-            });
+<!-- ============================================================ -->
+<!-- SECTION 5: Cam kết -->
+<!-- ============================================================ -->
+<div class="wireframe-section">
+    <div class="wireframe-title">SECTION 5: Cam kết của chúng tôi</div>
+    <div class="wireframe-content">
+        
+        <div class="section-header">
+            <div>
+                <div class="section-label">CAM KẾT CỦA CHÚNG TÔI</div>
+                <div class="section-title">Những tuyên bố đã được nhân viên xác thực</div>
+            </div>
+            <div class="section-controls">
+                <button class="edit-btn sm outline">👁️ Ẩn</button>
+                <button class="edit-btn sm outline">↕️ Vị trí</button>
+                <button class="edit-btn sm">✏️ Sửa tiêu đề</button>
+            </div>
+        </div>
+        
+        <div class="grid-2">
+            <div class="placeholder commit-card">
+                <div class="commit-status">✓ Đã xác thực</div>
+                <p style="font-size: 12px; margin-bottom: 8px;">"Nội dung cam kết của công ty, tối đa 300 ký tự..."</p>
+                <div class="commit-bar"><div class="commit-bar-fill" style="width: 89%;"></div></div>
+                <div style="display: flex; justify-content: space-between; margin-top: 6px; font-size: 10px;">
+                    <strong style="color: var(--success);">89%</strong>
+                    <span style="color: var(--light-gray);">156/175 xác nhận (Auto)</span>
+                </div>
+                <button class="edit-btn sm">✏️ Sửa nội dung</button>
+            </div>
+            
+            <div class="placeholder commit-card">
+                <div class="commit-status">✓ Đã xác thực</div>
+                <p style="font-size: 12px; margin-bottom: 8px;">"Nội dung cam kết khác..."</p>
+                <div class="commit-bar"><div class="commit-bar-fill" style="width: 92%;"></div></div>
+                <button class="edit-btn sm">✏️ Sửa nội dung</button>
+            </div>
+            
+            <button class="add-btn full">➕ Thêm cam kết mới</button>
+        </div>
+        
+        <div class="dev-note">
+            <strong>📝 Ghi chú cho Dev:</strong>
+            • Field: <code>commitment_text</code> (max 300 ký tự)<br>
+            • Phần trăm xác thực + số người xác nhận = TỰ ĐỘNG từ survey → KHÔNG cho sửa<br>
+            • Chỉ cho phép sửa nội dung text của cam kết
+        </div>
+    </div>
+</div>
 
-            // Delete buttons
-            document.querySelectorAll('.delete-btn, .icon-btn').forEach(btn => {
-                if (btn.innerHTML.includes('🗑️') || btn.innerHTML.includes('×')) {
-                    btn.addEventListener('click', function() {
-                        if (confirm('Bạn có chắc chắn muốn xóa?')) {
-                            alert('Đã xóa. Trong thực tế sẽ xóa khỏi database.');
-                        }
-                    });
-                }
-            });
+<!-- ============================================================ -->
+<!-- SECTION 6: Giá trị cốt lõi -->
+<!-- ============================================================ -->
+<div class="wireframe-section">
+    <div class="wireframe-title">SECTION 6: Giá trị cốt lõi</div>
+    <div class="wireframe-content">
+        
+        <div class="section-header">
+            <div>
+                <div class="section-label">GIÁ TRỊ CỐT LÕI</div>
+                <div class="section-title">Các nguyên tắc định hình văn hóa</div>
+            </div>
+            <div class="section-controls">
+                <button class="edit-btn sm outline">👁️ Ẩn</button>
+                <button class="edit-btn sm outline">↕️ Vị trí</button>
+                <button class="edit-btn sm">✏️ Sửa tiêu đề</button>
+            </div>
+        </div>
+        
+        <div class="grid-2">
+            <div class="placeholder value-card">
+                <div class="placeholder-img" style="height: 80px; margin-bottom: 10px;">Ảnh 600×250</div>
+                <div class="content">
+                    <div class="value-num">01</div>
+                    <h4>Tên giá trị</h4>
+                    <p>Mô tả giá trị + ví dụ cụ thể...</p>
+                </div>
+                <button class="edit-btn sm">✏️ Sửa</button>
+            </div>
+            
+            <div class="placeholder value-card">
+                <div class="placeholder-img" style="height: 80px; margin-bottom: 10px;">Ảnh 600×250</div>
+                <div class="content">
+                    <div class="value-num">02</div>
+                    <h4>Tên giá trị</h4>
+                    <p>Mô tả giá trị + ví dụ cụ thể...</p>
+                </div>
+                <button class="edit-btn sm">✏️ Sửa</button>
+            </div>
+            
+            <button class="add-btn full">➕ Thêm giá trị cốt lõi</button>
+        </div>
+        
+        <div class="dev-note">
+            <strong>📝 Ghi chú cho Dev:</strong>
+            • Mảng <code>values[]</code> gồm: <code>image</code> (600×250), <code>title</code> (max 50), <code>description</code> (max 200), <code>example</code> (max 300)<br>
+            • Số thứ tự (<code>number</code>) tự động tăng dần<br>
+            • Hỗ trợ kéo thả để sắp xếp lại thứ tự
+        </div>
+    </div>
+</div>
 
-            // Image upload overlays
-            document.querySelectorAll('.image-upload-overlay').forEach(overlay => {
-                overlay.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    alert('Mở file picker để chọn ảnh mới. Trong thực tế sẽ upload và preview.');
-                });
-            });
+<!-- ============================================================ -->
+<!-- SECTION 7: Nhịp làm việc -->
+<!-- ============================================================ -->
+<div class="wireframe-section">
+    <div class="wireframe-title">SECTION 7: Nhịp làm việc (Một ngày điển hình)</div>
+    <div class="wireframe-content">
+        
+        <div class="section-header">
+            <div>
+                <div class="section-label">NHỊP LÀM VIỆC</div>
+                <div class="section-title">Một ngày điển hình</div>
+            </div>
+            <div class="section-controls">
+                <button class="edit-btn sm outline">👁️ Ẩn</button>
+                <button class="edit-btn sm outline">↕️ Vị trí</button>
+                <button class="edit-btn sm">✏️ Sửa tiêu đề</button>
+            </div>
+        </div>
+        
+        <div class="grid-3">
+            <div class="placeholder">
+                <div class="placeholder-img" style="height: 60px; margin-bottom: 8px;">Ảnh 400×200</div>
+                <div style="font-size: 16px; font-weight: 700; color: var(--primary);">8:30</div>
+                <h4 style="font-size: 12px;">Tiêu đề hoạt động</h4>
+                <p>Mô tả ngắn...</p>
+                <button class="edit-btn sm">✏️</button>
+            </div>
+            
+            <div class="placeholder">
+                <div class="placeholder-img" style="height: 60px; margin-bottom: 8px;">Ảnh 400×200</div>
+                <div style="font-size: 16px; font-weight: 700; color: var(--primary);">9:00</div>
+                <h4 style="font-size: 12px;">Tiêu đề hoạt động</h4>
+                <p>Mô tả ngắn...</p>
+                <button class="edit-btn sm">✏️</button>
+            </div>
+            
+            <div class="placeholder">
+                <div class="placeholder-img" style="height: 60px; margin-bottom: 8px;">Ảnh 400×200</div>
+                <div style="font-size: 16px; font-weight: 700; color: var(--primary);">12:00</div>
+                <h4 style="font-size: 12px;">Tiêu đề hoạt động</h4>
+                <p>Mô tả ngắn...</p>
+                <button class="edit-btn sm">✏️</button>
+            </div>
+            
+            <button class="add-btn full-3">➕ Thêm mốc thời gian</button>
+        </div>
+        
+        <div class="dev-note">
+            <strong>📝 Ghi chú cho Dev:</strong>
+            • Mảng <code>day_schedule[]</code> gồm: <code>time</code>, <code>title</code>, <code>description</code>, <code>image</code> (400×200)<br>
+            • Hỗ trợ kéo thả sắp xếp lại thứ tự
+        </div>
+    </div>
+</div>
 
-            // Inline edit
-            document.querySelectorAll('.inline-editable').forEach(el => {
-                el.addEventListener('click', function() {
-                    alert('Chuyển sang chế độ edit inline. Trong thực tế sẽ hiện input field.');
-                });
-            });
+<!-- ============================================================ -->
+<!-- SECTION 8: Ban lãnh đạo + Chỉ số -->
+<!-- ============================================================ -->
+<div class="wireframe-section">
+    <div class="wireframe-title">SECTION 8: Ban lãnh đạo + Chỉ số minh bạch</div>
+    <div class="wireframe-content">
+        
+        <div class="section-header">
+            <div>
+                <div class="section-label">BAN LÃNH ĐẠO</div>
+                <div class="section-title">Những người định hướng văn hóa</div>
+            </div>
+            <div class="section-controls">
+                <button class="edit-btn sm outline">👁️ Ẩn</button>
+                <button class="edit-btn sm outline">↕️ Vị trí</button>
+                <button class="edit-btn sm">✏️ Sửa tiêu đề</button>
+            </div>
+        </div>
+        
+        <div class="grid-3">
+            <div class="placeholder" style="text-align: center;">
+                <div class="placeholder-img" style="height: 90px; margin-bottom: 8px;">Ảnh 400×300</div>
+                <h4>Tên lãnh đạo</h4>
+                <div style="font-size: 10px; color: var(--gray); margin-bottom: 6px;">Chức danh</div>
+                <p style="font-style: italic;">"Quote..."</p>
+                <button class="edit-btn sm">✏️ Sửa</button>
+            </div>
+            
+            <div class="placeholder" style="text-align: center;">
+                <div class="placeholder-img" style="height: 90px; margin-bottom: 8px;">Ảnh 400×300</div>
+                <h4>Tên lãnh đạo</h4>
+                <div style="font-size: 10px; color: var(--gray); margin-bottom: 6px;">Chức danh</div>
+                <p style="font-style: italic;">"Quote..."</p>
+                <button class="edit-btn sm">✏️ Sửa</button>
+            </div>
+            
+            <div class="placeholder" style="text-align: center;">
+                <div class="placeholder-img" style="height: 90px; margin-bottom: 8px;">Ảnh 400×300</div>
+                <h4>Tên lãnh đạo</h4>
+                <div style="font-size: 10px; color: var(--gray); margin-bottom: 6px;">Chức danh</div>
+                <p style="font-style: italic;">"Quote..."</p>
+                <button class="edit-btn sm">✏️ Sửa</button>
+            </div>
+            
+            <button class="add-btn full-3">➕ Thêm thành viên lãnh đạo</button>
+        </div>
+        
+        <!-- Chỉ số minh bạch -->
+        <h4 style="margin: 20px 0 12px; font-size: 14px;">📊 Chỉ số minh bạch</h4>
+        <div class="grid-4">
+            <div class="stat-box">
+                <div class="value">2.8%</div>
+                <div class="label">Tỉ lệ nghỉ việc</div>
+                <button class="edit-btn sm">✏️</button>
+            </div>
+            <div class="stat-box">
+                <div class="value">52</div>
+                <div class="label">Điểm eNPS</div>
+                <button class="edit-btn sm">✏️</button>
+            </div>
+            <div class="stat-box">
+                <div class="value">45%</div>
+                <div class="label">Tỉ lệ nữ</div>
+                <button class="edit-btn sm">✏️</button>
+            </div>
+            <div class="stat-box">
+                <div class="value">1.8</div>
+                <div class="label">Năm TB thăng tiến</div>
+                <button class="edit-btn sm">✏️</button>
+            </div>
+        </div>
+        <button class="add-btn" style="margin-top: 12px;">➕ Thêm chỉ số</button>
+        
+        <div class="dev-note">
+            <strong>📝 Ghi chú cho Dev:</strong>
+            • Leaders: mảng <code>leaders[]</code> gồm <code>photo</code>, <code>name</code>, <code>role</code>, <code>quote</code> (max 150)<br>
+            • Metrics: mảng <code>metrics[]</code> gồm <code>value</code>, <code>label</code>, <code>trend</code> (up/down/stable)
+        </div>
+    </div>
+</div>
 
-            // Toolbar actions
-            document.querySelector('.toolbar-btn-primary').addEventListener('click', function() {
-                if (confirm('Xuất bản hồ sơ công ty? Thông tin sẽ được hiển thị công khai.')) {
-                    alert('Đã xuất bản thành công! Hồ sơ của bạn đã được công khai.');
-                }
-            });
+<!-- ============================================================ -->
+<!-- SECTION 9: Tiếng nói nhân viên -->
+<!-- ============================================================ -->
+<div class="wireframe-section">
+    <div class="wireframe-title">SECTION 9: Tiếng nói nhân viên (Testimonials)</div>
+    <div class="wireframe-content">
+        
+        <div class="section-header">
+            <div>
+                <div class="section-label">TIẾNG NÓI NHÂN VIÊN</div>
+                <div class="section-title">Nghe từ chính người trong cuộc</div>
+            </div>
+            <div class="section-controls">
+                <button class="edit-btn sm outline">👁️ Ẩn</button>
+                <button class="edit-btn sm outline">↕️ Vị trí</button>
+                <button class="edit-btn sm">✏️ Sửa tiêu đề</button>
+            </div>
+        </div>
+        
+        <div class="grid-3">
+            <div class="placeholder">
+                <div class="placeholder-img" style="height: 90px; margin-bottom: 10px;">Ảnh/Video 600×400</div>
+                <p style="font-style: italic; margin-bottom: 10px;">"Quote của nhân viên, tối đa 200 ký tự..."</p>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <div style="width: 28px; height: 28px; background: var(--bg); border-radius: 50%;"></div>
+                    <div>
+                        <div style="font-size: 11px; font-weight: 600;">Tên nhân viên</div>
+                        <div style="font-size: 9px; color: var(--gray);">Chức danh • Thâm niên</div>
+                    </div>
+                </div>
+                <button class="edit-btn sm">✏️ Sửa</button>
+            </div>
+            
+            <div class="placeholder">
+                <div class="placeholder-img" style="height: 90px; margin-bottom: 10px;">Ảnh/Video 600×400</div>
+                <p style="font-style: italic; margin-bottom: 10px;">"Quote của nhân viên..."</p>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <div style="width: 28px; height: 28px; background: var(--bg); border-radius: 50%;"></div>
+                    <div>
+                        <div style="font-size: 11px; font-weight: 600;">Tên nhân viên</div>
+                        <div style="font-size: 9px; color: var(--gray);">Chức danh • Thâm niên</div>
+                    </div>
+                </div>
+                <button class="edit-btn sm">✏️ Sửa</button>
+            </div>
+            
+            <div class="placeholder">
+                <div class="placeholder-img" style="height: 90px; margin-bottom: 10px;">Ảnh/Video 600×400</div>
+                <p style="font-style: italic; margin-bottom: 10px;">"Quote của nhân viên..."</p>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <div style="width: 28px; height: 28px; background: var(--bg); border-radius: 50%;"></div>
+                    <div>
+                        <div style="font-size: 11px; font-weight: 600;">Tên nhân viên</div>
+                        <div style="font-size: 9px; color: var(--gray);">Chức danh • Thâm niên</div>
+                    </div>
+                </div>
+                <button class="edit-btn sm">✏️ Sửa</button>
+            </div>
+            
+            <button class="add-btn full-3">➕ Thêm testimonial</button>
+        </div>
+        
+        <div class="dev-note">
+            <strong>📝 Ghi chú cho Dev:</strong>
+            • Mảng <code>testimonials[]</code> gồm:<br>
+            &nbsp;&nbsp;- <code>media_type</code>: "image" hoặc "video"<br>
+            &nbsp;&nbsp;- <code>media_url</code>: URL ảnh/video<br>
+            &nbsp;&nbsp;- <code>quote</code>: max 200 ký tự<br>
+            &nbsp;&nbsp;- <code>author_name</code>, <code>author_role</code>, <code>author_avatar</code>, <code>tenure</code>
+        </div>
+    </div>
+</div>
 
-            // Add buttons
-            document.querySelectorAll('.add-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const section = btn.closest('.content-section, .profile-sidebar')?.querySelector('.section-title, h3')?.textContent || 'section';
-                    alert(`Mở form thêm mới cho: ${section}`);
-                });
-            });
+<!-- ============================================================ -->
+<!-- SECTION 10: Chế độ đãi ngộ -->
+<!-- ============================================================ -->
+<div class="wireframe-section">
+    <div class="wireframe-title">SECTION 10: Chế độ đãi ngộ (Lương + Phúc lợi)</div>
+    <div class="wireframe-content">
+        
+        <div class="section-header">
+            <div>
+                <div class="section-label">CHẾ ĐỘ ĐÃI NGỘ</div>
+                <div class="section-title">Triết lý lương thưởng & Phúc lợi</div>
+            </div>
+            <div class="section-controls">
+                <button class="edit-btn sm outline">👁️ Ẩn</button>
+                <button class="edit-btn sm outline">↕️ Vị trí</button>
+                <button class="edit-btn sm">✏️ Sửa tiêu đề</button>
+            </div>
+        </div>
+        
+        <div class="grid-2">
+            <!-- Bảng lương -->
+            <div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <h4 style="font-size: 14px;">💰 Khung lương</h4>
+                    <button class="edit-btn sm">✏️ Sửa bảng</button>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Cấp bậc</th><th>Mức lương</th><th>Điều kiện</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Junior</td><td>15-25tr</td><td>0-2 năm</td></tr>
+                        <tr><td>Mid-level</td><td>30-50tr</td><td>2-4 năm</td></tr>
+                        <tr><td>Senior</td><td>50-80tr</td><td>4-7 năm</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Phúc lợi -->
+            <div>
+                <h4 style="font-size: 14px; margin-bottom: 12px;">🎁 Phúc lợi</h4>
+                <div class="grid-2">
+                    <div class="placeholder">
+                        <div class="placeholder-img" style="height: 60px; margin-bottom: 8px;">Ảnh 400×200</div>
+                        <h4 style="font-size: 12px;">Tên phúc lợi</h4>
+                        <p>Mô tả ngắn...</p>
+                        <button class="edit-btn sm">✏️</button>
+                    </div>
+                    <div class="placeholder">
+                        <div class="placeholder-img" style="height: 60px; margin-bottom: 8px;">Ảnh 400×200</div>
+                        <h4 style="font-size: 12px;">Tên phúc lợi</h4>
+                        <p>Mô tả ngắn...</p>
+                        <button class="edit-btn sm">✏️</button>
+                    </div>
+                </div>
+                <button class="add-btn">➕ Thêm phúc lợi</button>
+            </div>
+        </div>
+        
+        <!-- Tradeoff box -->
+        <div class="warning-box" style="margin-top: 16px; position: relative;">
+            <h4>⚠️ Đánh đổi của hệ thống này</h4>
+            <p>Giải thích về những điểm công ty không làm được hoặc đánh đổi...</p>
+            <button class="edit-btn sm" style="position: absolute; top: 8px; right: 8px;">✏️ Sửa</button>
+        </div>
+        
+        <div class="dev-note">
+            <strong>📝 Ghi chú cho Dev:</strong>
+            • Bảng lương: mảng <code>salary_ranges[]</code> gồm <code>level</code>, <code>salary_range</code>, <code>requirements</code><br>
+            • Phúc lợi: mảng <code>benefits[]</code> gồm <code>image</code>, <code>title</code>, <code>reason</code>, <code>description</code><br>
+            • Tradeoff: <code>tradeoff_text</code>
+        </div>
+    </div>
+</div>
 
-            // Badge cards click
-            document.querySelectorAll('.badge-card').forEach(card => {
-                card.addEventListener('click', function() {
-                    const badgeName = this.querySelector('.badge-name').textContent;
-                    const isAchieved = this.classList.contains('achieved');
-                    const progress = this.querySelector('.badge-progress').textContent;
-                    
-                    if (isAchieved) {
-                        alert(`🎉 Huy hiệu: ${badgeName}\n\nTrạng thái: Đã đạt được\n${progress}\n\nHuy hiệu này đang hiển thị công khai trên hồ sơ công ty của bạn.`);
-                    } else {
-                        const hint = this.querySelector('.badge-unlock-hint')?.textContent || '';
-                        alert(`🔒 Huy hiệu: ${badgeName}\n\nTrạng thái: Chưa mở khóa\n${progress}\n\n${hint}\n\nBạn có thể đề xuất xét duyệt nếu nghĩ mình đủ điều kiện.`);
-                    }
-                });
-            });
-        });
-    </script>
+<!-- ============================================================ -->
+<!-- SECTION 11: FAQ + Vấn đề đang sửa -->
+<!-- ============================================================ -->
+<div class="wireframe-section">
+    <div class="wireframe-title">SECTION 11: FAQ + Vấn đề đang cải thiện</div>
+    <div class="wireframe-content">
+        
+        <div class="section-header">
+            <div>
+                <div class="section-label">CÂU HỎI & VẤN ĐỀ</div>
+                <div class="section-title">FAQ & Những điều đang cải thiện</div>
+            </div>
+            <div class="section-controls">
+                <button class="edit-btn sm outline">👁️ Ẩn</button>
+                <button class="edit-btn sm outline">↕️ Vị trí</button>
+                <button class="edit-btn sm">✏️ Sửa tiêu đề</button>
+            </div>
+        </div>
+        
+        <div class="grid-2">
+            <!-- FAQ -->
+            <div>
+                <h4 style="font-size: 14px; margin-bottom: 12px;">❓ FAQ</h4>
+                
+                <div class="placeholder" style="margin-bottom: 8px;">
+                    <strong style="font-size: 12px;">Câu hỏi thường gặp #1?</strong>
+                    <p style="display: none;">Câu trả lời (ẩn khi collapse)</p>
+                    <button class="edit-btn sm">✏️</button>
+                </div>
+                
+                <div class="placeholder" style="margin-bottom: 8px;">
+                    <strong style="font-size: 12px;">Câu hỏi thường gặp #2?</strong>
+                    <button class="edit-btn sm">✏️</button>
+                </div>
+                
+                <div class="placeholder" style="margin-bottom: 8px;">
+                    <strong style="font-size: 12px;">Câu hỏi thường gặp #3?</strong>
+                    <button class="edit-btn sm">✏️</button>
+                </div>
+                
+                <button class="add-btn">➕ Thêm FAQ</button>
+            </div>
+            
+            <!-- Problems -->
+            <div>
+                <h4 style="font-size: 14px; margin-bottom: 12px;">⚠️ Đang cố sửa</h4>
+                
+                <div class="placeholder problem-card" style="margin-bottom: 8px;">
+                    <div class="problem-score">3.2/5</div>
+                    <h4 style="font-size: 12px;">Tên vấn đề</h4>
+                    <p>Mô tả vấn đề + kế hoạch sửa...</p>
+                    <button class="edit-btn sm">✏️</button>
+                </div>
+                
+                <div class="placeholder problem-card" style="margin-bottom: 8px;">
+                    <div class="problem-score">2.8/5</div>
+                    <h4 style="font-size: 12px;">Tên vấn đề khác</h4>
+                    <p>Mô tả vấn đề + kế hoạch sửa...</p>
+                    <button class="edit-btn sm">✏️</button>
+                </div>
+                
+                <button class="add-btn">➕ Thêm vấn đề</button>
+            </div>
+        </div>
+        
+        <div class="dev-note">
+            <strong>📝 Ghi chú cho Dev:</strong>
+            • FAQ: mảng <code>faq[]</code> gồm <code>question</code>, <code>answer</code><br>
+            • Problems: mảng <code>problems[]</code> gồm <code>score</code> (1-5), <code>title</code>, <code>problem_desc</code>, <code>plan</code>, <code>owner</code>, <code>target_date</code>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 12: Gallery văn phòng -->
+<!-- ============================================================ -->
+<div class="wireframe-section">
+    <div class="wireframe-title">SECTION 12: Gallery văn phòng</div>
+    <div class="wireframe-content">
+        
+        <div class="section-header">
+            <div>
+                <div class="section-label">VĂN PHÒNG</div>
+                <div class="section-title">Không gian làm việc</div>
+            </div>
+            <div class="section-controls">
+                <button class="edit-btn sm outline">👁️ Ẩn</button>
+                <button class="edit-btn sm outline">↕️ Vị trí</button>
+                <button class="edit-btn sm">✏️ Sửa tiêu đề</button>
+            </div>
+        </div>
+        
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                Ảnh lớn (Featured)
+                <div class="btns">
+                    <button class="edit-btn sm">📷</button>
+                    <button class="edit-btn sm danger">🗑️</button>
+                </div>
+            </div>
+            <div class="gallery-item">
+                Ảnh 2
+                <div class="btns">
+                    <button class="edit-btn sm">📷</button>
+                    <button class="edit-btn sm danger">🗑️</button>
+                </div>
+            </div>
+            <div class="gallery-item">
+                Ảnh 3
+                <div class="btns">
+                    <button class="edit-btn sm">📷</button>
+                    <button class="edit-btn sm danger">🗑️</button>
+                </div>
+            </div>
+            <div class="gallery-item">
+                Ảnh 4
+                <div class="btns">
+                    <button class="edit-btn sm">📷</button>
+                    <button class="edit-btn sm danger">🗑️</button>
+                </div>
+            </div>
+            <div class="gallery-item">
+                Ảnh 5
+                <div class="btns">
+                    <button class="edit-btn sm">📷</button>
+                    <button class="edit-btn sm danger">🗑️</button>
+                </div>
+            </div>
+        </div>
+        
+        <button class="add-btn" style="margin-top: 12px;">➕ Thêm ảnh văn phòng</button>
+        
+        <div class="dev-note">
+            <strong>📝 Ghi chú cho Dev:</strong>
+            • Mảng <code>gallery_images[]</code> — URLs ảnh<br>
+            • Ảnh đầu tiên = Featured (hiển thị lớn)<br>
+            • Kích thước tối thiểu: 800×600px<br>
+            • Hỗ trợ kéo thả để sắp xếp lại thứ tự
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
