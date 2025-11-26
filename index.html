@@ -3,25 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JoyWork - Tìm việc làm</title>
+  <title>JoyWork – Việc làm xác thực văn hoá</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-page: #f9fafb;
-      --bg-card: #ffffff;
-      --border-subtle: #e5e7eb;
-      --text-main: #111827;
-      --text-muted: #6b7280;
-      --text-light: #9ca3af;
-      --brand-blue: #2563eb;
-      --brand-blue-dark: #1e40af;
-      --brand-blue-soft: #eff6ff;
-      --verified-green: #10b981;
-      --vibe-bg: #f8fafc;
-      --gradient-start: #3b82f6;
-      --gradient-end: #1e40af;
+      /* Core Colors */
+      --joy-blue: #1a56db;
+      --joy-blue-deep: #1e40af;
+      --joy-blue-soft: #eff6ff;
+      --joy-blue-mist: #f8faff;
+      
+      /* Trust Colors */
+      --verified: #059669;
+      --verified-soft: #ecfdf5;
+      
+      /* Tier Colors */
+      --gold: #d97706;
+      --gold-soft: #fffbeb;
+      --gold-border: #fbbf24;
+      --plus: #7c3aed;
+      --plus-soft: #f5f3ff;
+      --plus-border: #a78bfa;
+      
+      /* Neutrals */
+      --bg: #fafbfc;
+      --surface: #ffffff;
+      --border: #e5e7eb;
+      --border-light: #f3f4f6;
+      --text: #111827;
+      --text-secondary: #4b5563;
+      --text-muted: #9ca3af;
+      
+      /* Spacing */
+      --space-xs: 4px;
+      --space-sm: 8px;
+      --space-md: 16px;
+      --space-lg: 24px;
+      --space-xl: 32px;
+      --space-2xl: 48px;
+      
+      /* Typography */
+      --font-display: 'Plus Jakarta Sans', sans-serif;
+      --font-body: 'Be Vietnam Pro', sans-serif;
+      
+      /* Shadows */
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+      --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+      --shadow-gold: 0 4px 16px rgba(217,119,6,0.15);
+      --shadow-plus: 0 4px 16px rgba(124,58,237,0.12);
     }
 
     * {
@@ -30,121 +62,179 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--bg-page);
-      color: var(--text-main);
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    .page {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    /* Hero Banner Section */
-    .hero-banner {
-      background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
-      color: white;
-      padding: 48px 24px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-banner::before {
-      content: '';
-      position: absolute;
+    /* ═══════════════════════════════════════════
+       HEADER - Clean & Minimal
+    ═══════════════════════════════════════════ */
+    .header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
       top: 0;
-      right: 0;
-      width: 40%;
-      height: 100%;
-      background: url('data:image/svg+xml,<svg width="400" height="400" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="400" height="400" fill="url(%23grid)"/></svg>');
-      opacity: 0.3;
+      z-index: 100;
     }
 
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 800px;
+    .header-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 var(--space-lg);
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    .breadcrumb {
-      font-size: 14px;
-      opacity: 0.9;
-      margin-bottom: 16px;
-    }
-
-    .breadcrumb a {
-      color: white;
+    .logo {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--joy-blue);
       text-decoration: none;
-      opacity: 0.8;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    .breadcrumb a:hover {
-      opacity: 1;
-      text-decoration: underline;
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, var(--joy-blue) 0%, var(--joy-blue-deep) 100%);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: white;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xl);
+    }
+
+    .nav-link {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover {
+      color: var(--joy-blue);
+    }
+
+    .nav-link.active {
+      color: var(--joy-blue);
+    }
+
+    .btn-employer {
+      background: var(--joy-blue);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-employer:hover {
+      background: var(--joy-blue-deep);
+      transform: translateY(-1px);
+    }
+
+    /* ═══════════════════════════════════════════
+       HERO SECTION - Apple-like Simplicity
+    ═══════════════════════════════════════════ */
+    .hero {
+      background: linear-gradient(180deg, var(--joy-blue-mist) 0%, var(--bg) 100%);
+      padding: var(--space-2xl) var(--space-lg);
+    }
+
+    .hero-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--verified-soft);
+      color: var(--verified);
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: var(--space-md);
+    }
+
+    .hero-badge svg {
+      width: 14px;
+      height: 14px;
     }
 
     .hero-title {
-      font-size: 36px;
+      font-family: var(--font-display);
+      font-size: clamp(28px, 5vw, 42px);
       font-weight: 700;
-      margin-bottom: 12px;
+      color: var(--text);
       line-height: 1.2;
-    }
-
-    @media (min-width: 768px) {
-      .hero-title {
-        font-size: 42px;
-      }
+      margin-bottom: var(--space-md);
+      letter-spacing: -0.02em;
     }
 
     .hero-subtitle {
-      font-size: 18px;
-      opacity: 0.95;
-      margin-bottom: 8px;
-      font-weight: 500;
+      font-size: 17px;
+      color: var(--text-secondary);
+      max-width: 560px;
+      margin: 0 auto var(--space-xl);
     }
 
-    .hero-description {
-      font-size: 16px;
-      opacity: 0.85;
-      line-height: 1.6;
-    }
-
-    /* Search Section */
-    .search-section {
-      padding: 24px;
-      background: white;
-      border-bottom: 1px solid var(--border-subtle);
-    }
-
-    .search-wrapper {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .search-inputs {
+    /* Search Box */
+    .search-box {
+      background: var(--surface);
+      border-radius: 16px;
+      padding: 6px;
+      box-shadow: var(--shadow-lg);
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 6px;
     }
 
-    @media (min-width: 768px) {
-      .search-inputs {
+    @media (min-width: 640px) {
+      .search-box {
         flex-direction: row;
-        align-items: center;
       }
     }
 
-    .input-wrapper {
+    .search-input-wrap {
       flex: 1;
       position: relative;
     }
 
-    .input-icon {
+    .search-input-wrap svg {
       position: absolute;
-      left: 14px;
+      left: 16px;
       top: 50%;
       transform: translateY(-50%);
       width: 18px;
@@ -152,981 +242,1687 @@
       color: var(--text-muted);
     }
 
-    input[type="text"] {
+    .search-input {
       width: 100%;
-      padding: 12px 12px 12px 44px;
-      border: 1px solid var(--border-subtle);
-      border-radius: 8px;
+      padding: 14px 14px 14px 48px;
+      border: 1px solid transparent;
+      border-radius: 12px;
       font-size: 15px;
       font-family: inherit;
+      background: var(--bg);
       outline: none;
-      transition: border-color 0.2s;
+      transition: all 0.2s;
     }
 
-    input[type="text"]:focus {
-      border-color: var(--brand-blue);
+    .search-input:focus {
+      background: var(--surface);
+      border-color: var(--joy-blue);
+      box-shadow: 0 0 0 3px var(--joy-blue-soft);
     }
 
-    .btn-primary {
-      background: var(--brand-blue);
+    .search-input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .search-btn {
+      background: var(--joy-blue);
       color: white;
-      padding: 12px 32px;
-      border-radius: 8px;
+      padding: 14px 28px;
       border: none;
-      font-weight: 600;
+      border-radius: 12px;
       font-size: 15px;
-      cursor: pointer;
-      transition: background 0.2s;
+      font-weight: 600;
       font-family: inherit;
+      cursor: pointer;
+      transition: all 0.2s;
       white-space: nowrap;
     }
 
-    .btn-primary:hover {
-      background: var(--brand-blue-dark);
+    .search-btn:hover {
+      background: var(--joy-blue-deep);
     }
 
-    /* Filters Section */
+    /* ═══════════════════════════════════════════
+       FILTERS - Clean Tags
+    ═══════════════════════════════════════════ */
     .filters-section {
-      padding: 20px 24px;
-      background: white;
-      border-bottom: 1px solid var(--border-subtle);
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: var(--space-lg);
     }
 
-    .filters-wrapper {
-      max-width: 1200px;
+    .filters-inner {
+      max-width: 1280px;
       margin: 0 auto;
     }
 
-    .filter-section-title {
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--text-muted);
-      margin-bottom: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .chip-row {
+    .filters-row {
       display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding-bottom: 8px;
-      margin-bottom: 12px;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .chip-row::-webkit-scrollbar {
-      height: 4px;
-    }
-
-    .chip-row::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    .chip-row::-webkit-scrollbar-thumb {
-      background: var(--border-subtle);
-      border-radius: 2px;
-    }
-
-    .chip {
-      background: var(--bg-page);
-      border: 1px solid var(--border-subtle);
-      border-radius: 6px;
-      padding: 6px 14px;
-      font-size: 13px;
-      white-space: nowrap;
-      cursor: pointer;
-      transition: all 0.2s;
-      color: var(--text-main);
-    }
-
-    .chip.active {
-      background: var(--brand-blue-soft);
-      border-color: var(--brand-blue);
-      color: var(--brand-blue);
-    }
-
-    .chip.verified-only {
-      background: var(--brand-blue);
-      border-color: var(--brand-blue);
-      color: white;
-      font-weight: 600;
-    }
-
-    .chip:hover:not(.verified-only) {
-      border-color: var(--brand-blue);
-    }
-
-    .filter-dropdowns {
-      display: flex;
-      gap: 10px;
+      align-items: center;
+      gap: var(--space-lg);
       flex-wrap: wrap;
     }
 
-    .filter-dropdown {
-      background: var(--bg-page);
-      border: 1px solid var(--border-subtle);
-      border-radius: 6px;
-      padding: 6px 12px;
+    .filter-label {
       font-size: 13px;
-      color: var(--text-main);
-      cursor: pointer;
-    }
-
-    /* Banner Ads Section */
-    .banner-ads-section {
-      padding: 24px;
-      background: #fafbfc;
-      border-bottom: 1px solid var(--border-subtle);
-    }
-
-    .banner-ads-wrapper {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .ads-title {
-      font-size: 12px;
       font-weight: 600;
       color: var(--text-muted);
-      margin-bottom: 12px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-    }
-
-    .banner-ads-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-    }
-
-    @media (min-width: 768px) {
-      .banner-ads-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    .banner-ad {
-      background: white;
-      border: 2px solid #fbbf24;
-      border-radius: 10px;
-      padding: 16px;
-      cursor: pointer;
-      transition: all 0.2s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .banner-ad::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-      border-radius: 0 0 0 100%;
-      opacity: 0.5;
-    }
-
-    .banner-ad:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(251, 191, 36, 0.2);
-    }
-
-    .ad-label {
-      display: inline-block;
-      background: #fbbf24;
-      color: #78350f;
-      font-size: 10px;
-      font-weight: 700;
-      padding: 3px 8px;
-      border-radius: 4px;
-      margin-bottom: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.3px;
-    }
-
-    .ad-logo {
-      width: 48px;
-      height: 48px;
-      background: #f3f4f6;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 18px;
-      color: #6b7280;
-      margin-bottom: 12px;
-    }
-
-    .ad-title {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text-main);
-      margin-bottom: 4px;
-      line-height: 1.3;
-    }
-
-    .ad-subtitle {
-      font-size: 12px;
-      color: var(--text-muted);
-      line-height: 1.4;
-    }
-
-    /* Jobs Section */
-    .jobs-section {
-      padding: 24px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-    }
-
-    .section-title {
-      font-size: 18px;
-      font-weight: 600;
-      color: var(--text-main);
-    }
-
-    .results-count {
-      font-size: 14px;
-      color: var(--text-muted);
-    }
-
-    /* Compact Job Cards */
-    .job-card {
-      background: white;
-      border: 1px solid var(--border-subtle);
-      border-radius: 10px;
-      padding: 16px;
-      margin-bottom: 12px;
-      transition: all 0.2s;
-      text-decoration: none;
-      display: block;
-      color: inherit;
-    }
-
-    .job-card:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-      border-color: #d1d5db;
-    }
-
-    /* Company Header - Compact */
-    .company-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-
-    .company-logo {
-      width: 40px;
-      height: 40px;
-      border-radius: 6px;
-      background: #f3f4f6;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #6b7280;
-      font-weight: 600;
-      font-size: 16px;
       flex-shrink: 0;
     }
 
-    .company-info {
+    .culture-tags {
+      display: flex;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+      flex: 1;
+    }
+
+    .culture-tag {
+      padding: 8px 16px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 500;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .culture-tag:hover {
+      border-color: var(--joy-blue);
+      color: var(--joy-blue);
+    }
+
+    .culture-tag.active {
+      background: var(--joy-blue);
+      border-color: var(--joy-blue);
+      color: white;
+    }
+
+    .culture-tag.verified-tag {
+      background: var(--verified);
+      border-color: var(--verified);
+      color: white;
+    }
+
+    .filter-divider {
+      width: 1px;
+      height: 24px;
+      background: var(--border);
+    }
+
+    .quick-filters {
+      display: flex;
+      gap: var(--space-sm);
+    }
+
+    .quick-filter {
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .quick-filter:hover {
+      border-color: var(--text-muted);
+    }
+
+    .quick-filter svg {
+      width: 14px;
+      height: 14px;
+      color: var(--text-muted);
+    }
+
+    /* ═══════════════════════════════════════════
+       MAIN CONTENT AREA
+    ═══════════════════════════════════════════ */
+    .main {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: var(--space-xl) var(--space-lg);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+    }
+
+    @media (min-width: 1024px) {
+      .main {
+        grid-template-columns: 280px 1fr;
+      }
+    }
+
+    /* ═══════════════════════════════════════════
+       SIDEBAR
+    ═══════════════════════════════════════════ */
+    .sidebar {
+      display: none;
+    }
+
+    @media (min-width: 1024px) {
+      .sidebar {
+        display: block;
+      }
+    }
+
+    .sidebar-section {
+      background: var(--surface);
+      border-radius: 12px;
+      padding: var(--space-lg);
+      margin-bottom: var(--space-md);
+      border: 1px solid var(--border);
+    }
+
+    .sidebar-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: var(--space-md);
+    }
+
+    .filter-option {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border-light);
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .filter-option:last-child {
+      border-bottom: none;
+    }
+
+    .filter-option:hover {
+      color: var(--joy-blue);
+    }
+
+    .filter-checkbox {
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--border);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+
+    .filter-option.checked .filter-checkbox {
+      background: var(--joy-blue);
+      border-color: var(--joy-blue);
+    }
+
+    .filter-checkbox svg {
+      width: 12px;
+      height: 12px;
+      color: white;
+      opacity: 0;
+    }
+
+    .filter-option.checked .filter-checkbox svg {
+      opacity: 1;
+    }
+
+    .filter-text {
+      font-size: 14px;
+      flex: 1;
+    }
+
+    .filter-count {
+      font-size: 12px;
+      color: var(--text-muted);
+      background: var(--bg);
+      padding: 2px 8px;
+      border-radius: 100px;
+    }
+
+    /* Salary Range */
+    .salary-range {
+      margin-top: var(--space-md);
+    }
+
+    .range-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: var(--space-sm);
+    }
+
+    .range-slider {
+      width: 100%;
+      height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      position: relative;
+    }
+
+    .range-fill {
+      position: absolute;
+      left: 10%;
+      right: 40%;
+      height: 100%;
+      background: var(--joy-blue);
+      border-radius: 2px;
+    }
+
+    .range-handle {
+      width: 16px;
+      height: 16px;
+      background: var(--surface);
+      border: 2px solid var(--joy-blue);
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: grab;
+    }
+
+    .range-handle:first-of-type {
+      left: 10%;
+      margin-left: -8px;
+    }
+
+    .range-handle:last-of-type {
+      right: 40%;
+      margin-right: -8px;
+    }
+
+    /* Featured Companies */
+    .featured-companies {
+      background: var(--gold-soft);
+      border: 1px solid var(--gold-border);
+    }
+
+    .featured-company {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(217,119,6,0.15);
+    }
+
+    .featured-company:last-child {
+      border-bottom: none;
+    }
+
+    .company-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .company-mini-info {
       flex: 1;
       min-width: 0;
     }
 
-    .company-name-row {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-bottom: 2px;
-    }
-
-    .company-name {
+    .company-mini-name {
+      font-size: 13px;
       font-weight: 600;
-      font-size: 14px;
-      color: var(--text-main);
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    .verified-badge {
-      background: var(--verified-green);
-      color: white;
-      padding: 2px 6px;
-      border-radius: 3px;
-      font-size: 10px;
-      font-weight: 600;
-      flex-shrink: 0;
-    }
-
-    .company-stats {
+    .company-mini-jobs {
       font-size: 12px;
-      color: var(--text-muted);
+      color: var(--gold);
     }
 
-    .recommend-stat {
-      color: var(--verified-green);
-      font-weight: 500;
-    }
-
-    /* Job Content - Compact */
-    .job-content {
-      display: grid;
-      gap: 12px;
-    }
-
-    @media (min-width: 1024px) {
-      .job-content {
-        grid-template-columns: 1fr 200px;
-        gap: 16px;
-      }
-    }
-
-    .job-main {
+    /* ═══════════════════════════════════════════
+       JOBS LIST
+    ═══════════════════════════════════════════ */
+    .jobs-section {
       min-width: 0;
     }
 
-    .job-title {
-      font-size: 16px;
+    .jobs-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-lg);
+    }
+
+    .jobs-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .jobs-count {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .jobs-sort {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .sort-select {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 13px;
+      font-family: inherit;
+      background: var(--surface);
+      cursor: pointer;
+    }
+
+    /* Job Cards Container */
+    .jobs-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    /* ═══════════════════════════════════════════
+       JOB CARD - Base Style
+    ═══════════════════════════════════════════ */
+    .job-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: var(--space-lg);
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+
+    .job-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: #d1d5db;
+    }
+
+    /* GOLD Tier Card */
+    .job-card.tier-gold {
+      background: linear-gradient(135deg, var(--gold-soft) 0%, var(--surface) 50%);
+      border-color: var(--gold-border);
+    }
+
+    .job-card.tier-gold:hover {
+      box-shadow: var(--shadow-gold);
+    }
+
+    .job-card.tier-gold::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold) 0%, var(--gold-border) 100%);
+      border-radius: 16px 16px 0 0;
+    }
+
+    /* PLUS Tier Card */
+    .job-card.tier-plus {
+      border-color: var(--plus-border);
+      border-width: 1px;
+    }
+
+    .job-card.tier-plus:hover {
+      box-shadow: var(--shadow-plus);
+    }
+
+    /* Card Header */
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-md);
+      margin-bottom: var(--space-md);
+    }
+
+    .company-logo {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--text-secondary);
+      flex-shrink: 0;
+      border: 1px solid var(--border-light);
+    }
+
+    .tier-gold .company-logo {
+      border-color: var(--gold-border);
+      color: var(--gold);
+    }
+
+    .tier-plus .company-logo {
+      border-color: var(--plus-border);
+      color: var(--plus);
+    }
+
+    .card-header-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .company-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+      margin-bottom: 4px;
+    }
+
+    .company-name {
+      font-size: 14px;
       font-weight: 600;
-      margin-bottom: 8px;
-      color: var(--text-main);
+      color: var(--text);
+    }
+
+    .tier-badge {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .tier-badge.gold {
+      background: var(--gold);
+      color: white;
+    }
+
+    .tier-badge.plus {
+      background: var(--plus);
+      color: white;
+    }
+
+    .verified-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--verified);
+      background: var(--verified-soft);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .verified-badge svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    .company-meta {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .joy-score {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 600;
+      color: var(--verified);
+    }
+
+    .joy-score svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* Card Actions (top right) */
+    .card-actions-top {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      flex-shrink: 0;
+    }
+
+    .btn-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-icon:hover {
+      border-color: var(--joy-blue);
+      color: var(--joy-blue);
+    }
+
+    .btn-icon svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* Job Title & Meta */
+    .job-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: var(--space-sm);
       line-height: 1.3;
     }
 
     .job-meta {
       display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-bottom: 10px;
       align-items: center;
-    }
-
-    .salary-pill {
-      background: #fef3c7;
-      border: 1px solid #fbbf24;
-      color: #92400e;
-      padding: 3px 10px;
-      border-radius: 5px;
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .type-pill {
-      background: var(--bg-page);
-      border: 1px solid var(--border-subtle);
-      padding: 3px 10px;
-      border-radius: 5px;
-      font-size: 12px;
-      color: var(--text-main);
-    }
-
-    .dot {
-      color: var(--border-subtle);
-    }
-
-    /* Vibe Highlights - Compact */
-    .vibe-highlights {
-      background: var(--vibe-bg);
-      border: 1px solid #e2e8f0;
-      border-radius: 6px;
-      padding: 10px 12px;
-      margin-bottom: 10px;
-    }
-
-    .vibe-title {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--brand-blue);
-      margin-bottom: 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.3px;
-    }
-
-    .vibe-list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    .vibe-list li {
-      font-size: 13px;
-      color: var(--text-main);
-      padding-left: 14px;
-      position: relative;
-      margin-bottom: 5px;
-      line-height: 1.4;
-    }
-
-    .vibe-list li:last-child {
-      margin-bottom: 0;
-    }
-
-    .vibe-list li:before {
-      content: "";
-      position: absolute;
-      left: 4px;
-      top: 7px;
-      width: 3px;
-      height: 3px;
-      background: var(--brand-blue);
-      border-radius: 50%;
-    }
-
-    /* Badges - Compact */
-    .job-badges {
-      display: flex;
+      gap: var(--space-md);
       flex-wrap: wrap;
-      gap: 6px;
+      margin-bottom: var(--space-md);
     }
 
-    .badge {
-      border-radius: 5px;
-      padding: 3px 8px;
-      font-size: 11px;
-      font-weight: 500;
-      background: var(--bg-page);
+    .salary-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--gold-soft);
+      color: var(--gold);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      border: 1px solid var(--gold-border);
+    }
+
+    .salary-tag svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .meta-item svg {
+      width: 14px;
+      height: 14px;
       color: var(--text-muted);
-      border: 1px solid var(--border-subtle);
     }
 
-    /* Actions - Compact */
-    .job-actions {
+    /* Culture Highlight */
+    .culture-highlight {
+      background: var(--joy-blue-mist);
+      border: 1px solid #e0e7ff;
+      border-radius: 12px;
+      padding: var(--space-md);
+      margin-bottom: var(--space-md);
+    }
+
+    .tier-gold .culture-highlight {
+      background: linear-gradient(135deg, var(--gold-soft) 0%, #fff9eb 100%);
+      border-color: rgba(217,119,6,0.2);
+    }
+
+    .culture-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--joy-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: var(--space-sm);
+    }
+
+    .tier-gold .culture-label {
+      color: var(--gold);
+    }
+
+    .culture-label svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .culture-quotes {
       display: flex;
       flex-direction: column;
       gap: 8px;
     }
 
-    @media (min-width: 1024px) {
-      .job-actions {
-        justify-content: flex-start;
-      }
+    .culture-quote {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      padding-left: 12px;
+      border-left: 2px solid var(--joy-blue);
+    }
+
+    .tier-gold .culture-quote {
+      border-left-color: var(--gold);
+    }
+
+    /* Tags */
+    .job-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: var(--space-md);
+    }
+
+    .job-tag {
+      font-size: 12px;
+      padding: 5px 10px;
+      border-radius: 6px;
+      background: var(--bg);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-light);
+    }
+
+    /* Card Footer */
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: var(--space-md);
+      border-top: 1px solid var(--border-light);
+    }
+
+    .posted-time {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .card-buttons {
+      display: flex;
+      gap: var(--space-sm);
     }
 
     .btn-secondary {
-      background: white;
-      border: 1px solid var(--border-subtle);
-      color: var(--text-main);
-      padding: 8px 16px;
-      border-radius: 6px;
-      font-weight: 500;
+      padding: 10px 18px;
+      border-radius: 8px;
       font-size: 13px;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
       cursor: pointer;
       transition: all 0.2s;
       font-family: inherit;
-      text-align: center;
     }
 
     .btn-secondary:hover {
-      border-color: var(--brand-blue);
-      color: var(--brand-blue);
+      border-color: var(--joy-blue);
+      color: var(--joy-blue);
     }
 
-    .btn-apply {
-      background: var(--brand-blue);
-      color: white;
-      padding: 8px 16px;
-      border-radius: 6px;
-      border: none;
-      font-weight: 600;
+    .btn-primary {
+      padding: 10px 18px;
+      border-radius: 8px;
       font-size: 13px;
+      font-weight: 600;
+      border: none;
+      background: var(--joy-blue);
+      color: white;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: all 0.2s;
       font-family: inherit;
+    }
+
+    .btn-primary:hover {
+      background: var(--joy-blue-deep);
+    }
+
+    .tier-gold .btn-primary {
+      background: var(--gold);
+    }
+
+    .tier-gold .btn-primary:hover {
+      background: #b45309;
+    }
+
+    /* ═══════════════════════════════════════════
+       LOAD MORE
+    ═══════════════════════════════════════════ */
+    .load-more {
       text-align: center;
+      padding: var(--space-xl) 0;
     }
 
-    .btn-apply:hover {
-      background: var(--brand-blue-dark);
+    .btn-load-more {
+      padding: 14px 32px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
     }
 
-    /* SVG Icons */
-    .icon {
-      width: 18px;
-      height: 18px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
+    .btn-load-more:hover {
+      border-color: var(--joy-blue);
+      color: var(--joy-blue);
     }
 
-    /* Responsive adjustments */
-    @media (max-width: 767px) {
-      .hero-banner {
-        padding: 32px 20px;
+    /* ═══════════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .nav {
+        display: none;
       }
 
-      .hero-title {
-        font-size: 28px;
+      .hero {
+        padding: var(--space-xl) var(--space-md);
       }
 
-      .hero-subtitle {
-        font-size: 16px;
+      .filters-row {
+        gap: var(--space-md);
+      }
+
+      .filter-divider {
+        display: none;
+      }
+
+      .quick-filters {
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: var(--space-sm);
+      }
+
+      .job-card {
+        padding: var(--space-md);
+      }
+
+      .card-header {
+        flex-direction: column;
+      }
+
+      .card-actions-top {
+        position: absolute;
+        top: var(--space-md);
+        right: var(--space-md);
+      }
+
+      .card-footer {
+        flex-direction: column;
+        gap: var(--space-md);
+        align-items: stretch;
+      }
+
+      .card-buttons {
+        width: 100%;
+      }
+
+      .card-buttons button {
+        flex: 1;
       }
     }
+
+    /* ═══════════════════════════════════════════
+       ANIMATIONS
+    ═══════════════════════════════════════════ */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .job-card {
+      animation: fadeInUp 0.4s ease forwards;
+    }
+
+    .job-card:nth-child(1) { animation-delay: 0.05s; }
+    .job-card:nth-child(2) { animation-delay: 0.1s; }
+    .job-card:nth-child(3) { animation-delay: 0.15s; }
+    .job-card:nth-child(4) { animation-delay: 0.2s; }
+    .job-card:nth-child(5) { animation-delay: 0.25s; }
+    .job-card:nth-child(6) { animation-delay: 0.3s; }
   </style>
 </head>
 <body>
-  <div class="page">
-    <!-- Hero Banner -->
-    <section class="hero-banner">
-      <div class="hero-content">
-        <div class="breadcrumb">
-          <a href="#">JoyWork</a> / Việc làm
-        </div>
-        <h1 class="hero-title">Đọc văn hoá thật. Rồi mới quyết định ứng tuyển.</h1>
-        <p class="hero-subtitle">
-          Tất cả công ty đã được xác minh văn hoá làm việc, đánh giá từ nhân viên thật.
-        </p>
-        <p class="hero-description">
-          Bạn sẽ thấy rõ: không khí làm việc thế nào, sếp ra sao, quyền lợi minh bạch không. Đọc kỹ, rồi mới apply.
-        </p>
-      </div>
-    </section>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="#" class="logo">
+        <span class="logo-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </span>
+        JoyWork
+      </a>
+      <nav class="nav">
+        <a href="#" class="nav-link active">Việc làm</a>
+        <a href="#" class="nav-link">Công ty</a>
+        <a href="#" class="nav-link">Đánh giá</a>
+        <a href="#" class="nav-link">Về chúng tôi</a>
+      </nav>
+      <a href="#" class="btn-employer">Dành cho Nhà tuyển dụng</a>
+    </div>
+  </header>
 
-    <!-- Search Section -->
-    <section class="search-section">
-      <div class="search-wrapper">
-        <div class="search-inputs">
-          <div class="input-wrapper">
-            <svg class="input-icon icon" viewBox="0 0 24 24">
-              <circle cx="11" cy="11" r="8"></circle>
-              <path d="m21 21-4.35-4.35"></path>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+          <polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+        100% công ty đã xác minh văn hoá
+      </div>
+      <h1 class="hero-title">Hiểu văn hoá thật.<br>Rồi mới quyết định ứng tuyển.</h1>
+      <p class="hero-subtitle">
+        Đọc đánh giá từ nhân viên thật, xem JoyScore, và tìm công việc phù hợp với bạn.
+      </p>
+
+      <!-- Search Box -->
+      <div class="search-box">
+        <div class="search-input-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input type="text" class="search-input" placeholder="Chức danh, kỹ năng, từ khoá...">
+        </div>
+        <div class="search-input-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          <input type="text" class="search-input" placeholder="Hà Nội, TP.HCM, Remote...">
+        </div>
+        <button class="search-btn">Tìm việc</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filters -->
+  <section class="filters-section">
+    <div class="filters-inner">
+      <div class="filters-row">
+        <span class="filter-label">Văn hoá</span>
+        <div class="culture-tags">
+          <span class="culture-tag verified-tag">Đã xác minh</span>
+          <span class="culture-tag">Trẻ trung & năng động</span>
+          <span class="culture-tag active">Kỷ luật & tập trung</span>
+          <span class="culture-tag">Gia đình & ấm áp</span>
+          <span class="culture-tag">Start-up tốc độ</span>
+          <span class="culture-tag">Ổn định, ít OT</span>
+          <span class="culture-tag">Remote linh hoạt</span>
+        </div>
+        <span class="filter-divider"></span>
+        <div class="quick-filters">
+          <div class="quick-filter">
+            Ngành nghề
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="m6 9 6 6 6-6"/>
             </svg>
-            <input type="text" placeholder="Chức danh, kỹ năng, từ khoá...">
           </div>
-          <div class="input-wrapper">
-            <svg class="input-icon icon" viewBox="0 0 24 24">
-              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
-              <circle cx="12" cy="10" r="3"></circle>
+          <div class="quick-filter">
+            Mức lương
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="m6 9 6 6 6-6"/>
             </svg>
-            <input type="text" placeholder="Địa điểm (Hà Nội, TP.HCM, Remote...)">
           </div>
-          <button class="btn-primary">Tìm việc</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Filters Section -->
-    <section class="filters-section">
-      <div class="filters-wrapper">
-        <div class="filter-section-title">Văn hoá & môi trường</div>
-        <div class="chip-row">
-          <div class="chip verified-only">Đã xác minh văn hoá</div>
-          <div class="chip">Không OT</div>
-          <div class="chip active">Thân thiện với phụ nữ</div>
-          <div class="chip">Đào tạo</div>
-          <div class="chip">Start-up tăng trưởng nhanh</div>
-          <div class="chip">Phúc lợi tốt nhất</div>
-          <div class="chip">Remote linh hoạt</div>
-        </div>
-        <div class="filter-dropdowns">
-          <div class="filter-dropdown">Ngành nghề: Tất cả ▾</div>
-          <div class="filter-dropdown">Mức lương: 10–15tr ▾</div>
-          <div class="filter-dropdown">Hình thức: Toàn thời gian ▾</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Banner Ads Section -->
-    <section class="banner-ads-section">
-      <div class="banner-ads-wrapper">
-        <div class="ads-title">Công ty đang tuyển dụng nổi bật</div>
-        <div class="banner-ads-grid">
-          <div class="banner-ad">
-            <span class="ad-label">Quảng cáo</span>
-            <div class="ad-logo">TC</div>
-            <div class="ad-title">TechCorp Vietnam đang tuyển dụng</div>
-            <div class="ad-subtitle">20+ vị trí Software Engineer, Product Manager, Designer</div>
-          </div>
-
-          <div class="banner-ad">
-            <span class="ad-label">Quảng cáo</span>
-            <div class="ad-logo">VB</div>
-            <div class="ad-title">VietBank tuyển dụng đợt lớn Q1/2026</div>
-            <div class="ad-subtitle">Chương trình Management Trainee - Lương hấp dẫn</div>
-          </div>
-
-          <div class="banner-ad">
-            <span class="ad-label">Quảng cáo</span>
-            <div class="ad-logo">FG</div>
-            <div class="ad-title">FoodGo mở rộng team toàn quốc</div>
-            <div class="ad-subtitle">Sales, Marketing, Operations - Thưởng KPI cao</div>
+          <div class="quick-filter">
+            Hình thức
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Jobs Section -->
+  <!-- Main Content -->
+  <main class="main">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <!-- Industry Filter -->
+      <div class="sidebar-section">
+        <h3 class="sidebar-title">Ngành nghề</h3>
+        <div class="filter-option checked">
+          <div class="filter-checkbox">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <span class="filter-text">Tất cả ngành</span>
+          <span class="filter-count">127</span>
+        </div>
+        <div class="filter-option">
+          <div class="filter-checkbox">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <span class="filter-text">Marketing & Branding</span>
+          <span class="filter-count">34</span>
+        </div>
+        <div class="filter-option">
+          <div class="filter-checkbox">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <span class="filter-text">IT & Phần mềm</span>
+          <span class="filter-count">28</span>
+        </div>
+        <div class="filter-option">
+          <div class="filter-checkbox">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <span class="filter-text">Kinh doanh & Sales</span>
+          <span class="filter-count">25</span>
+        </div>
+        <div class="filter-option">
+          <div class="filter-checkbox">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <span class="filter-text">Design & Sáng tạo</span>
+          <span class="filter-count">18</span>
+        </div>
+        <div class="filter-option">
+          <div class="filter-checkbox">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <span class="filter-text">Giáo dục & Đào tạo</span>
+          <span class="filter-count">12</span>
+        </div>
+      </div>
+
+      <!-- Salary Range -->
+      <div class="sidebar-section">
+        <h3 class="sidebar-title">Mức lương</h3>
+        <div class="salary-range">
+          <div class="range-labels">
+            <span>10 triệu</span>
+            <span>35+ triệu</span>
+          </div>
+          <div class="range-slider">
+            <div class="range-fill"></div>
+            <div class="range-handle"></div>
+            <div class="range-handle"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Featured Companies -->
+      <div class="sidebar-section featured-companies">
+        <h3 class="sidebar-title">Công ty nổi bật</h3>
+        <div class="featured-company">
+          <div class="company-avatar">TC</div>
+          <div class="company-mini-info">
+            <div class="company-mini-name">TechCorp Vietnam</div>
+            <div class="company-mini-jobs">20+ vị trí đang tuyển</div>
+          </div>
+        </div>
+        <div class="featured-company">
+          <div class="company-avatar">VB</div>
+          <div class="company-mini-info">
+            <div class="company-mini-name">VietBank</div>
+            <div class="company-mini-jobs">15 vị trí đang tuyển</div>
+          </div>
+        </div>
+        <div class="featured-company">
+          <div class="company-avatar">FG</div>
+          <div class="company-mini-info">
+            <div class="company-mini-name">FoodGo</div>
+            <div class="company-mini-jobs">12 vị trí đang tuyển</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Jobs List -->
     <section class="jobs-section">
-      <div class="section-header">
-        <h2 class="section-title">Việc làm phù hợp</h2>
-        <span class="results-count">127 việc làm</span>
+      <div class="jobs-header">
+        <div>
+          <h2 class="jobs-title">Việc làm phù hợp</h2>
+          <span class="jobs-count">127 việc làm được tìm thấy</span>
+        </div>
+        <div class="jobs-sort">
+          <span>Sắp xếp:</span>
+          <select class="sort-select">
+            <option>Phù hợp nhất</option>
+            <option>Mới nhất</option>
+            <option>Lương cao nhất</option>
+            <option>JoyScore cao nhất</option>
+          </select>
+        </div>
       </div>
 
-      <!-- Job 1 -->
-      <a href="job-detail-1.html" class="job-card">
-        <div class="company-header">
-          <div class="company-logo">JT</div>
-          <div class="company-info">
-            <div class="company-name-row">
-              <span class="company-name">JoyTea Studio</span>
-              <span class="verified-badge">Xác minh</span>
+      <div class="jobs-list">
+        <!-- Job 1 - GOLD Tier -->
+        <a href="#" class="job-card tier-gold">
+          <div class="card-header">
+            <div class="company-logo">CB</div>
+            <div class="card-header-info">
+              <div class="company-row">
+                <span class="company-name">CloudBase Tech</span>
+                <span class="tier-badge gold">Gold</span>
+                <span class="verified-badge">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                  </svg>
+                  Xác minh
+                </span>
+              </div>
+              <div class="company-meta">
+                <span class="joy-score">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                  95% recommend
+                </span>
+                <span>203 người đã xem</span>
+              </div>
             </div>
-            <div class="company-stats">
-              <span class="recommend-stat">92% recommend</span> • 145 người xem
-            </div>
-          </div>
-        </div>
-
-        <div class="job-content">
-          <div class="job-main">
-            <h3 class="job-title">Senior Marketing Executive – Thương hiệu F&B trẻ</h3>
-            
-            <div class="job-meta">
-              <span class="salary-pill">18–25 triệu/tháng</span>
-              <span class="type-pill">Marketing</span>
-              <span class="dot">•</span>
-              <span>Hà Nội</span>
-              <span class="dot">•</span>
-              <span>Toàn thời gian</span>
-            </div>
-
-            <div class="vibe-highlights">
-              <div class="vibe-title">Văn hoá thật từ nhân viên</div>
-              <ul class="vibe-list">
-                <li>Team trẻ, vui vẻ, ít drama. Hay mua trà sữa cho nhau khi ai đó "chiến thắng".</li>
-                <li>Sếp thích coaching, feedback thẳng nhưng tôn trọng. Lộ trình rõ ràng.</li>
-              </ul>
-            </div>
-
-            <div class="job-badges">
-              <span class="badge">Minh bạch lương</span>
-              <span class="badge">Không OT cuối tuần</span>
-              <span class="badge">Có mentor</span>
+            <div class="card-actions-top">
+              <button class="btn-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                </svg>
+              </button>
             </div>
           </div>
 
-          <div class="job-actions">
-            <button class="btn-secondary">Xem chi tiết</button>
-            <button class="btn-apply">Ứng tuyển</button>
+          <h3 class="job-title">Backend Developer (Node.js) – SaaS Platform</h3>
+
+          <div class="job-meta">
+            <span class="salary-tag">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="1" x2="12" y2="23"/>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+              25–35 triệu/tháng
+            </span>
+            <span class="meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+              Remote (VN)
+            </span>
+            <span class="meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+              </svg>
+              Engineering
+            </span>
+            <span class="meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+              Toàn thời gian
+            </span>
           </div>
-        </div>
-      </a>
 
-      <!-- Job 2 -->
-      <a href="job-detail-2.html" class="job-card">
-        <div class="company-header">
-          <div class="company-logo">AN</div>
-          <div class="company-info">
-            <div class="company-name-row">
-              <span class="company-name">An Nhiên Books</span>
-              <span class="verified-badge">Xác minh</span>
+          <div class="culture-highlight">
+            <div class="culture-label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              </svg>
+              Văn hoá thật từ nhân viên
             </div>
-            <div class="company-stats">
-              <span class="recommend-stat">88% recommend</span> • 89 người xem
-            </div>
-          </div>
-        </div>
-
-        <div class="job-content">
-          <div class="job-main">
-            <h3 class="job-title">Content Writer – Nhà sách độc lập yêu văn học</h3>
-            
-            <div class="job-meta">
-              <span class="salary-pill">12–18 triệu/tháng</span>
-              <span class="type-pill">Content</span>
-              <span class="dot">•</span>
-              <span>Hà Nội (Hybrid)</span>
-              <span class="dot">•</span>
-              <span>Toàn thời gian</span>
-            </div>
-
-            <div class="vibe-highlights">
-              <div class="vibe-title">Văn hoá thật từ nhân viên</div>
-              <ul class="vibe-list">
-                <li>Văn phòng ấm cúng, có góc đọc sách. Sếp là "mọt sách", rất tôn trọng writer.</li>
-                <li>Không deadline gấp gáp, được nghiên cứu kỹ. Review 2 chiều cởi mở.</li>
-              </ul>
-            </div>
-
-            <div class="job-badges">
-              <span class="badge">Môi trường văn học</span>
-              <span class="badge">Hybrid 2 ngày WFH</span>
-              <span class="badge">Sách miễn phí</span>
+            <div class="culture-quotes">
+              <p class="culture-quote">"Full remote, làm việc async. Ít meeting vô bổ, tài liệu rõ ràng."</p>
+              <p class="culture-quote">"Team tech 12 người, senior nhiều, review code chi tiết. Code quality là ưu tiên."</p>
             </div>
           </div>
 
-          <div class="job-actions">
-            <button class="btn-secondary">Xem chi tiết</button>
-            <button class="btn-apply">Ứng tuyển</button>
-          </div>
-        </div>
-      </a>
-
-      <!-- Job 3 -->
-      <a href="job-detail-3.html" class="job-card">
-        <div class="company-header">
-          <div class="company-logo">GL</div>
-          <div class="company-info">
-            <div class="company-name-row">
-              <span class="company-name">Gạo Lành Mart</span>
-              <span class="verified-badge">Xác minh</span>
-            </div>
-            <div class="company-stats">
-              <span class="recommend-stat">85% recommend</span> • 67 người xem
-            </div>
-          </div>
-        </div>
-
-        <div class="job-content">
-          <div class="job-main">
-            <h3 class="job-title">Nhân viên Kinh doanh B2B – Nông sản sạch</h3>
-            
-            <div class="job-meta">
-              <span class="salary-pill">15–20tr + hoa hồng</span>
-              <span class="type-pill">Sales B2B</span>
-              <span class="dot">•</span>
-              <span>TP.HCM</span>
-              <span class="dot">•</span>
-              <span>Toàn thời gian</span>
-            </div>
-
-            <div class="vibe-highlights">
-              <div class="vibe-title">Văn hoá thật từ nhân viên</div>
-              <ul class="vibe-list">
-                <li>Công ty gia đình nhưng chuyên nghiệp. Sếp hay khuyến khích học hỏi.</li>
-                <li>Không áp lực doanh số phi lý. Target dựa trên thị trường thực tế.</li>
-              </ul>
-            </div>
-
-            <div class="job-badges">
-              <span class="badge">Hoa hồng hấp dẫn</span>
-              <span class="badge">Đào tạo bài bản</span>
-              <span class="badge">Sản phẩm chất lượng</span>
-            </div>
+          <div class="job-tags">
+            <span class="job-tag">Full remote</span>
+            <span class="job-tag">Tech stack hiện đại</span>
+            <span class="job-tag">Code review nghiêm túc</span>
           </div>
 
-          <div class="job-actions">
-            <button class="btn-secondary">Xem chi tiết</button>
-            <button class="btn-apply">Ứng tuyển</button>
-          </div>
-        </div>
-      </a>
-
-      <!-- Job 4 -->
-      <a href="job-detail-4.html" class="job-card">
-        <div class="company-header">
-          <div class="company-logo">CB</div>
-          <div class="company-info">
-            <div class="company-name-row">
-              <span class="company-name">CloudBase Tech</span>
-              <span class="verified-badge">Xác minh</span>
-            </div>
-            <div class="company-stats">
-              <span class="recommend-stat">95% recommend</span> • 203 người xem
+          <div class="card-footer">
+            <span class="posted-time">Đăng 2 ngày trước</span>
+            <div class="card-buttons">
+              <button class="btn-secondary">Xem chi tiết</button>
+              <button class="btn-primary">Ứng tuyển ngay</button>
             </div>
           </div>
-        </div>
+        </a>
 
-        <div class="job-content">
-          <div class="job-main">
-            <h3 class="job-title">Backend Developer (Node.js) – SaaS Platform</h3>
-            
-            <div class="job-meta">
-              <span class="salary-pill">25–35 triệu/tháng</span>
-              <span class="type-pill">Engineering</span>
-              <span class="dot">•</span>
-              <span>Remote (VN)</span>
-              <span class="dot">•</span>
-              <span>Toàn thời gian</span>
+        <!-- Job 2 - PLUS Tier -->
+        <a href="#" class="job-card tier-plus">
+          <div class="card-header">
+            <div class="company-logo">JT</div>
+            <div class="card-header-info">
+              <div class="company-row">
+                <span class="company-name">JoyTea Studio</span>
+                <span class="tier-badge plus">Plus</span>
+                <span class="verified-badge">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                  </svg>
+                  Xác minh
+                </span>
+              </div>
+              <div class="company-meta">
+                <span class="joy-score">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                  92% recommend
+                </span>
+                <span>145 người đã xem</span>
+              </div>
             </div>
-
-            <div class="vibe-highlights">
-              <div class="vibe-title">Văn hoá thật từ nhân viên</div>
-              <ul class="vibe-list">
-                <li>Full remote, làm việc async. Ít meeting vô bổ, tài liệu rõ ràng.</li>
-                <li>Team tech 12 người, senior nhiều, review code chi tiết. Code quality là ưu tiên.</li>
-              </ul>
-            </div>
-
-            <div class="job-badges">
-              <span class="badge">Full remote</span>
-              <span class="badge">Tech stack hiện đại</span>
-              <span class="badge">Code review nghiêm túc</span>
+            <div class="card-actions-top">
+              <button class="btn-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                </svg>
+              </button>
             </div>
           </div>
 
-          <div class="job-actions">
-            <button class="btn-secondary">Xem chi tiết</button>
-            <button class="btn-apply">Ứng tuyển</button>
+          <h3 class="job-title">Senior Marketing Executive – Thương hiệu F&B trẻ</h3>
+
+          <div class="job-meta">
+            <span class="salary-tag">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="1" x2="12" y2="23"/>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+              18–25 triệu/tháng
+            </span>
+            <span class="meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+              Hà Nội
+            </span>
+            <span class="meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+              </svg>
+              Marketing
+            </span>
+            <span class="meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+              Toàn thời gian
+            </span>
           </div>
-        </div>
-      </a>
 
-      <!-- Job 5 -->
-      <a href="job-detail-5.html" class="job-card">
-        <div class="company-header">
-          <div class="company-logo">NM</div>
-          <div class="company-info">
-            <div class="company-name-row">
-              <span class="company-name">Nhà Mơ Education</span>
-              <span class="verified-badge">Xác minh</span>
+          <div class="culture-highlight">
+            <div class="culture-label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              </svg>
+              Văn hoá thật từ nhân viên
             </div>
-            <div class="company-stats">
-              <span class="recommend-stat">90% recommend</span> • 112 người xem
-            </div>
-          </div>
-        </div>
-
-        <div class="job-content">
-          <div class="job-main">
-            <h3 class="job-title">Giáo viên Toán – THCS (Trung học cơ sở)</h3>
-            
-            <div class="job-meta">
-              <span class="salary-pill">15–22 triệu/tháng</span>
-              <span class="type-pill">Giáo dục</span>
-              <span class="dot">•</span>
-              <span>Hà Nội</span>
-              <span class="dot">•</span>
-              <span>Toàn thời gian</span>
-            </div>
-
-            <div class="vibe-highlights">
-              <div class="vibe-title">Văn hoá thật từ nhân viên</div>
-              <ul class="vibe-list">
-                <li>Trường tư thục nhỏ, phát triển tư duy hơn học vẹt. 20–25 em/lớp.</li>
-                <li>Hiệu trưởng coi trọng giáo viên, lắng nghe. Không áp lực thành tích ảo.</li>
-              </ul>
-            </div>
-
-            <div class="job-badges">
-              <span class="badge">Lớp học nhỏ</span>
-              <span class="badge">Phương pháp mới</span>
-              <span class="badge">Đào tạo nghiệp vụ</span>
+            <div class="culture-quotes">
+              <p class="culture-quote">"Team trẻ, vui vẻ, ít drama. Hay mua trà sữa cho nhau khi ai đó chiến thắng."</p>
+              <p class="culture-quote">"Sếp thích coaching, feedback thẳng nhưng tôn trọng. Lộ trình rõ ràng."</p>
             </div>
           </div>
 
-          <div class="job-actions">
-            <button class="btn-secondary">Xem chi tiết</button>
-            <button class="btn-apply">Ứng tuyển</button>
-          </div>
-        </div>
-      </a>
-
-      <!-- Job 6 -->
-      <a href="job-detail-6.html" class="job-card">
-        <div class="company-header">
-          <div class="company-logo">CH</div>
-          <div class="company-info">
-            <div class="company-name-row">
-              <span class="company-name">Cozy Home Decor</span>
-              <span class="verified-badge">Xác minh</span>
-            </div>
-            <div class="company-stats">
-              <span class="recommend-stat">93% recommend</span> • 156 người xem
-            </div>
-          </div>
-        </div>
-
-        <div class="job-content">
-          <div class="job-main">
-            <h3 class="job-title">Graphic Designer – Thương hiệu nội thất Bắc Âu</h3>
-            
-            <div class="job-meta">
-              <span class="salary-pill">14–20 triệu/tháng</span>
-              <span class="type-pill">Design</span>
-              <span class="dot">•</span>
-              <span>Hà Nội</span>
-              <span class="dot">•</span>
-              <span>Toàn thời gian</span>
-            </div>
-
-            <div class="vibe-highlights">
-              <div class="vibe-title">Văn hoá thật từ nhân viên</div>
-              <ul class="vibe-list">
-                <li>Văn phòng đẹp, nhiều cây xanh. Làm với sản phẩm nội thất cao cấp.</li>
-                <li>Không làm banner giảm giá. Focus vào brand identity, lookbook chất lượng.</li>
-              </ul>
-            </div>
-
-            <div class="job-badges">
-              <span class="badge">Aesthetic workplace</span>
-              <span class="badge">Brand focus</span>
-              <span class="badge">Portfolio đẹp</span>
-            </div>
+          <div class="job-tags">
+            <span class="job-tag">Minh bạch lương</span>
+            <span class="job-tag">Không OT cuối tuần</span>
+            <span class="job-tag">Có mentor</span>
           </div>
 
-          <div class="job-actions">
-            <button class="btn-secondary">Xem chi tiết</button>
-            <button class="btn-apply">Ứng tuyển</button>
-          </div>
-        </div>
-      </a>
-
-      <!-- Job 7 -->
-      <a href="job-detail-7.html" class="job-card">
-        <div class="company-header">
-          <div class="company-logo">XL</div>
-          <div class="company-info">
-            <div class="company-name-row">
-              <span class="company-name">Xanh Lá Media</span>
-              <span class="verified-badge">Xác minh</span>
-            </div>
-            <div class="company-stats">
-              <span class="recommend-stat">87% recommend</span> • 178 người xem
+          <div class="card-footer">
+            <span class="posted-time">Đăng 3 ngày trước</span>
+            <div class="card-buttons">
+              <button class="btn-secondary">Xem chi tiết</button>
+              <button class="btn-primary">Ứng tuyển ngay</button>
             </div>
           </div>
-        </div>
+        </a>
 
-        <div class="job-content">
-          <div class="job-main">
-            <h3 class="job-title">Account Executive – Agency marketing & branding</h3>
-            
-            <div class="job-meta">
-              <span class="salary-pill">16–24 triệu/tháng</span>
-              <span class="type-pill">Account Mgmt</span>
-              <span class="dot">•</span>
-              <span>TP.HCM</span>
-              <span class="dot">•</span>
-              <span>Toàn thời gian</span>
+        <!-- Job 3 - FREE Tier (No special styling) -->
+        <a href="#" class="job-card">
+          <div class="card-header">
+            <div class="company-logo">AN</div>
+            <div class="card-header-info">
+              <div class="company-row">
+                <span class="company-name">An Nhiên Books</span>
+                <span class="verified-badge">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                  </svg>
+                  Xác minh
+                </span>
+              </div>
+              <div class="company-meta">
+                <span class="joy-score">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                  88% recommend
+                </span>
+                <span>89 người đã xem</span>
+              </div>
             </div>
-
-            <div class="vibe-highlights">
-              <div class="vibe-title">Văn hoá thật từ nhân viên</div>
-              <ul class="vibe-list">
-                <li>Agency 30 người, client từ F&B, fashion, tech. Lựa chọn project kỹ.</li>
-                <li>Năng động nhưng không toxic. OT có nghỉ bù rõ ràng.</li>
-              </ul>
-            </div>
-
-            <div class="job-badges">
-              <span class="badge">Dự án đa dạng</span>
-              <span class="badge">Client chất lượng</span>
-              <span class="badge">Agency uy tín</span>
+            <div class="card-actions-top">
+              <button class="btn-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                </svg>
+              </button>
             </div>
           </div>
 
-          <div class="job-actions">
-            <button class="btn-secondary">Xem chi tiết</button>
-            <button class="btn-apply">Ứng tuyển</button>
+          <h3 class="job-title">Content Writer – Nhà sách độc lập yêu văn học</h3>
+
+          <div class="job-meta">
+            <span class="salary-tag">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="1" x2="12" y2="23"/>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+              12–18 triệu/tháng
+            </span>
+            <span class="meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+              Hà Nội (Hybrid)
+            </span>
+            <span class="meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+              </svg>
+              Content
+            </span>
+            <span class="meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+              Toàn thời gian
+            </span>
           </div>
-        </div>
-      </a>
+
+          <div class="culture-highlight">
+            <div class="culture-label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              </svg>
+              Văn hoá thật từ nhân viên
+            </div>
+            <div class="culture-quotes">
+              <p class="culture-quote">"Văn phòng ấm cúng, có góc đọc sách. Sếp là mọt sách, rất tôn trọng writer."</p>
+              <p class="culture-quote">"Không deadline gấp gáp, được nghiên cứu kỹ. Review 2 chiều cởi mở."</p>
+            </div>
+          </div>
+
+          <div class="job-tags">
+            <span class="job-tag">Môi trường văn học</span>
+            <span class="job-tag">Hybrid 2 ngày WFH</span>
+            <span class="job-tag">Sách miễn phí</span>
+          </div>
+
+          <div class="card-footer">
+            <span class="posted-time">Đăng 4 ngày trước</span>
+            <div class="card-buttons">
+              <button class="btn-secondary">Xem chi tiết</button>
+              <button class="btn-primary">Ứng tuyển ngay</button>
+            </div>
+          </div>
+        </a>
+
+        <!-- Job 4 - GOLD Tier (cuốn chiếu - không liên tiếp) -->
+        <a href="#" class="job-card tier-gold">
+          <div class="card-header">
+            <div class="company-logo">CH</div>
+            <div class="card-header-info">
+              <div class="company-row">
+                <span class="company-name">Cozy Home Decor</span>
+                <span class="tier-badge gold">Gold</span>
+                <span class="verified-badge">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                  </svg>
+                  Xác minh
+                </span>
+              </div>
+              <div class="company-meta">
+                <span class="joy-score">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                  93% recommend
+                </span>
+                <span>156 người đã xem</span>
+              </div>
+            </div>
+            <div class="card-actions-top">
+              <button class="btn-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <h3 class="job-title">Graphic Designer – Thương hiệu nội thất Bắc Âu</h3>
+
+          <div class="job-meta">
+            <span class="salary-tag">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="1" x2="12" y2="23"/>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+              14–20 triệu/tháng
+            </span>
+            <span class="meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+              Hà Nội
+            </span>
+            <span class="meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+              </svg>
+              Design
+            </span>
+            <span class="meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+              Toàn thời gian
+            </span>
+          </div>
+
+          <div class="culture-highlight">
+            <div class="culture-label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              </svg>
+              Văn hoá thật từ nhân viên
+            </div>
+            <div class="culture-quotes">
+              <p class="culture-quote">"Văn phòng đẹp, nhiều cây xanh. Làm với sản phẩm nội thất cao cấp."</p>
+              <p class="culture-quote">"Không làm banner giảm giá. Focus vào brand identity, lookbook chất lượng."</p>
+            </div>
+          </div>
+
+          <div class="job-tags">
+            <span class="job-tag">Aesthetic workplace</span>
+            <span class="job-tag">Brand focus</span>
+            <span class="job-tag">Portfolio đẹp</span>
+          </div>
+
+          <div class="card-footer">
+            <span class="posted-time">Đăng 1 ngày trước</span>
+            <div class="card-buttons">
+              <button class="btn-secondary">Xem chi tiết</button>
+              <button class="btn-primary">Ứng tuyển ngay</button>
+            </div>
+          </div>
+        </a>
+
+        <!-- Job 5 - FREE Tier -->
+        <a href="#" class="job-card">
+          <div class="card-header">
+            <div class="company-logo">GL</div>
+            <div class="card-header-info">
+              <div class="company-row">
+                <span class="company-name">Gạo Lành Mart</span>
+                <span class="verified-badge">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                  </svg>
+                  Xác minh
+                </span>
+              </div>
+              <div class="company-meta">
+                <span class="joy-score">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                  85% recommend
+                </span>
+                <span>67 người đã xem</span>
+              </div>
+            </div>
+            <div class="card-actions-top">
+              <button class="btn-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <h3 class="job-title">Nhân viên Kinh doanh B2B – Nông sản sạch</h3>
+
+          <div class="job-meta">
+            <span class="salary-tag">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="1" x2="12" y2="23"/>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+              15–20tr + hoa hồng
+            </span>
+            <span class="meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+              TP.HCM
+            </span>
+            <span class="meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+              </svg>
+              Sales B2B
+            </span>
+            <span class="meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+              Toàn thời gian
+            </span>
+          </div>
+
+          <div class="culture-highlight">
+            <div class="culture-label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              </svg>
+              Văn hoá thật từ nhân viên
+            </div>
+            <div class="culture-quotes">
+              <p class="culture-quote">"Công ty gia đình nhưng chuyên nghiệp. Sếp hay khuyến khích học hỏi."</p>
+              <p class="culture-quote">"Không áp lực doanh số phi lý. Target dựa trên thị trường thực tế."</p>
+            </div>
+          </div>
+
+          <div class="job-tags">
+            <span class="job-tag">Hoa hồng hấp dẫn</span>
+            <span class="job-tag">Đào tạo bài bản</span>
+            <span class="job-tag">Sản phẩm chất lượng</span>
+          </div>
+
+          <div class="card-footer">
+            <span class="posted-time">Đăng 5 ngày trước</span>
+            <div class="card-buttons">
+              <button class="btn-secondary">Xem chi tiết</button>
+              <button class="btn-primary">Ứng tuyển ngay</button>
+            </div>
+          </div>
+        </a>
+
+        <!-- Job 6 - PLUS Tier -->
+        <a href="#" class="job-card tier-plus">
+          <div class="card-header">
+            <div class="company-logo">NM</div>
+            <div class="card-header-info">
+              <div class="company-row">
+                <span class="company-name">Nhà Mơ Education</span>
+                <span class="tier-badge plus">Plus</span>
+                <span class="verified-badge">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                  </svg>
+                  Xác minh
+                </span>
+              </div>
+              <div class="company-meta">
+                <span class="joy-score">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                  90% recommend
+                </span>
+                <span>112 người đã xem</span>
+              </div>
+            </div>
+            <div class="card-actions-top">
+              <button class="btn-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <h3 class="job-title">Giáo viên Toán – THCS (Trung học cơ sở)</h3>
+
+          <div class="job-meta">
+            <span class="salary-tag">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="1" x2="12" y2="23"/>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+              15–22 triệu/tháng
+            </span>
+            <span class="meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+              Hà Nội
+            </span>
+            <span class="meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+              </svg>
+              Giáo dục
+            </span>
+            <span class="meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+              Toàn thời gian
+            </span>
+          </div>
+
+          <div class="culture-highlight">
+            <div class="culture-label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              </svg>
+              Văn hoá thật từ nhân viên
+            </div>
+            <div class="culture-quotes">
+              <p class="culture-quote">"Trường tư thục nhỏ, phát triển tư duy hơn học vẹt. 20–25 em/lớp."</p>
+              <p class="culture-quote">"Hiệu trưởng coi trọng giáo viên, lắng nghe. Không áp lực thành tích ảo."</p>
+            </div>
+          </div>
+
+          <div class="job-tags">
+            <span class="job-tag">Lớp học nhỏ</span>
+            <span class="job-tag">Phương pháp mới</span>
+            <span class="job-tag">Đào tạo nghiệp vụ</span>
+          </div>
+
+          <div class="card-footer">
+            <span class="posted-time">Đăng 2 ngày trước</span>
+            <div class="card-buttons">
+              <button class="btn-secondary">Xem chi tiết</button>
+              <button class="btn-primary">Ứng tuyển ngay</button>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Load More -->
+      <div class="load-more">
+        <button class="btn-load-more">Xem thêm việc làm</button>
+      </div>
     </section>
-  </div>
+  </main>
 </body>
 </html>
