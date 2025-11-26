@@ -18,7 +18,6 @@
       --text-secondary: #525252;
       --text-muted: #a3a3a3;
       
-      /* JOY Brand Colors */
       --accent: #1D5FA5;
       --accent-soft: #e8f0f8;
       
@@ -28,9 +27,12 @@
       --verified: #00875a;
       --verified-soft: #e6f4ef;
       
+      /* Gold Theme */
       --gold: #b8860b;
+      --gold-dark: #996f0a;
       --gold-soft: #fef9e7;
       --gold-border: #e6c200;
+      --gold-gradient: linear-gradient(135deg, #d4a012 0%, #b8860b 50%, #996f0a 100%);
       
       --purple: #7c3aed;
       --purple-soft: #f5f3ff;
@@ -44,6 +46,7 @@
       --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
       --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
       --shadow-lg: 0 12px 32px rgba(0,0,0,0.1);
+      --shadow-gold: 0 4px 20px rgba(184, 134, 11, 0.2);
       
       --radius: 12px;
       --radius-sm: 8px;
@@ -60,7 +63,7 @@
     }
 
     /* ═══════════════════════════════════════════
-       HEADER - Theo đúng ảnh
+       HEADER
     ═══════════════════════════════════════════ */
     .header {
       background: var(--surface);
@@ -81,7 +84,6 @@
       gap: 32px;
     }
 
-    /* Logo */
     .logo {
       display: flex;
       align-items: center;
@@ -100,10 +102,7 @@
       color: white;
     }
 
-    .logo-icon svg {
-      width: 20px;
-      height: 20px;
-    }
+    .logo-icon svg { width: 20px; height: 20px; }
 
     .logo-text {
       font-family: var(--font-display);
@@ -112,7 +111,6 @@
       color: var(--text);
     }
 
-    /* Center: Menu + Search */
     .header-center {
       display: flex;
       align-items: center;
@@ -137,22 +135,10 @@
       transition: all 0.2s;
     }
 
-    .header-nav a:hover {
-      background: var(--bg);
-      color: var(--text);
-    }
+    .header-nav a:hover { background: var(--bg); color: var(--text); }
+    .header-nav a.active { background: var(--bg); color: var(--text); }
+    .header-nav svg { width: 18px; height: 18px; }
 
-    .header-nav a.active {
-      background: var(--bg);
-      color: var(--text);
-    }
-
-    .header-nav svg {
-      width: 18px;
-      height: 18px;
-    }
-
-    /* Search Box */
     .header-search {
       flex: 1;
       max-width: 400px;
@@ -185,7 +171,6 @@
       color: var(--text-muted);
     }
 
-    /* User Dropdown */
     .header-user {
       display: flex;
       align-items: center;
@@ -196,9 +181,7 @@
       transition: all 0.2s;
     }
 
-    .header-user:hover {
-      background: var(--bg);
-    }
+    .header-user:hover { background: var(--bg); }
 
     .header-user-avatar {
       width: 32px;
@@ -213,19 +196,11 @@
       font-size: 14px;
     }
 
-    .header-user-name {
-      font-size: 14px;
-      font-weight: 500;
-    }
-
-    .header-user svg {
-      width: 16px;
-      height: 16px;
-      color: var(--text-muted);
-    }
+    .header-user-name { font-size: 14px; font-weight: 500; }
+    .header-user svg { width: 16px; height: 16px; color: var(--text-muted); }
 
     /* ═══════════════════════════════════════════
-       HERO SECTION - New Design
+       HERO SECTION
     ═══════════════════════════════════════════ */
     .hero-section {
       background: linear-gradient(180deg, #f5f5f5 0%, var(--bg) 100%);
@@ -260,7 +235,6 @@
       line-height: 1.6;
     }
 
-    /* Hero Search Bar */
     .hero-search {
       max-width: 800px;
       margin: 0 auto 32px;
@@ -299,9 +273,7 @@
       min-width: 0;
     }
 
-    .search-input-group input::placeholder {
-      color: var(--text-muted);
-    }
+    .search-input-group input::placeholder { color: var(--text-muted); }
 
     .search-divider {
       width: 1px;
@@ -329,7 +301,6 @@
       transform: translateY(-1px);
     }
 
-    /* Info Banner */
     .info-banner {
       max-width: 900px;
       margin: 0 auto;
@@ -362,27 +333,6 @@
     .info-item strong {
       color: var(--text);
       font-weight: 600;
-    }
-
-    @media (max-width: 968px) {
-      .info-banner {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-
-      .hero-search {
-        flex-direction: column;
-        gap: 0;
-      }
-
-      .search-divider {
-        width: 100%;
-        height: 1px;
-      }
-
-      .search-button {
-        width: 100%;
-      }
     }
 
     /* ═══════════════════════════════════════════
@@ -430,14 +380,9 @@
       font-weight: 700;
     }
 
-    .user-card-name {
-      font-size: 14px;
-      font-weight: 600;
-    }
+    .user-card-name { font-size: 14px; font-weight: 600; }
 
-    .nav-section {
-      margin-bottom: 28px;
-    }
+    .nav-section { margin-bottom: 28px; }
 
     .nav-section-title {
       font-size: 10px;
@@ -462,20 +407,9 @@
       transition: all 0.2s;
     }
 
-    .nav-item:hover {
-      background: var(--bg);
-      color: var(--text);
-    }
-
-    .nav-item.active {
-      background: var(--bg);
-      color: var(--text);
-    }
-
-    .nav-item svg {
-      width: 20px;
-      height: 20px;
-    }
+    .nav-item:hover { background: var(--bg); color: var(--text); }
+    .nav-item.active { background: var(--bg); color: var(--text); }
+    .nav-item svg { width: 20px; height: 20px; }
 
     .nav-item .badge {
       margin-left: auto;
@@ -490,75 +424,395 @@
     /* ═══════════════════════════════════════════
        CENTER FEED
     ═══════════════════════════════════════════ */
-    .center-feed {
-      min-width: 0;
+    .center-feed { min-width: 0; }
+
+    /* ═══════════════════════════════════════════
+       🏆 PROMOTION BLOCK - GOLD THEME
+    ═══════════════════════════════════════════ */
+    .promotion-section {
+      background: linear-gradient(135deg, #fef9e7 0%, #fffef5 50%, #fff 100%);
+      border: 2px solid var(--gold-border);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-gold);
+      position: relative;
+      overflow: hidden;
     }
 
-    /* Feed Tabs */
-    .feed-tabs {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 16px 20px;
-      margin-bottom: 20px;
+    .promotion-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gold-gradient);
+    }
+
+    .promotion-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      margin-bottom: 16px;
     }
 
-    .tabs {
+    .promotion-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .promotion-title-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--gold-gradient);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 16px;
+      box-shadow: 0 2px 8px rgba(184, 134, 11, 0.3);
+    }
+
+    .promotion-title h3 {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--gold-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .promotion-title h3 span {
+      color: var(--text-secondary);
+      font-weight: 500;
+      text-transform: none;
+      letter-spacing: 0;
+      margin-left: 4px;
+    }
+
+    .promotion-nav {
       display: flex;
       gap: 8px;
     }
 
-    .tab {
-      padding: 8px 16px;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text-secondary);
-      background: transparent;
-      border: none;
+    .promo-nav-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1.5px solid var(--gold-border);
+      background: var(--surface);
       cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .tab:hover {
-      background: var(--bg);
-      color: var(--text);
-    }
-
-    .tab.active {
-      background: var(--orange);
-      color: white;
-    }
-
-    .filter-trigger {
       display: flex;
       align-items: center;
-      gap: 6px;
-      padding: 8px 14px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 500;
+      justify-content: center;
+      color: var(--gold);
+      transition: all 0.2s;
+    }
+
+    .promo-nav-btn:hover {
+      background: var(--gold);
+      color: white;
+      border-color: var(--gold);
+    }
+
+    .promo-nav-btn svg { width: 16px; height: 16px; }
+
+    /* Carousel Container */
+    .promotion-carousel {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding: 4px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .promotion-carousel::-webkit-scrollbar { display: none; }
+
+    /* Promoted Job Card - GOLD STYLE */
+    .promo-job-card {
+      flex: 0 0 300px;
+      background: linear-gradient(135deg, var(--gold-soft) 0%, #fffef8 50%, var(--surface) 100%);
+      border: 1.5px solid var(--gold-border);
+      border-radius: var(--radius);
+      padding: 18px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.25s;
+      position: relative;
+    }
+
+    .promo-job-card:hover {
+      box-shadow: 0 8px 24px rgba(184, 134, 11, 0.25);
+      transform: translateY(-4px);
+    }
+
+    /* Promoted Badge - GOLD */
+    .promoted-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--gold-gradient);
+      color: white;
+      font-size: 9px;
+      font-weight: 700;
+      padding: 5px 10px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 8px rgba(184, 134, 11, 0.35);
+    }
+
+    .promoted-badge svg { width: 10px; height: 10px; }
+
+    .promo-card-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .promo-company-logo {
+      width: 46px;
+      height: 46px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #fef6e0 0%, #fffefa 100%);
+      border: 1.5px solid var(--gold-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .promo-card-info {
+      flex: 1;
+      min-width: 0;
+      padding-right: 70px;
+    }
+
+    .promo-company-row {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 2px;
+    }
+
+    .promo-company-name {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .promo-verified-icon {
+      color: var(--verified);
+      display: flex;
+      flex-shrink: 0;
+    }
+
+    .promo-verified-icon svg { width: 12px; height: 12px; }
+
+    .promo-company-stats {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .promo-company-stats .score {
+      color: var(--verified);
+      font-weight: 600;
+    }
+
+    .promo-job-title {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .promo-job-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 12px;
+      font-size: 12px;
+      margin-bottom: 12px;
+    }
+
+    .promo-salary {
+      font-weight: 700;
+      color: var(--gold-dark);
+    }
+
+    .promo-meta-item {
       color: var(--text-secondary);
-      background: transparent;
-      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .promo-meta-item svg {
+      width: 12px;
+      height: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Mini Commitments */
+    .promo-commitments {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .promo-commitment-tag {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 5px 10px;
+      background: rgba(184, 134, 11, 0.08);
+      border: 1px solid rgba(184, 134, 11, 0.2);
+      border-radius: 4px;
+      font-size: 10px;
+      color: var(--gold-dark);
+      font-weight: 500;
+    }
+
+    .promo-commitment-tag svg {
+      width: 10px;
+      height: 10px;
+      color: var(--verified);
+    }
+
+    .promo-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 12px;
+      border-top: 1px solid rgba(184, 134, 11, 0.15);
+    }
+
+    .promo-posted {
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    .promo-btn-apply {
+      padding: 7px 16px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      border: none;
+      background: var(--gold-gradient);
+      color: white;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+      box-shadow: 0 2px 6px rgba(184, 134, 11, 0.25);
+    }
+
+    .promo-btn-apply:hover {
+      transform: scale(1.03);
+      box-shadow: 0 4px 12px rgba(184, 134, 11, 0.35);
+    }
+
+    /* Carousel Dots */
+    .promo-dots {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 14px;
+    }
+
+    .promo-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold-border);
       cursor: pointer;
       transition: all 0.2s;
     }
 
-    .filter-trigger:hover {
-      border-color: var(--accent);
+    .promo-dot.active {
+      width: 24px;
+      border-radius: 3px;
+      background: var(--gold);
+    }
+
+    .promo-dot:hover { background: var(--gold); }
+
+    /* ═══════════════════════════════════════════
+       ORGANIC SECTION HEADER
+    ═══════════════════════════════════════════ */
+    .organic-section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding: 16px 0;
+      border-bottom: 2px solid var(--border-light);
+    }
+
+    .organic-section-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--accent-soft);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: var(--accent);
     }
 
-    .filter-trigger svg {
-      width: 16px;
-      height: 16px;
+    .organic-section-icon svg { width: 20px; height: 20px; }
+
+    .organic-section-title { flex: 1; }
+
+    .organic-section-title h2 {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 2px;
     }
 
-    /* BADGE FILTER - Theo ảnh */
+    .organic-section-title p {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .organic-sort select {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-family: inherit;
+      background: var(--surface);
+    }
+
+    /* ═══════════════════════════════════════════
+       BADGE FILTER
+    ═══════════════════════════════════════════ */
     .badge-filter {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -574,18 +828,9 @@
       margin-bottom: 16px;
     }
 
-    .filter-title {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--text);
-    }
+    .filter-title { font-size: 14px; font-weight: 700; color: var(--text); }
+    .filter-count { font-size: 12px; color: var(--text-muted); }
 
-    .filter-count {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    /* Badge Tags */
     .badge-tags {
       display: flex;
       flex-wrap: wrap;
@@ -618,10 +863,7 @@
       color: var(--accent);
     }
 
-    .badge-tag svg {
-      width: 18px;
-      height: 18px;
-    }
+    .badge-tag svg { width: 18px; height: 18px; }
 
     .badge-tag .count {
       font-size: 11px;
@@ -629,11 +871,8 @@
       margin-left: 4px;
     }
 
-    .badge-tag.active .count {
-      color: var(--accent);
-    }
+    .badge-tag.active .count { color: var(--accent); }
 
-    /* Advanced Filters */
     .advanced-filters {
       margin-top: 16px;
       padding-top: 16px;
@@ -669,42 +908,15 @@
       border-color: var(--accent);
     }
 
-    /* JOBS SECTION */
-    .jobs-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-    }
-
-    .jobs-header h2 {
-      font-family: var(--font-display);
-      font-size: 18px;
-      font-weight: 700;
-    }
-
-    .jobs-header h2 span {
-      font-weight: 400;
-      color: var(--text-muted);
-      font-size: 14px;
-      margin-left: 8px;
-    }
-
-    .jobs-sort select {
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 6px 10px;
-      font-size: 12px;
-      font-family: inherit;
-    }
-
+    /* ═══════════════════════════════════════════
+       ORGANIC JOB CARDS - STANDARD STYLE
+    ═══════════════════════════════════════════ */
     .jobs-grid {
       display: flex;
       flex-direction: column;
       gap: 16px;
     }
 
-    /* JOB CARD */
     .job-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -722,44 +934,6 @@
       transform: translateY(-2px);
     }
 
-    /* Tier Badges */
-    .job-card.gold {
-      background: linear-gradient(135deg, var(--gold-soft) 0%, var(--surface) 50%);
-      border-color: var(--gold-border);
-    }
-
-    .job-card.gold::after {
-      content: 'GOLD';
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      background: var(--gold);
-      color: white;
-      font-size: 9px;
-      font-weight: 700;
-      padding: 3px 8px;
-      border-radius: 4px;
-      letter-spacing: 0.5px;
-    }
-
-    .job-card.plus {
-      border-color: #c4b5fd;
-    }
-
-    .job-card.plus::after {
-      content: 'PLUS';
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      background: var(--purple);
-      color: white;
-      font-size: 9px;
-      font-weight: 700;
-      padding: 3px 8px;
-      border-radius: 4px;
-    }
-
-    /* Card Top Row */
     .card-top {
       display: flex;
       align-items: flex-start;
@@ -779,10 +953,8 @@
       font-size: 15px;
       color: var(--text-secondary);
       flex-shrink: 0;
+      border: 1px solid var(--border);
     }
-
-    .gold .company-logo { color: var(--gold); border: 1px solid var(--gold-border); }
-    .plus .company-logo { color: var(--purple); border: 1px solid #c4b5fd; }
 
     .card-info { flex: 1; min-width: 0; }
 
@@ -793,25 +965,16 @@
       margin-bottom: 2px;
     }
 
-    .company-name {
-      font-size: 13px;
-      font-weight: 600;
-    }
+    .company-name { font-size: 13px; font-weight: 600; }
 
     .verified-icon {
       color: var(--verified);
       display: flex;
     }
 
-    .verified-icon svg {
-      width: 14px;
-      height: 14px;
-    }
+    .verified-icon svg { width: 14px; height: 14px; }
 
-    .company-stats {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
+    .company-stats { font-size: 12px; color: var(--text-muted); }
 
     .company-stats .score {
       color: var(--verified);
@@ -824,7 +987,6 @@
       font-weight: 700;
       margin-bottom: 8px;
       letter-spacing: -0.01em;
-      padding-right: 60px;
     }
 
     .job-meta {
@@ -853,16 +1015,11 @@
       color: var(--text-muted);
     }
 
-    /* COMMITMENTS SECTION */
     .commitments-section {
       background: var(--bg);
       border-radius: var(--radius-sm);
       padding: 14px;
       margin-bottom: 14px;
-    }
-
-    .gold .commitments-section {
-      background: linear-gradient(135deg, #fef6e0 0%, #fffefa 100%);
     }
 
     .commitments-header {
@@ -880,8 +1037,6 @@
       letter-spacing: 0.5px;
     }
 
-    .gold .commitments-label { color: var(--gold); }
-
     .commitments-verified {
       font-size: 10px;
       color: var(--verified);
@@ -890,12 +1045,8 @@
       gap: 4px;
     }
 
-    .commitments-verified svg {
-      width: 12px;
-      height: 12px;
-    }
+    .commitments-verified svg { width: 12px; height: 12px; }
 
-    /* Commitment Cards Grid */
     .commitment-cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -912,19 +1063,8 @@
       gap: 6px;
     }
 
-    .gold .commitment-card {
-      border-color: rgba(184,134,11,0.2);
-    }
-
-    .commitment-icon {
-      width: 20px;
-      height: 20px;
-    }
-
-    .commitment-icon svg {
-      width: 100%;
-      height: 100%;
-    }
+    .commitment-icon { width: 20px; height: 20px; }
+    .commitment-icon svg { width: 100%; height: 100%; }
 
     .commitment-text {
       font-size: 12px;
@@ -942,12 +1082,8 @@
       margin-top: auto;
     }
 
-    .commitment-proof svg {
-      width: 10px;
-      height: 10px;
-    }
+    .commitment-proof svg { width: 10px; height: 10px; }
 
-    /* Card Footer */
     .card-footer {
       display: flex;
       align-items: center;
@@ -956,17 +1092,9 @@
       border-top: 1px solid var(--border-light);
     }
 
-    .gold .card-footer { border-color: rgba(184,134,11,0.15); }
+    .posted { font-size: 11px; color: var(--text-muted); }
 
-    .posted {
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .card-actions {
-      display: flex;
-      gap: 8px;
-    }
+    .card-actions { display: flex; gap: 8px; }
 
     .btn-outline {
       padding: 8px 14px;
@@ -993,9 +1121,6 @@
       font-family: inherit;
     }
 
-    .gold .btn-solid { background: var(--gold); }
-
-    /* Load More */
     .load-more {
       text-align: center;
       padding: 32px 0;
@@ -1039,7 +1164,6 @@
       margin-bottom: 16px;
     }
 
-    /* Top Companies */
     .company-item {
       display: flex;
       align-items: center;
@@ -1065,21 +1189,9 @@
       flex-shrink: 0;
     }
 
-    .company-item-info {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .company-item-name {
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 2px;
-    }
-
-    .company-item-meta {
-      font-size: 11px;
-      color: var(--text-muted);
-    }
+    .company-item-info { flex: 1; min-width: 0; }
+    .company-item-name { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+    .company-item-meta { font-size: 11px; color: var(--text-muted); }
 
     .btn-follow {
       padding: 6px 12px;
@@ -1098,7 +1210,6 @@
       color: var(--accent);
     }
 
-    /* Hot Stories */
     .story-item {
       padding: 12px 0;
       border-bottom: 1px solid var(--border-light);
@@ -1114,12 +1225,8 @@
       line-height: 1.4;
     }
 
-    .story-meta {
-      font-size: 11px;
-      color: var(--text-muted);
-    }
+    .story-meta { font-size: 11px; color: var(--text-muted); }
 
-    /* Suggested to Follow */
     .suggested-text {
       font-size: 13px;
       color: var(--text-secondary);
@@ -1130,30 +1237,25 @@
        RESPONSIVE
     ═══════════════════════════════════════════ */
     @media (max-width: 1280px) {
-      .app-container {
-        grid-template-columns: 240px 1fr;
-      }
-      .right-sidebar {
-        display: none;
-      }
+      .app-container { grid-template-columns: 240px 1fr; }
+      .right-sidebar { display: none; }
     }
 
     @media (max-width: 1024px) {
-      .app-container {
-        grid-template-columns: 1fr;
-        padding: 16px;
-      }
-      .left-nav, .right-sidebar {
-        display: none;
-      }
+      .app-container { grid-template-columns: 1fr; padding: 16px; }
+      .left-nav, .right-sidebar { display: none; }
       .header-nav { display: none; }
       .header-center { justify-content: flex-end; }
+      .promo-job-card { flex: 0 0 280px; }
     }
 
     @media (max-width: 768px) {
-      .advanced-filters {
-        grid-template-columns: 1fr;
-      }
+      .advanced-filters { grid-template-columns: 1fr; }
+      .promo-job-card { flex: 0 0 260px; }
+      .info-banner { grid-template-columns: 1fr; gap: 20px; }
+      .hero-search { flex-direction: column; gap: 0; }
+      .search-divider { width: 100%; height: 1px; }
+      .search-button { width: 100%; }
     }
 
     /* ═══════════════════════════════════════════
@@ -1162,6 +1264,11 @@
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(8px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(20px); }
+      to { opacity: 1; transform: translateX(0); }
     }
 
     .job-card {
@@ -1174,13 +1281,23 @@
     .job-card:nth-child(3) { animation-delay: 0.15s; }
     .job-card:nth-child(4) { animation-delay: 0.2s; }
     .job-card:nth-child(5) { animation-delay: 0.25s; }
+    .job-card:nth-child(6) { animation-delay: 0.3s; }
+
+    .promo-job-card {
+      animation: slideIn 0.5s ease forwards;
+      opacity: 0;
+    }
+
+    .promo-job-card:nth-child(1) { animation-delay: 0.1s; }
+    .promo-job-card:nth-child(2) { animation-delay: 0.2s; }
+    .promo-job-card:nth-child(3) { animation-delay: 0.3s; }
+    .promo-job-card:nth-child(4) { animation-delay: 0.4s; }
   </style>
 </head>
 <body>
-  <!-- HEADER - Theo đúng ảnh -->
+  <!-- HEADER -->
   <header class="header">
     <div class="header-inner">
-      <!-- Logo -->
       <a href="#" class="logo">
         <div class="logo-icon">
           <svg viewBox="0 0 24 24" fill="currentColor">
@@ -1191,7 +1308,6 @@
         <span class="logo-text">JoyWork</span>
       </a>
 
-      <!-- Center: Menu + Search -->
       <div class="header-center">
         <nav class="header-nav">
           <a href="#" class="active">
@@ -1232,7 +1348,6 @@
         </div>
       </div>
 
-      <!-- User Dropdown -->
       <div class="header-user">
         <div class="header-user-avatar">V</div>
         <span class="header-user-name">vuhoailan</span>
@@ -1311,14 +1426,6 @@
           </svg>
           Công ty theo dõi
         </a>
-        <a href="#" class="nav-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
-            <polyline points="10 17 15 12 10 7"/>
-            <line x1="15" y1="12" x2="3" y2="12"/>
-          </svg>
-          Ticket hỗ trợ
-        </a>
       </nav>
 
       <nav class="nav-section">
@@ -1341,7 +1448,6 @@
         <h1 class="hero-title">Văn hoá thật. Số liệu thật.</h1>
         <p class="hero-subtitle">Mọi thông tin đều được xác thực bởi nhân viên thực tế.<br>Không marketing. Không PR.</p>
         
-        <!-- Search Box -->
         <div class="hero-search">
           <div class="search-input-group">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1361,7 +1467,6 @@
           <button class="search-button">Tìm kiếm</button>
         </div>
 
-        <!-- Info Banner -->
         <div class="info-banner">
           <div class="info-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1376,19 +1481,258 @@
               <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
               <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
             </svg>
-            <span>Tất cả công ty đã được <strong>xác minh văn hoá làm việc</strong>, đánh giá từ nhân viên thật.</span>
+            <span>Tất cả công ty đã được <strong>xác minh văn hoá làm việc</strong></span>
           </div>
           <div class="info-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
               <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
             </svg>
-            <span>Bạn sẽ thấy rõ: <strong>không khí làm việc thế nào, sếp ra sao, quyền lợi minh bạch không.</strong> Đọc kỹ, rồi mới apply.</span>
+            <span><strong>Không khí, sếp, quyền lợi</strong> – đọc kỹ rồi apply.</span>
           </div>
         </div>
       </div>
 
-      <!-- BADGE FILTER - Theo ảnh -->
+      <!-- ═══════════════════════════════════════════
+           🏆 PROMOTION BLOCK - GOLD THEME
+      ═══════════════════════════════════════════ -->
+      <section class="promotion-section">
+        <div class="promotion-header">
+          <div class="promotion-title">
+            <div class="promotion-title-icon">🏆</div>
+            <h3>PROMOTION <span>– Tin được quảng bá</span></h3>
+          </div>
+          <div class="promotion-nav">
+            <button class="promo-nav-btn" onclick="scrollPromo(-1)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"/>
+              </svg>
+            </button>
+            <button class="promo-nav-btn" onclick="scrollPromo(1)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="promotion-carousel" id="promoCarousel">
+          <!-- Promo Job 1 - Sales Manager -->
+          <a href="#" class="promo-job-card">
+            <div class="promoted-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+              </svg>
+              Promoted
+            </div>
+            <div class="promo-card-top">
+              <div class="promo-company-logo">BĐS</div>
+              <div class="promo-card-info">
+                <div class="promo-company-row">
+                  <span class="promo-company-name">Hưng Thịnh Land</span>
+                  <span class="promo-verified-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                  </span>
+                </div>
+                <div class="promo-company-stats">
+                  <span class="score">91% recommend</span> · 520 views
+                </div>
+              </div>
+            </div>
+            <h3 class="promo-job-title">Sales Manager Bất động sản</h3>
+            <div class="promo-job-meta">
+              <span class="promo-salary">30–50 triệu + Hoa hồng</span>
+              <span class="promo-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                TP.HCM
+              </span>
+            </div>
+            <div class="promo-commitments">
+              <span class="promo-commitment-tag">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                Hoa hồng lên 3%
+              </span>
+              <span class="promo-commitment-tag">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                Xe công ty
+              </span>
+            </div>
+            <div class="promo-card-footer">
+              <span class="promo-posted">Đăng hôm nay</span>
+              <button class="promo-btn-apply">Ứng tuyển</button>
+            </div>
+          </a>
+
+          <!-- Promo Job 2 - Marketing Executive -->
+          <a href="#" class="promo-job-card">
+            <div class="promoted-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+              </svg>
+              Promoted
+            </div>
+            <div class="promo-card-top">
+              <div class="promo-company-logo">MC</div>
+              <div class="promo-card-info">
+                <div class="promo-company-row">
+                  <span class="promo-company-name">MiCare Cosmetics</span>
+                  <span class="promo-verified-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                  </span>
+                </div>
+                <div class="promo-company-stats">
+                  <span class="score">88% recommend</span> · 380 views
+                </div>
+              </div>
+            </div>
+            <h3 class="promo-job-title">Marketing Executive</h3>
+            <div class="promo-job-meta">
+              <span class="promo-salary">15–22 triệu</span>
+              <span class="promo-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                Hà Nội
+              </span>
+            </div>
+            <div class="promo-commitments">
+              <span class="promo-commitment-tag">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                Budget 200tr/tháng
+              </span>
+              <span class="promo-commitment-tag">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                Sản phẩm miễn phí
+              </span>
+            </div>
+            <div class="promo-card-footer">
+              <span class="promo-posted">Đăng 1 ngày trước</span>
+              <button class="promo-btn-apply">Ứng tuyển</button>
+            </div>
+          </a>
+
+          <!-- Promo Job 3 - Telesales -->
+          <a href="#" class="promo-job-card">
+            <div class="promoted-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+              </svg>
+              Promoted
+            </div>
+            <div class="promo-card-top">
+              <div class="promo-company-logo">BH</div>
+              <div class="promo-card-info">
+                <div class="promo-company-row">
+                  <span class="promo-company-name">Bảo Hiểm Việt An</span>
+                  <span class="promo-verified-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                  </span>
+                </div>
+                <div class="promo-company-stats">
+                  <span class="score">86% recommend</span> · 450 views
+                </div>
+              </div>
+            </div>
+            <h3 class="promo-job-title">Telesales Bảo Hiểm</h3>
+            <div class="promo-job-meta">
+              <span class="promo-salary">10–25 triệu + KPI</span>
+              <span class="promo-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                Hà Nội
+              </span>
+            </div>
+            <div class="promo-commitments">
+              <span class="promo-commitment-tag">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                Lương cứng 8 triệu
+              </span>
+              <span class="promo-commitment-tag">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                Đào tạo miễn phí
+              </span>
+            </div>
+            <div class="promo-card-footer">
+              <span class="promo-posted">Đăng 2 ngày trước</span>
+              <button class="promo-btn-apply">Ứng tuyển</button>
+            </div>
+          </a>
+
+          <!-- Promo Job 4 - HR Manager -->
+          <a href="#" class="promo-job-card">
+            <div class="promoted-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+              </svg>
+              Promoted
+            </div>
+            <div class="promo-card-top">
+              <div class="promo-company-logo">SX</div>
+              <div class="promo-card-info">
+                <div class="promo-company-row">
+                  <span class="promo-company-name">Sản Xuất Việt Tiến</span>
+                  <span class="promo-verified-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                  </span>
+                </div>
+                <div class="promo-company-stats">
+                  <span class="score">90% recommend</span> · 290 views
+                </div>
+              </div>
+            </div>
+            <h3 class="promo-job-title">HR Manager</h3>
+            <div class="promo-job-meta">
+              <span class="promo-salary">25–35 triệu</span>
+              <span class="promo-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                Bình Dương
+              </span>
+            </div>
+            <div class="promo-commitments">
+              <span class="promo-commitment-tag">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                Quản lý 500 CN
+              </span>
+              <span class="promo-commitment-tag">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                Xe đưa đón
+              </span>
+            </div>
+            <div class="promo-card-footer">
+              <span class="promo-posted">Đăng 3 ngày trước</span>
+              <button class="promo-btn-apply">Ứng tuyển</button>
+            </div>
+          </a>
+        </div>
+
+        <div class="promo-dots">
+          <span class="promo-dot active"></span>
+          <span class="promo-dot"></span>
+          <span class="promo-dot"></span>
+          <span class="promo-dot"></span>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════
+           ORGANIC SECTION - DÀNH CHO BẠN
+      ═══════════════════════════════════════════ -->
+      <div class="organic-section-header">
+        <div class="organic-section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+        </div>
+        <div class="organic-section-title">
+          <h2>DÀNH CHO BẠN – Các job phù hợp nhất</h2>
+          <p>Được xếp hạng theo Relevance + JoyScore</p>
+        </div>
+        <div class="organic-sort">
+          <select>
+            <option>Phù hợp nhất</option>
+            <option>Mới nhất</option>
+            <option>JoyScore cao nhất</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Badge Filter -->
       <section class="badge-filter">
         <div class="filter-header">
           <div class="filter-title">Tìm công ty cam kết:</div>
@@ -1401,7 +1745,7 @@
               <circle cx="12" cy="12" r="10"/>
               <polyline points="12 6 12 12 16 14"/>
             </svg>
-            Công ty tốt nhất cho cân bằng cuộc sống
+            Cân bằng cuộc sống
             <span class="count">47</span>
           </div>
           <div class="badge-tag">
@@ -1411,7 +1755,7 @@
               <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
               <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
             </svg>
-            Công ty tốt nhất cho phụ nữ
+            Tốt nhất cho phụ nữ
             <span class="count">52</span>
           </div>
           <div class="badge-tag">
@@ -1419,41 +1763,18 @@
               <line x1="12" y1="2" x2="12" y2="22"/>
               <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
             </svg>
-            Công ty tốt nhất cho phát triển cá nhân
+            Phát triển cá nhân
             <span class="count">38</span>
-          </div>
-          <div class="badge-tag">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="12" y1="1" x2="12" y2="23"/>
-              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-            </svg>
-            Công ty tốt nhất cho thu nhập
-            <span class="count">29</span>
-          </div>
-          <div class="badge-tag">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-            </svg>
-            Môi trường hiệu suất cao
-            <span class="count">34</span>
-          </div>
-          <div class="badge-tag">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-            </svg>
-            Công ty tử tế
-            <span class="count">21</span>
           </div>
           <div class="badge-tag">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
             </svg>
-            Công ty tốt nhất cho minh bạch
+            Minh bạch
             <span class="count">45</span>
           </div>
         </div>
 
-        <!-- Advanced Filters -->
         <div class="advanced-filters">
           <div class="filter-group">
             <label>Địa điểm</label>
@@ -1462,387 +1783,591 @@
               <option>Hà Nội</option>
               <option>TP. Hồ Chí Minh</option>
               <option>Đà Nẵng</option>
-              <option>Remote</option>
             </select>
           </div>
           <div class="filter-group">
             <label>Ngành nghề</label>
             <select>
               <option>Tất cả ngành nghề</option>
-              <option>IT & Phần mềm</option>
-              <option>Marketing</option>
               <option>Sales</option>
-              <option>Design</option>
-              <option>Giáo dục</option>
+              <option>Marketing</option>
+              <option>F&B</option>
+              <option>Kế toán</option>
             </select>
           </div>
           <div class="filter-group">
             <label>Cấp bậc</label>
             <select>
               <option>Tất cả cấp bậc</option>
-              <option>Intern</option>
-              <option>Junior</option>
-              <option>Middle</option>
-              <option>Senior</option>
-              <option>Leader</option>
+              <option>Nhân viên</option>
+              <option>Trưởng nhóm</option>
+              <option>Quản lý</option>
             </select>
           </div>
         </div>
       </section>
 
-      <!-- Jobs Section -->
-      <section class="jobs-section">
-        <div class="jobs-header">
-          <h2>Việc làm <span>127 kết quả</span></h2>
-          <div class="jobs-sort">
-            <select>
-              <option>Phù hợp nhất</option>
-              <option>Mới nhất</option>
-            </select>
+      <!-- Organic Jobs Grid - ALL STANDARD STYLE -->
+      <div class="jobs-grid">
+        <!-- Job 1 - Nhân viên Sale Showroom -->
+        <a href="#" class="job-card">
+          <div class="card-top">
+            <div class="company-logo">OT</div>
+            <div class="card-info">
+              <div class="company-row">
+                <span class="company-name">Ô Tô Trường Hải</span>
+                <span class="verified-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+              </div>
+              <div class="company-stats">
+                <span class="score">89% recommend</span> · 156 lượt xem
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div class="jobs-grid">
-          <!-- Job 1 - GOLD - CloudBase Tech -->
-          <a href="#" class="job-card gold">
-            <div class="card-top">
-              <div class="company-logo">CB</div>
-              <div class="card-info">
-                <div class="company-row">
-                  <span class="company-name">CloudBase Tech</span>
-                  <span class="verified-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
-                </div>
-                <div class="company-stats">
-                  <span class="score">95% recommend</span> · 203 lượt xem
-                </div>
-              </div>
-            </div>
+          <h3 class="job-title">Nhân viên Sale Showroom Ô tô</h3>
 
-            <h3 class="job-title">Backend Developer (Node.js)</h3>
+          <div class="job-meta">
+            <span class="salary">12–40 triệu</span>
+            <span class="meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              TP.HCM
+            </span>
+            <span class="meta-item">Sales</span>
+          </div>
 
-            <div class="job-meta">
-              <span class="salary">25–35 triệu</span>
-              <span class="meta-item">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-                Remote 100%
+          <div class="commitments-section">
+            <div class="commitments-header">
+              <span class="commitments-label">Trường Hải cam kết</span>
+              <span class="commitments-verified">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                35 nhân viên xác nhận
               </span>
-              <span class="meta-item">Engineering</span>
             </div>
-
-            <div class="commitments-section">
-              <div class="commitments-header">
-                <span class="commitments-label">CloudBase cam kết</span>
-                <span class="commitments-verified">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                  24 nhân viên xác nhận
-                </span>
+            <div class="commitment-cards">
+              <div class="commitment-card">
+                <div class="commitment-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                </div>
+                <span class="commitment-text">Hoa hồng lên đến 1.5%/xe</span>
+                <span class="commitment-proof"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 35/35</span>
               </div>
-              <div class="commitment-cards">
-                <div class="commitment-card">
-                  <div class="commitment-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                      <polyline points="9 22 9 12 15 12 15 22"/>
-                    </svg>
-                  </div>
-                  <span class="commitment-text">Remote 100%, không yêu cầu onsite</span>
-                  <span class="commitment-proof"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 24/24</span>
+              <div class="commitment-card">
+                <div class="commitment-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
                 </div>
-                <div class="commitment-card">
-                  <div class="commitment-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <circle cx="12" cy="12" r="10"/>
-                      <polyline points="12 6 12 12 16 14"/>
-                    </svg>
-                  </div>
-                  <span class="commitment-text">OT tối đa 8 giờ/tháng</span>
-                  <span class="commitment-proof"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 22/24</span>
+                <span class="commitment-text">Đào tạo sản phẩm 2 tuần</span>
+                <span class="commitment-proof"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 35/35</span>
+              </div>
+              <div class="commitment-card">
+                <div class="commitment-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 </div>
-                <div class="commitment-card">
-                  <div class="commitment-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <line x1="12" y1="1" x2="12" y2="23"/>
-                      <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-                    </svg>
-                  </div>
-                  <span class="commitment-text">BHXH đóng 100% lương gross</span>
-                  <span class="commitment-proof"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 24/24</span>
+                <span class="commitment-text">Làm T2–T7, nghỉ CN</span>
+                <span class="commitment-proof"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 33/35</span>
+              </div>
+              <div class="commitment-card">
+                <div class="commitment-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
                 </div>
-                <div class="commitment-card">
-                  <div class="commitment-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-                      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-                    </svg>
-                  </div>
-                  <span class="commitment-text">2 triệu/năm cho học tập</span>
-                  <span class="commitment-proof"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 20/24</span>
-                </div>
+                <span class="commitment-text">Mua xe giảm giá nhân viên</span>
+                <span class="commitment-proof"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 35/35</span>
               </div>
             </div>
+          </div>
 
-            <div class="card-footer">
-              <span class="posted">Đăng 2 ngày trước</span>
-              <div class="card-actions">
-                <button class="btn-outline">Chi tiết</button>
-                <button class="btn-solid">Ứng tuyển</button>
+          <div class="card-footer">
+            <span class="posted">Đăng 1 ngày trước</span>
+            <div class="card-actions">
+              <button class="btn-outline">Chi tiết</button>
+              <button class="btn-solid">Ứng tuyển</button>
+            </div>
+          </div>
+        </a>
+
+        <!-- Job 2 - Content Marketing -->
+        <a href="#" class="job-card">
+          <div class="card-top">
+            <div class="company-logo">TM</div>
+            <div class="card-info">
+              <div class="company-row">
+                <span class="company-name">Thế Giới Di Động</span>
+                <span class="verified-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+              </div>
+              <div class="company-stats">
+                <span class="score">87% recommend</span> · 203 lượt xem
               </div>
             </div>
-          </a>
+          </div>
 
-          <!-- Job 2 - PLUS - Trà Xanh Bakery -->
-          <a href="#" class="job-card plus">
-            <div class="card-top">
-              <div class="company-logo">TX</div>
-              <div class="card-info">
-                <div class="company-row">
-                  <span class="company-name">Trà Xanh Bakery</span>
-                  <span class="verified-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
-                </div>
-                <div class="company-stats">
-                  <span class="score">91% recommend</span> · 178 lượt xem
-                </div>
-              </div>
-            </div>
+          <h3 class="job-title">Content Marketing</h3>
 
-            <h3 class="job-title">Store Manager</h3>
+          <div class="job-meta">
+            <span class="salary">14–20 triệu</span>
+            <span class="meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              TP.HCM
+            </span>
+            <span class="meta-item">Marketing</span>
+          </div>
 
-            <div class="job-meta">
-              <span class="salary">16–22 triệu</span>
-              <span class="meta-item">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-                Hà Nội
+          <div class="commitments-section">
+            <div class="commitments-header">
+              <span class="commitments-label">TGDĐ cam kết</span>
+              <span class="commitments-verified">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                28 nhân viên xác nhận
               </span>
-              <span class="meta-item">F&B</span>
             </div>
-
-            <div class="commitments-section">
-              <div class="commitments-header">
-                <span class="commitments-label">Trà Xanh cam kết</span>
-                <span class="commitments-verified">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                  22 nhân viên xác nhận
-                </span>
+            <div class="commitment-cards">
+              <div class="commitment-card">
+                <div class="commitment-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                </div>
+                <span class="commitment-text">Thưởng tháng 13, 14</span>
+                <span class="commitment-proof"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 28/28</span>
               </div>
-              <div class="commitment-cards">
-                <div class="commitment-card">
-                  <div class="commitment-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-                    </svg>
-                  </div>
-                  <span class="commitment-text">Ăn 3 bữa/ngày miễn phí tại cửa hàng</span>
-                  <span class="commitment-proof"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 22/22</span>
+              <div class="commitment-card">
+                <div class="commitment-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
                 </div>
-                <div class="commitment-card">
-                  <div class="commitment-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <circle cx="12" cy="12" r="10"/>
-                      <polyline points="12 6 12 12 16 14"/>
-                    </svg>
-                  </div>
-                  <span class="commitment-text">Làm 2 ca (không làm xuyên ca)</span>
-                  <span class="commitment-proof"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 21/22</span>
+                <span class="commitment-text">Giảm 20% khi mua đồ công ty</span>
+                <span class="commitment-proof"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 28/28</span>
+              </div>
+              <div class="commitment-card">
+                <div class="commitment-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 </div>
-                <div class="commitment-card">
-                  <div class="commitment-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <line x1="12" y1="1" x2="12" y2="23"/>
-                      <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-                    </svg>
-                  </div>
-                  <span class="commitment-text">Tips từ khách 100% về nhân viên</span>
-                  <span class="commitment-proof"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 22/22</span>
+                <span class="commitment-text">Giờ làm linh hoạt</span>
+                <span class="commitment-proof"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 25/28</span>
+              </div>
+              <div class="commitment-card">
+                <div class="commitment-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
                 </div>
-                <div class="commitment-card">
-                  <div class="commitment-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                      <circle cx="9" cy="7" r="4"/>
-                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                      <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                    </svg>
-                  </div>
-                  <span class="commitment-text">Đào tạo lên quản lý trong 1 năm</span>
-                  <span class="commitment-proof"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 18/22</span>
-                </div>
+                <span class="commitment-text">Team trẻ, năng động</span>
+                <span class="commitment-proof"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 27/28</span>
               </div>
             </div>
+          </div>
 
-            <div class="card-footer">
-              <span class="posted">Đăng 2 ngày trước</span>
-              <div class="card-actions">
-                <button class="btn-outline">Chi tiết</button>
-                <button class="btn-solid">Ứng tuyển</button>
+          <div class="card-footer">
+            <span class="posted">Đăng 2 ngày trước</span>
+            <div class="card-actions">
+              <button class="btn-outline">Chi tiết</button>
+              <button class="btn-solid">Ứng tuyển</button>
+            </div>
+          </div>
+        </a>
+
+        <!-- Job 3 - Kế toán tổng hợp -->
+        <a href="#" class="job-card">
+          <div class="card-top">
+            <div class="company-logo">KT</div>
+            <div class="card-info">
+              <div class="company-row">
+                <span class="company-name">Kế Toán Việt</span>
+                <span class="verified-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+              </div>
+              <div class="company-stats">
+                <span class="score">92% recommend</span> · 124 lượt xem
               </div>
             </div>
-          </a>
+          </div>
 
-          <!-- Job 3 - FREE - An Nhiên Books -->
-          <a href="#" class="job-card">
-            <div class="card-top">
-              <div class="company-logo">AN</div>
-              <div class="card-info">
-                <div class="company-row">
-                  <span class="company-name">An Nhiên Books</span>
-                  <span class="verified-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
-                </div>
-                <div class="company-stats">
-                  <span class="score">88% recommend</span> · 89 lượt xem
-                </div>
-              </div>
-            </div>
+          <h3 class="job-title">Kế toán Tổng hợp</h3>
 
-            <h3 class="job-title">Content Writer</h3>
+          <div class="job-meta">
+            <span class="salary">12–18 triệu</span>
+            <span class="meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              Hà Nội
+            </span>
+            <span class="meta-item">Kế toán</span>
+          </div>
 
-            <div class="job-meta">
-              <span class="salary">12–18 triệu</span>
-              <span class="meta-item">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-                Hà Nội (Hybrid)
+          <div class="commitments-section">
+            <div class="commitments-header">
+              <span class="commitments-label">Kế Toán Việt cam kết</span>
+              <span class="commitments-verified">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                18 nhân viên xác nhận
               </span>
-              <span class="meta-item">Content</span>
             </div>
-
-            <div class="commitments-section">
-              <div class="commitments-header">
-                <span class="commitments-label">An Nhiên cam kết</span>
-                <span class="commitments-verified">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                  12 nhân viên xác nhận
-                </span>
+            <div class="commitment-cards">
+              <div class="commitment-card">
+                <div class="commitment-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <span class="commitment-text">Về đúng 17h30, không OT</span>
+                <span class="commitment-proof"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 18/18</span>
               </div>
-              <div class="commitment-cards">
-                <div class="commitment-card">
-                  <div class="commitment-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-                      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-                    </svg>
-                  </div>
-                  <span class="commitment-text">500k sách miễn phí/tháng</span>
-                  <span class="commitment-proof"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 12/12</span>
+              <div class="commitment-card">
+                <div class="commitment-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
                 </div>
-                <div class="commitment-card">
-                  <div class="commitment-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                      <polyline points="9 22 9 12 15 12 15 22"/>
-                    </svg>
-                  </div>
-                  <span class="commitment-text">Hybrid: 2 ngày WFH/tuần</span>
-                  <span class="commitment-proof"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 11/12</span>
+                <span class="commitment-text">Hỗ trợ thi chứng chỉ CPA</span>
+                <span class="commitment-proof"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 16/18</span>
+              </div>
+              <div class="commitment-card">
+                <div class="commitment-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                 </div>
-                <div class="commitment-card">
-                  <div class="commitment-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                      <line x1="16" y1="2" x2="16" y2="6"/>
-                      <line x1="8" y1="2" x2="8" y2="6"/>
-                      <line x1="3" y1="10" x2="21" y2="10"/>
-                    </svg>
-                  </div>
-                  <span class="commitment-text">16 ngày phép/năm</span>
-                  <span class="commitment-proof"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 12/12</span>
+                <span class="commitment-text">BHXH đóng đủ 100%</span>
+                <span class="commitment-proof"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 18/18</span>
+              </div>
+              <div class="commitment-card">
+                <div class="commitment-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                 </div>
-                <div class="commitment-card">
-                  <div class="commitment-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <circle cx="12" cy="12" r="10"/>
-                      <polyline points="12 6 12 12 16 14"/>
-                    </svg>
-                  </div>
-                  <span class="commitment-text">Không deadline gấp, nghiên cứu kỹ</span>
-                  <span class="commitment-proof"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 10/12</span>
-                </div>
+                <span class="commitment-text">14 ngày phép + birthday off</span>
+                <span class="commitment-proof"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 18/18</span>
               </div>
             </div>
+          </div>
 
-            <div class="card-footer">
-              <span class="posted">Đăng 4 ngày trước</span>
-              <div class="card-actions">
-                <button class="btn-outline">Chi tiết</button>
-                <button class="btn-solid">Ứng tuyển</button>
+          <div class="card-footer">
+            <span class="posted">Đăng 3 ngày trước</span>
+            <div class="card-actions">
+              <button class="btn-outline">Chi tiết</button>
+              <button class="btn-solid">Ứng tuyển</button>
+            </div>
+          </div>
+        </a>
+
+        <!-- Job 4 - Telesales -->
+        <a href="#" class="job-card">
+          <div class="card-top">
+            <div class="company-logo">TC</div>
+            <div class="card-info">
+              <div class="company-row">
+                <span class="company-name">Tài Chính Home Credit</span>
+                <span class="verified-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+              </div>
+              <div class="company-stats">
+                <span class="score">85% recommend</span> · 289 lượt xem
               </div>
             </div>
-          </a>
-        </div>
+          </div>
 
-        <div class="load-more">
-          <button class="btn-load">Xem thêm 124 việc làm</button>
-        </div>
-      </section>
+          <h3 class="job-title">Telesales Tài Chính</h3>
+
+          <div class="job-meta">
+            <span class="salary">8–20 triệu + Thưởng</span>
+            <span class="meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              Hà Nội, HCM
+            </span>
+            <span class="meta-item">Sales</span>
+          </div>
+
+          <div class="commitments-section">
+            <div class="commitments-header">
+              <span class="commitments-label">Home Credit cam kết</span>
+              <span class="commitments-verified">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                45 nhân viên xác nhận
+              </span>
+            </div>
+            <div class="commitment-cards">
+              <div class="commitment-card">
+                <div class="commitment-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                </div>
+                <span class="commitment-text">Lương cứng 8 triệu</span>
+                <span class="commitment-proof"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 45/45</span>
+              </div>
+              <div class="commitment-card">
+                <div class="commitment-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                </div>
+                <span class="commitment-text">Đào tạo kỹ năng telesales</span>
+                <span class="commitment-proof"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 45/45</span>
+              </div>
+              <div class="commitment-card">
+                <div class="commitment-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <span class="commitment-text">Ca làm 8h, nghỉ CN</span>
+                <span class="commitment-proof"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 42/45</span>
+              </div>
+              <div class="commitment-card">
+                <div class="commitment-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                </div>
+                <span class="commitment-text">Lộ trình thăng tiến rõ ràng</span>
+                <span class="commitment-proof"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 40/45</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <span class="posted">Đăng 2 ngày trước</span>
+            <div class="card-actions">
+              <button class="btn-outline">Chi tiết</button>
+              <button class="btn-solid">Ứng tuyển</button>
+            </div>
+          </div>
+        </a>
+
+        <!-- Job 5 - Store Manager F&B -->
+        <a href="#" class="job-card">
+          <div class="card-top">
+            <div class="company-logo">CF</div>
+            <div class="card-info">
+              <div class="company-row">
+                <span class="company-name">The Coffee House</span>
+                <span class="verified-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+              </div>
+              <div class="company-stats">
+                <span class="score">90% recommend</span> · 178 lượt xem
+              </div>
+            </div>
+          </div>
+
+          <h3 class="job-title">Store Manager</h3>
+
+          <div class="job-meta">
+            <span class="salary">15–22 triệu</span>
+            <span class="meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              Hà Nội, HCM
+            </span>
+            <span class="meta-item">F&B</span>
+          </div>
+
+          <div class="commitments-section">
+            <div class="commitments-header">
+              <span class="commitments-label">TCH cam kết</span>
+              <span class="commitments-verified">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                52 nhân viên xác nhận
+              </span>
+            </div>
+            <div class="commitment-cards">
+              <div class="commitment-card">
+                <div class="commitment-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </div>
+                <span class="commitment-text">Đồ uống miễn phí mỗi ca</span>
+                <span class="commitment-proof"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 52/52</span>
+              </div>
+              <div class="commitment-card">
+                <div class="commitment-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                </div>
+                <span class="commitment-text">Quản lý team 8–12 người</span>
+                <span class="commitment-proof"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 52/52</span>
+              </div>
+              <div class="commitment-card">
+                <div class="commitment-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                </div>
+                <span class="commitment-text">Thưởng doanh số cửa hàng</span>
+                <span class="commitment-proof"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 50/52</span>
+              </div>
+              <div class="commitment-card">
+                <div class="commitment-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                </div>
+                <span class="commitment-text">Đào tạo quản lý chuyên sâu</span>
+                <span class="commitment-proof"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 48/52</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <span class="posted">Đăng 4 ngày trước</span>
+            <div class="card-actions">
+              <button class="btn-outline">Chi tiết</button>
+              <button class="btn-solid">Ứng tuyển</button>
+            </div>
+          </div>
+        </a>
+
+        <!-- Job 6 - Nhân viên CSKH -->
+        <a href="#" class="job-card">
+          <div class="card-top">
+            <div class="company-logo">VT</div>
+            <div class="card-info">
+              <div class="company-row">
+                <span class="company-name">Viettel Telecom</span>
+                <span class="verified-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+              </div>
+              <div class="company-stats">
+                <span class="score">88% recommend</span> · 312 lượt xem
+              </div>
+            </div>
+          </div>
+
+          <h3 class="job-title">Nhân viên CSKH (Call Center)</h3>
+
+          <div class="job-meta">
+            <span class="salary">9–15 triệu</span>
+            <span class="meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              Hà Nội
+            </span>
+            <span class="meta-item">CSKH</span>
+          </div>
+
+          <div class="commitments-section">
+            <div class="commitments-header">
+              <span class="commitments-label">Viettel cam kết</span>
+              <span class="commitments-verified">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                67 nhân viên xác nhận
+              </span>
+            </div>
+            <div class="commitment-cards">
+              <div class="commitment-card">
+                <div class="commitment-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <span class="commitment-text">Ca xoay linh hoạt</span>
+                <span class="commitment-proof"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 67/67</span>
+              </div>
+              <div class="commitment-card">
+                <div class="commitment-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                </div>
+                <span class="commitment-text">Thưởng KPI theo tháng</span>
+                <span class="commitment-proof"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 65/67</span>
+              </div>
+              <div class="commitment-card">
+                <div class="commitment-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </div>
+                <span class="commitment-text">Bảo hiểm sức khỏe PVI</span>
+                <span class="commitment-proof"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 67/67</span>
+              </div>
+              <div class="commitment-card">
+                <div class="commitment-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                </div>
+                <span class="commitment-text">Môi trường làm việc trẻ</span>
+                <span class="commitment-proof"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 63/67</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <span class="posted">Đăng 5 ngày trước</span>
+            <div class="card-actions">
+              <button class="btn-outline">Chi tiết</button>
+              <button class="btn-solid">Ứng tuyển</button>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="load-more">
+        <button class="btn-load">Xem thêm 121 việc làm</button>
+      </div>
     </main>
 
     <!-- RIGHT SIDEBAR -->
     <aside class="right-sidebar">
-      <!-- Top Companies -->
       <div class="sidebar-card">
         <div class="sidebar-title">Top Companies</div>
         
         <div class="company-item">
-          <div class="company-item-logo">CB</div>
+          <div class="company-item-logo">TH</div>
           <div class="company-item-info">
-            <div class="company-item-name">CloudBase Tech</div>
-            <div class="company-item-meta">95% recommend</div>
+            <div class="company-item-name">Trường Hải</div>
+            <div class="company-item-meta">89% recommend</div>
           </div>
           <button class="btn-follow">Follow</button>
         </div>
 
         <div class="company-item">
-          <div class="company-item-logo">TX</div>
+          <div class="company-item-logo">TG</div>
           <div class="company-item-info">
-            <div class="company-item-name">Trà Xanh Bakery</div>
-            <div class="company-item-meta">91% recommend</div>
+            <div class="company-item-name">Thế Giới Di Động</div>
+            <div class="company-item-meta">87% recommend</div>
           </div>
           <button class="btn-follow">Follow</button>
         </div>
 
         <div class="company-item">
-          <div class="company-item-logo">CH</div>
+          <div class="company-item-logo">CF</div>
           <div class="company-item-info">
-            <div class="company-item-name">Cozy Home</div>
-            <div class="company-item-meta">93% recommend</div>
+            <div class="company-item-name">The Coffee House</div>
+            <div class="company-item-meta">90% recommend</div>
           </div>
           <button class="btn-follow">Follow</button>
         </div>
 
         <div class="company-item">
-          <div class="company-item-logo">AN</div>
+          <div class="company-item-logo">VT</div>
           <div class="company-item-info">
-            <div class="company-item-name">An Nhiên Books</div>
+            <div class="company-item-name">Viettel Telecom</div>
             <div class="company-item-meta">88% recommend</div>
           </div>
           <button class="btn-follow">Follow</button>
         </div>
       </div>
 
-      <!-- Hot Stories -->
       <div class="sidebar-card">
         <div class="sidebar-title">Hot Stories</div>
         
         <div class="story-item">
-          <div class="story-title">Làm thế nào để xây dựng văn hóa minh bạch trong doanh nghiệp SME?</div>
-          <div class="story-meta">An Nhiên Books • 2 ngày trước</div>
+          <div class="story-title">Bí quyết đạt KPI 150% của top sales Trường Hải</div>
+          <div class="story-meta">Ô Tô Trường Hải • 2 ngày trước</div>
         </div>
 
         <div class="story-item">
-          <div class="story-title">Kinh nghiệm quản lý nhân sự F&B: Giữ chân nhân viên trong thời kỳ thiếu hụt lao động</div>
-          <div class="story-meta">Trà Xanh Bakery • 3 ngày trước</div>
+          <div class="story-title">Văn hóa "khách hàng là số 1" tại The Coffee House</div>
+          <div class="story-meta">The Coffee House • 3 ngày trước</div>
         </div>
 
         <div class="story-item">
-          <div class="story-title">Remote 100%: Liệu có phù hợp với mô hình startup công nghệ?</div>
-          <div class="story-meta">CloudBase Tech • 5 ngày trước</div>
+          <div class="story-title">Làm telesales không áp lực tại Home Credit</div>
+          <div class="story-meta">Home Credit • 5 ngày trước</div>
         </div>
       </div>
 
-      <!-- Suggested to Follow -->
       <div class="sidebar-card">
         <div class="sidebar-title">Suggested to Follow</div>
-        <p class="suggested-text">Theo dõi các công ty bạn quan tâm để nhận thông báo về việc làm mới, bài viết và cập nhật văn hóa công ty.</p>
+        <p class="suggested-text">Theo dõi các công ty bạn quan tâm để nhận thông báo về việc làm mới và cập nhật văn hóa.</p>
       </div>
     </aside>
   </div>
+
+  <script>
+    // Carousel scroll functionality
+    function scrollPromo(direction) {
+      const carousel = document.getElementById('promoCarousel');
+      const cardWidth = 316; // card width + gap
+      carousel.scrollBy({
+        left: direction * cardWidth,
+        behavior: 'smooth'
+      });
+    }
+
+    // Update dots on scroll
+    const carousel = document.getElementById('promoCarousel');
+    const dots = document.querySelectorAll('.promo-dot');
+    
+    carousel.addEventListener('scroll', () => {
+      const scrollPosition = carousel.scrollLeft;
+      const cardWidth = 316;
+      const activeIndex = Math.round(scrollPosition / cardWidth);
+      
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === activeIndex);
+      });
+    });
+
+    // Click on dots to scroll
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        const cardWidth = 316;
+        carousel.scrollTo({
+          left: index * cardWidth,
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
 </body>
 </html>
