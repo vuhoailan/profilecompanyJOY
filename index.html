@@ -1,1135 +1,1132 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JoyWork - Wireframe Edit Mode</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #295892;
-            --accent: #BC2153;
-            --dark: #333;
-            --gray: #666;
-            --light-gray: #999;
-            --border: #DDD;
-            --bg: #F5F5F5;
-            --white: #FFF;
-            --edit: #F59E0B;
-            --success: #10B981;
-            --danger: #EF4444;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Inter', sans-serif;
-            font-size: 13px;
-            line-height: 1.5;
-            color: var(--dark);
-            background: #E8E8E8;
-            padding: 40px 20px;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JoyWork - Tìm việc làm</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-page: #f9fafb;
+      --bg-card: #ffffff;
+      --border-subtle: #e5e7eb;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --text-light: #9ca3af;
+      --brand-blue: #2563eb;
+      --brand-blue-dark: #1e40af;
+      --brand-blue-soft: #eff6ff;
+      --verified-green: #10b981;
+      --vibe-bg: #f8fafc;
+      --gradient-start: #3b82f6;
+      --gradient-end: #1e40af;
+    }
 
-        /* Wireframe Section Container */
-        .wireframe-section {
-            max-width: 900px;
-            margin: 0 auto 60px;
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-        }
-        .wireframe-title {
-            background: var(--dark);
-            color: white;
-            padding: 16px 24px;
-            font-size: 14px;
-            font-weight: 700;
-        }
-        .wireframe-content {
-            padding: 24px;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        /* Dev Note */
-        .dev-note {
-            background: #FEF3C7;
-            border-left: 4px solid var(--edit);
-            padding: 12px 16px;
-            margin-top: 16px;
-            font-size: 12px;
-            line-height: 1.7;
-            color: #92400E;
-        }
-        .dev-note strong {
-            display: block;
-            margin-bottom: 6px;
-            color: #78350F;
-        }
-        .dev-note code {
-            background: rgba(0,0,0,0.1);
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: monospace;
-            font-size: 11px;
-        }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
 
-        /* Edit Button */
-        .edit-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            padding: 6px 12px;
-            background: var(--edit);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 11px;
-            font-weight: 600;
-        }
-        .edit-btn.sm { padding: 4px 8px; font-size: 10px; }
-        .edit-btn.outline {
-            background: white;
-            color: var(--edit);
-            border: 1.5px solid var(--edit);
-        }
-        .edit-btn.danger { background: var(--danger); }
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-        /* Add Button */
-        .add-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 16px;
-            border: 2px dashed var(--border);
-            border-radius: 8px;
-            background: var(--bg);
-            color: var(--light-gray);
-            font-size: 12px;
-            font-weight: 600;
-            width: 100%;
-            margin-top: 12px;
-        }
+    /* Hero Banner Section */
+    .hero-banner {
+      background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+      color: white;
+      padding: 48px 24px;
+      position: relative;
+      overflow: hidden;
+    }
 
-        /* Grid */
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
-        .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; }
-        .full { grid-column: span 2; }
-        .full-3 { grid-column: span 3; }
+    .hero-banner::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 40%;
+      height: 100%;
+      background: url('data:image/svg+xml,<svg width="400" height="400" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="400" height="400" fill="url(%23grid)"/></svg>');
+      opacity: 0.3;
+    }
 
-        /* Placeholder Box */
-        .placeholder {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 12px;
-            position: relative;
-        }
-        .placeholder-img {
-            background: linear-gradient(135deg, #E2E8F0 25%, #CBD5E1 100%);
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--light-gray);
-            font-size: 11px;
-            font-weight: 600;
-        }
-        .placeholder h4 {
-            font-size: 13px;
-            font-weight: 700;
-            margin-bottom: 6px;
-        }
-        .placeholder p {
-            font-size: 11px;
-            color: var(--gray);
-            line-height: 1.5;
-        }
-        .placeholder .edit-btn {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-        }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+    }
 
-        /* Section Header */
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            padding-bottom: 16px;
-            border-bottom: 1px solid var(--border);
-            margin-bottom: 16px;
-        }
-        .section-label {
-            font-size: 10px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--accent);
-            margin-bottom: 4px;
-        }
-        .section-title {
-            font-size: 18px;
-            font-weight: 800;
-        }
-        .section-controls {
-            display: flex;
-            gap: 8px;
-        }
+    .breadcrumb {
+      font-size: 14px;
+      opacity: 0.9;
+      margin-bottom: 16px;
+    }
 
-        /* Specific Components */
-        .cover-area {
-            height: 140px;
-            background: linear-gradient(135deg, var(--primary) 0%, #1D3F68 100%);
-            border-radius: 8px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 12px;
-        }
-        .cover-area .edit-btn {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-        }
+    .breadcrumb a {
+      color: white;
+      text-decoration: none;
+      opacity: 0.8;
+    }
 
-        .logo-box {
-            width: 80px;
-            height: 80px;
-            background: white;
-            border-radius: 12px;
-            border: 2px solid var(--border);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-        .logo-box span { font-size: 24px; font-weight: 800; color: var(--primary); }
-        .logo-box .edit-btn {
-            position: absolute;
-            bottom: -8px;
-            right: -8px;
-        }
+    .breadcrumb a:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
 
-        .avatar-box {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #E2E8F0, #CBD5E1);
-            border-radius: 50%;
-            position: relative;
-        }
-        .avatar-box .edit-btn {
-            position: absolute;
-            bottom: -4px;
-            right: -4px;
-            width: 20px;
-            height: 20px;
-            padding: 0;
-            border-radius: 50%;
-            font-size: 10px;
-        }
+    .hero-title {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
 
-        .tag {
-            display: inline-block;
-            padding: 4px 12px;
-            background: var(--bg);
-            border-radius: 16px;
-            font-size: 11px;
-            font-weight: 600;
-            color: var(--primary);
-            margin-right: 6px;
-            margin-bottom: 6px;
-        }
+    @media (min-width: 768px) {
+      .hero-title {
+        font-size: 42px;
+      }
+    }
 
-        .badge-box {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 12px;
-            text-align: center;
-            opacity: 0.5;
-        }
-        .badge-box .icon {
-            width: 36px;
-            height: 36px;
-            border: 2px solid var(--primary);
-            border-radius: 50%;
-            margin: 0 auto 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 8px;
-            font-weight: 700;
-            color: var(--primary);
-        }
-        .badge-box .name { font-size: 10px; font-weight: 600; }
-        .badge-box .no-edit { font-size: 9px; color: var(--danger); font-style: italic; margin-top: 4px; }
+    .hero-subtitle {
+      font-size: 18px;
+      opacity: 0.95;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
 
-        .data-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 11px;
-        }
-        .data-table th {
-            background: var(--primary);
-            color: white;
-            padding: 8px;
-            text-align: left;
-        }
-        .data-table td {
-            padding: 8px;
-            border-bottom: 1px solid var(--border);
-        }
+    .hero-description {
+      font-size: 16px;
+      opacity: 0.85;
+      line-height: 1.6;
+    }
 
-        .stat-box {
-            background: var(--bg);
-            border-radius: 8px;
-            padding: 12px;
-            text-align: center;
-            position: relative;
-        }
-        .stat-box .value { font-size: 22px; font-weight: 800; color: var(--primary); }
-        .stat-box .label { font-size: 10px; color: var(--gray); margin-top: 2px; }
-        .stat-box .edit-btn { position: absolute; top: 4px; right: 4px; }
+    /* Search Section */
+    .search-section {
+      padding: 24px;
+      background: white;
+      border-bottom: 1px solid var(--border-subtle);
+    }
 
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            grid-template-rows: 70px 70px;
-            gap: 8px;
-        }
-        .gallery-item {
-            background: linear-gradient(135deg, #E2E8F0, #CBD5E1);
-            border-radius: 6px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
-            color: var(--light-gray);
-        }
-        .gallery-item:first-child { grid-row: span 2; }
-        .gallery-item .btns {
-            position: absolute;
-            top: 4px;
-            right: 4px;
-            display: flex;
-            gap: 4px;
-        }
+    .search-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-        .info-box {
-            background: #EFF6FF;
-            border: 1px solid var(--primary);
-            border-radius: 8px;
-            padding: 12px;
-            position: relative;
-        }
-        .info-box strong { color: var(--primary); display: block; margin-bottom: 6px; font-size: 12px; }
-        .info-box p { font-size: 11px; color: var(--gray); }
+    .search-inputs {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
 
-        .warning-box {
-            background: #FEF3C7;
-            border-left: 4px solid var(--edit);
-            border-radius: 6px;
-            padding: 12px;
-            position: relative;
-        }
-        .warning-box h4 { font-size: 12px; font-weight: 700; color: #92400E; margin-bottom: 6px; }
-        .warning-box p { font-size: 11px; color: #78350F; line-height: 1.5; }
+    @media (min-width: 768px) {
+      .search-inputs {
+        flex-direction: row;
+        align-items: center;
+      }
+    }
 
-        .honest-card {
-            background: #FEF2F2;
-            border: 1px solid #FECACA;
-            border-left: 4px solid #EF4444;
-        }
+    .input-wrapper {
+      flex: 1;
+      position: relative;
+    }
 
-        .commit-card {
-            border: 1px solid var(--success);
-            background: rgba(16, 185, 129, 0.03);
-        }
-        .commit-status {
-            display: inline-block;
-            background: rgba(16, 185, 129, 0.1);
-            color: var(--success);
-            padding: 2px 8px;
-            border-radius: 10px;
-            font-size: 9px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-        .commit-bar {
-            height: 5px;
-            background: var(--bg);
-            border-radius: 3px;
-            margin-top: 10px;
-        }
-        .commit-bar-fill {
-            height: 100%;
-            background: var(--success);
-            border-radius: 3px;
-        }
+    .input-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      color: var(--text-muted);
+    }
 
-        .value-card .content {
-            border-left: 3px solid var(--primary);
-            padding-left: 12px;
-        }
-        .value-num { font-size: 10px; font-weight: 700; color: var(--accent); }
+    input[type="text"] {
+      width: 100%;
+      padding: 12px 12px 12px 44px;
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      font-size: 15px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
 
-        .problem-card {
-            border-left: 4px solid var(--edit);
-        }
-        .problem-score {
-            display: inline-block;
-            background: var(--edit);
-            color: white;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 9px;
-            font-weight: 700;
-            margin-bottom: 6px;
-        }
+    input[type="text"]:focus {
+      border-color: var(--brand-blue);
+    }
 
-        .job-tag {
-            display: inline-block;
-            background: var(--accent);
-            color: white;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 9px;
-            font-weight: 700;
-            margin-bottom: 6px;
-        }
-    </style>
+    .btn-primary {
+      background: var(--brand-blue);
+      color: white;
+      padding: 12px 32px;
+      border-radius: 8px;
+      border: none;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-family: inherit;
+      white-space: nowrap;
+    }
+
+    .btn-primary:hover {
+      background: var(--brand-blue-dark);
+    }
+
+    /* Filters Section */
+    .filters-section {
+      padding: 20px 24px;
+      background: white;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .filters-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .filter-section-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .chip-row {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .chip-row::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    .chip-row::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .chip-row::-webkit-scrollbar-thumb {
+      background: var(--border-subtle);
+      border-radius: 2px;
+    }
+
+    .chip {
+      background: var(--bg-page);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 6px 14px;
+      font-size: 13px;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--text-main);
+    }
+
+    .chip.active {
+      background: var(--brand-blue-soft);
+      border-color: var(--brand-blue);
+      color: var(--brand-blue);
+    }
+
+    .chip.verified-only {
+      background: var(--brand-blue);
+      border-color: var(--brand-blue);
+      color: white;
+      font-weight: 600;
+    }
+
+    .chip:hover:not(.verified-only) {
+      border-color: var(--brand-blue);
+    }
+
+    .filter-dropdowns {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .filter-dropdown {
+      background: var(--bg-page);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 13px;
+      color: var(--text-main);
+      cursor: pointer;
+    }
+
+    /* Banner Ads Section */
+    .banner-ads-section {
+      padding: 24px;
+      background: #fafbfc;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .banner-ads-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .ads-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .banner-ads-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media (min-width: 768px) {
+      .banner-ads-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .banner-ad {
+      background: white;
+      border: 2px solid #fbbf24;
+      border-radius: 10px;
+      padding: 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .banner-ad::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      border-radius: 0 0 0 100%;
+      opacity: 0.5;
+    }
+
+    .banner-ad:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(251, 191, 36, 0.2);
+    }
+
+    .ad-label {
+      display: inline-block;
+      background: #fbbf24;
+      color: #78350f;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .ad-logo {
+      width: 48px;
+      height: 48px;
+      background: #f3f4f6;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+      color: #6b7280;
+      margin-bottom: 12px;
+    }
+
+    .ad-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+
+    .ad-subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Jobs Section */
+    .jobs-section {
+      padding: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .results-count {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    /* Compact Job Cards */
+    .job-card {
+      background: white;
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 12px;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: block;
+      color: inherit;
+    }
+
+    .job-card:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+      border-color: #d1d5db;
+    }
+
+    /* Company Header - Compact */
+    .company-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .company-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 6px;
+      background: #f3f4f6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #6b7280;
+      font-weight: 600;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .company-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .company-name-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 2px;
+    }
+
+    .company-name {
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text-main);
+    }
+
+    .verified-badge {
+      background: var(--verified-green);
+      color: white;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 10px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .company-stats {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .recommend-stat {
+      color: var(--verified-green);
+      font-weight: 500;
+    }
+
+    /* Job Content - Compact */
+    .job-content {
+      display: grid;
+      gap: 12px;
+    }
+
+    @media (min-width: 1024px) {
+      .job-content {
+        grid-template-columns: 1fr 200px;
+        gap: 16px;
+      }
+    }
+
+    .job-main {
+      min-width: 0;
+    }
+
+    .job-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text-main);
+      line-height: 1.3;
+    }
+
+    .job-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      align-items: center;
+    }
+
+    .salary-pill {
+      background: #fef3c7;
+      border: 1px solid #fbbf24;
+      color: #92400e;
+      padding: 3px 10px;
+      border-radius: 5px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .type-pill {
+      background: var(--bg-page);
+      border: 1px solid var(--border-subtle);
+      padding: 3px 10px;
+      border-radius: 5px;
+      font-size: 12px;
+      color: var(--text-main);
+    }
+
+    .dot {
+      color: var(--border-subtle);
+    }
+
+    /* Vibe Highlights - Compact */
+    .vibe-highlights {
+      background: var(--vibe-bg);
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 10px 12px;
+      margin-bottom: 10px;
+    }
+
+    .vibe-title {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--brand-blue);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .vibe-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .vibe-list li {
+      font-size: 13px;
+      color: var(--text-main);
+      padding-left: 14px;
+      position: relative;
+      margin-bottom: 5px;
+      line-height: 1.4;
+    }
+
+    .vibe-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .vibe-list li:before {
+      content: "";
+      position: absolute;
+      left: 4px;
+      top: 7px;
+      width: 3px;
+      height: 3px;
+      background: var(--brand-blue);
+      border-radius: 50%;
+    }
+
+    /* Badges - Compact */
+    .job-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .badge {
+      border-radius: 5px;
+      padding: 3px 8px;
+      font-size: 11px;
+      font-weight: 500;
+      background: var(--bg-page);
+      color: var(--text-muted);
+      border: 1px solid var(--border-subtle);
+    }
+
+    /* Actions - Compact */
+    .job-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    @media (min-width: 1024px) {
+      .job-actions {
+        justify-content: flex-start;
+      }
+    }
+
+    .btn-secondary {
+      background: white;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 500;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+      text-align: center;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--brand-blue);
+      color: var(--brand-blue);
+    }
+
+    .btn-apply {
+      background: var(--brand-blue);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 6px;
+      border: none;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-family: inherit;
+      text-align: center;
+    }
+
+    .btn-apply:hover {
+      background: var(--brand-blue-dark);
+    }
+
+    /* SVG Icons */
+    .icon {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 767px) {
+      .hero-banner {
+        padding: 32px 20px;
+      }
+
+      .hero-title {
+        font-size: 28px;
+      }
+
+      .hero-subtitle {
+        font-size: 16px;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="page">
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+      <div class="hero-content">
+        <div class="breadcrumb">
+          <a href="#">JoyWork</a> / Việc làm
+        </div>
+        <h1 class="hero-title">Đọc văn hoá thật. Rồi mới quyết định ứng tuyển.</h1>
+        <p class="hero-subtitle">
+          Tất cả công ty đã được xác minh văn hoá làm việc, đánh giá từ nhân viên thật.
+        </p>
+        <p class="hero-description">
+          Bạn sẽ thấy rõ: không khí làm việc thế nào, sếp ra sao, quyền lợi minh bạch không. Đọc kỹ, rồi mới apply.
+        </p>
+      </div>
+    </section>
 
-<!-- ============================================================ -->
-<!-- SECTION 1: HERO (Cover + Logo + Thông tin công ty) -->
-<!-- ============================================================ -->
-<div class="wireframe-section">
-    <div class="wireframe-title">SECTION 1: Hero — Ảnh bìa + Logo + Thông tin công ty</div>
-    <div class="wireframe-content">
-        
-        <!-- Cover -->
-        <div class="cover-area">
-            Ảnh bìa 1600×400
-            <button class="edit-btn">📷 Đổi ảnh bìa</button>
+    <!-- Search Section -->
+    <section class="search-section">
+      <div class="search-wrapper">
+        <div class="search-inputs">
+          <div class="input-wrapper">
+            <svg class="input-icon icon" viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+            <input type="text" placeholder="Chức danh, kỹ năng, từ khoá...">
+          </div>
+          <div class="input-wrapper">
+            <svg class="input-icon icon" viewBox="0 0 24 24">
+              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <input type="text" placeholder="Địa điểm (Hà Nội, TP.HCM, Remote...)">
+          </div>
+          <button class="btn-primary">Tìm việc</button>
         </div>
-        
-        <div style="display: flex; gap: 20px; margin-top: -30px; padding: 0 20px; position: relative; z-index: 2;">
-            <!-- Logo -->
-            <div class="logo-box">
-                <span>STV</span>
-                <button class="edit-btn sm">📷</button>
-            </div>
-            
-            <!-- Company Info -->
-            <div style="flex: 1; padding-top: 40px;">
-                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
-                    <span style="font-size: 20px; font-weight: 800;">Tên công ty</span>
-                    <span style="background: rgba(16,185,129,0.15); color: #10B981; padding: 2px 10px; border-radius: 12px; font-size: 10px; font-weight: 600;">✓ Đã xác minh (Auto)</span>
-                    <button class="edit-btn sm">✏️ Sửa thông tin</button>
-                </div>
-                <div style="font-size: 12px; color: var(--gray); margin-bottom: 12px;">
-                    🏢 Ngành nghề · 📍 Địa điểm · 📅 Năm thành lập
-                </div>
-                <div style="display: flex; gap: 24px;">
-                    <div style="text-align: center;">
-                        <div style="font-size: 20px; font-weight: 800; color: var(--primary);">200+</div>
-                        <div style="font-size: 10px; color: var(--gray);">Nhân viên</div>
-                    </div>
-                    <div style="text-align: center;">
-                        <div style="font-size: 20px; font-weight: 800; color: var(--primary);">5,000+</div>
-                        <div style="font-size: 10px; color: var(--gray);">Khách hàng</div>
-                    </div>
-                    <div style="text-align: center;">
-                        <div style="font-size: 20px; font-weight: 800; color: var(--primary);">97%</div>
-                        <div style="font-size: 10px; color: var(--gray);">Hài lòng</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="dev-note">
-            <strong>📝 Ghi chú cho Dev:</strong>
-            • Ảnh bìa: <code>cover_image</code> — Kích thước khuyến nghị 1600×400px<br>
-            • Logo: <code>logo</code> — Tỷ lệ 1:1, crop thành hình vuông<br>
-            • Thông tin: <code>name</code>, <code>industry</code>, <code>location</code>, <code>founded_year</code><br>
-            • Thống kê: <code>employee_count</code>, <code>customer_count</code>, <code>satisfaction_rate</code><br>
-            • Badge "Đã xác minh" = tự động từ hệ thống, KHÔNG có nút sửa
-        </div>
-    </div>
-</div>
+      </div>
+    </section>
 
-<!-- ============================================================ -->
-<!-- SECTION 2: Giới thiệu + CEO + Badges -->
-<!-- ============================================================ -->
-<div class="wireframe-section">
-    <div class="wireframe-title">SECTION 2: Giới thiệu + CEO + Badges</div>
-    <div class="wireframe-content">
-        
-        <div class="grid-2">
-            <!-- Về chúng tôi -->
-            <div class="placeholder">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                    <h4>Về chúng tôi</h4>
-                    <button class="edit-btn sm">✏️ Sửa</button>
-                </div>
-                <p style="margin-bottom: 12px;">Mô tả ngắn về công ty, tối đa 500 ký tự...</p>
-                
-                <div style="position: relative;">
-                    <div class="placeholder-img" style="height: 100px;">Ảnh team 600×340</div>
-                    <button class="edit-btn sm" style="position: absolute; top: 8px; right: 8px;">📷 Đổi ảnh</button>
-                </div>
-            </div>
-            
-            <!-- CEO + Badges -->
-            <div>
-                <!-- CEO Card -->
-                <div class="placeholder" style="display: flex; gap: 12px; margin-bottom: 12px;">
-                    <div class="avatar-box">
-                        <button class="edit-btn sm" style="font-size: 8px;">📷</button>
-                    </div>
-                    <div style="flex: 1;">
-                        <div style="font-size: 14px; font-weight: 700;">Tên CEO</div>
-                        <div style="font-size: 10px; color: var(--gray); margin-bottom: 6px;">Chức danh</div>
-                        <div style="font-size: 11px; color: var(--gray); font-style: italic;">"Quote của CEO, tối đa 200 ký tự..."</div>
-                    </div>
-                    <button class="edit-btn sm" style="position: absolute; top: 8px; right: 8px;">✏️ Sửa</button>
-                </div>
-                
-                <!-- Badges - KHÔNG EDIT -->
-                <div class="grid-2">
-                    <div class="badge-box">
-                        <div class="icon">BADGE</div>
-                        <div class="name">Tên badge</div>
-                        <div class="no-edit">⚠️ Không sửa được</div>
-                    </div>
-                    <div class="badge-box">
-                        <div class="icon">BADGE</div>
-                        <div class="name">Tên badge</div>
-                        <div class="no-edit">⚠️ Auto từ hệ thống</div>
-                    </div>
-                </div>
-            </div>
+    <!-- Filters Section -->
+    <section class="filters-section">
+      <div class="filters-wrapper">
+        <div class="filter-section-title">Văn hoá & môi trường</div>
+        <div class="chip-row">
+          <div class="chip verified-only">Đã xác minh văn hoá</div>
+          <div class="chip">Vui vẻ & trẻ trung</div>
+          <div class="chip active">Kỷ luật & tập trung</div>
+          <div class="chip">Gia đình – ấm áp</div>
+          <div class="chip">Start-up tăng trưởng nhanh</div>
+          <div class="chip">Ổn định, ít OT</div>
+          <div class="chip">Remote linh hoạt</div>
         </div>
-        
-        <div class="dev-note">
-            <strong>📝 Ghi chú cho Dev:</strong>
-            • Giới thiệu: <code>about_text</code> (max 500 ký tự) + <code>team_preview_image</code><br>
-            • CEO: <code>ceo_avatar</code>, <code>ceo_name</code>, <code>ceo_title</code>, <code>ceo_quote</code> (max 200)<br>
-            • Badges: Tự động sinh từ hệ thống xác thực → KHÔNG hiển thị nút edit
+        <div class="filter-dropdowns">
+          <div class="filter-dropdown">Ngành nghề: Tất cả ▾</div>
+          <div class="filter-dropdown">Mức lương: 10–15tr ▾</div>
+          <div class="filter-dropdown">Hình thức: Toàn thời gian ▾</div>
         </div>
-    </div>
-</div>
+      </div>
+    </section>
 
-<!-- ============================================================ -->
-<!-- SECTION 3: Tags -->
-<!-- ============================================================ -->
-<div class="wireframe-section">
-    <div class="wireframe-title">SECTION 3: Tags văn hóa</div>
-    <div class="wireframe-content">
-        
-        <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 8px;">
-            <span class="tag">Tag 1</span>
-            <span class="tag">Tag 2</span>
-            <span class="tag">Tag 3</span>
-            <span class="tag">Tag 4</span>
-            <span class="tag">Tag 5</span>
-            <button class="edit-btn sm">✏️ Quản lý tags</button>
-        </div>
-        
-        <div class="dev-note">
-            <strong>📝 Ghi chú cho Dev:</strong>
-            • Field: <code>company_tags[]</code> — Mảng các tag<br>
-            • Cho phép chọn từ danh sách có sẵn hoặc nhập tùy chỉnh<br>
-            • Tối đa 10 tags
-        </div>
-    </div>
-</div>
+    <!-- Banner Ads Section -->
+    <section class="banner-ads-section">
+      <div class="banner-ads-wrapper">
+        <div class="ads-title">Công ty đang tuyển dụng nổi bật</div>
+        <div class="banner-ads-grid">
+          <div class="banner-ad">
+            <span class="ad-label">Quảng cáo</span>
+            <div class="ad-logo">TC</div>
+            <div class="ad-title">TechCorp Vietnam đang tuyển dụng</div>
+            <div class="ad-subtitle">20+ vị trí Software Engineer, Product Manager, Designer</div>
+          </div>
 
-<!-- ============================================================ -->
-<!-- SECTION 4: Thẳng thắn trước tiên (Honest) -->
-<!-- ============================================================ -->
-<div class="wireframe-section">
-    <div class="wireframe-title">SECTION 4: Thẳng thắn trước tiên</div>
-    <div class="wireframe-content">
-        
-        <div class="section-header">
-            <div>
-                <div class="section-label">THẲNG THẮN TRƯỚC TIÊN</div>
-                <div class="section-title">Bạn KHÔNG nên làm việc ở đây nếu...</div>
-            </div>
-            <div class="section-controls">
-                <button class="edit-btn sm outline">👁️ Ẩn</button>
-                <button class="edit-btn sm outline">↕️ Vị trí</button>
-                <button class="edit-btn sm">✏️ Sửa tiêu đề</button>
-            </div>
-        </div>
-        
-        <div class="grid-2">
-            <div class="placeholder honest-card">
-                <div class="placeholder-img" style="height: 70px; margin-bottom: 10px;">Ảnh 600×200</div>
-                <h4>❌ Tiêu đề điều không phù hợp</h4>
-                <p>Mô tả chi tiết tại sao không phù hợp...</p>
-                <button class="edit-btn sm">✏️ Sửa</button>
-            </div>
-            
-            <div class="placeholder honest-card">
-                <div class="placeholder-img" style="height: 70px; margin-bottom: 10px;">Ảnh 600×200</div>
-                <h4>❌ Tiêu đề điều không phù hợp</h4>
-                <p>Mô tả chi tiết tại sao không phù hợp...</p>
-                <button class="edit-btn sm">✏️ Sửa</button>
-            </div>
-            
-            <button class="add-btn full">➕ Thêm điều "không phù hợp" mới</button>
-            
-            <div class="info-box full">
-                <strong>🎯 Tại sao chúng tôi viết phần này?</strong>
-                <p>Giải thích lý do viết section này...</p>
-                <button class="edit-btn sm" style="position: absolute; top: 8px; right: 8px;">✏️ Sửa</button>
-            </div>
-        </div>
-        
-        <div class="dev-note">
-            <strong>📝 Ghi chú cho Dev:</strong>
-            • Mảng <code>honest_items[]</code> gồm: <code>image</code> (600×200), <code>title</code> (max 100), <code>description</code> (max 300), <code>fit_for</code> (max 150)<br>
-            • Box giải thích: <code>honest_why_text</code><br>
-            • Section controls: <code>is_visible</code>, <code>order</code>
-        </div>
-    </div>
-</div>
+          <div class="banner-ad">
+            <span class="ad-label">Quảng cáo</span>
+            <div class="ad-logo">VB</div>
+            <div class="ad-title">VietBank tuyển dụng đợt lớn Q1/2026</div>
+            <div class="ad-subtitle">Chương trình Management Trainee - Lương hấp dẫn</div>
+          </div>
 
-<!-- ============================================================ -->
-<!-- SECTION 5: Cam kết -->
-<!-- ============================================================ -->
-<div class="wireframe-section">
-    <div class="wireframe-title">SECTION 5: Cam kết của chúng tôi</div>
-    <div class="wireframe-content">
-        
-        <div class="section-header">
-            <div>
-                <div class="section-label">CAM KẾT CỦA CHÚNG TÔI</div>
-                <div class="section-title">Những tuyên bố đã được nhân viên xác thực</div>
-            </div>
-            <div class="section-controls">
-                <button class="edit-btn sm outline">👁️ Ẩn</button>
-                <button class="edit-btn sm outline">↕️ Vị trí</button>
-                <button class="edit-btn sm">✏️ Sửa tiêu đề</button>
-            </div>
+          <div class="banner-ad">
+            <span class="ad-label">Quảng cáo</span>
+            <div class="ad-logo">FG</div>
+            <div class="ad-title">FoodGo mở rộng team toàn quốc</div>
+            <div class="ad-subtitle">Sales, Marketing, Operations - Thưởng KPI cao</div>
+          </div>
         </div>
-        
-        <div class="grid-2">
-            <div class="placeholder commit-card">
-                <div class="commit-status">✓ Đã xác thực</div>
-                <p style="font-size: 12px; margin-bottom: 8px;">"Nội dung cam kết của công ty, tối đa 300 ký tự..."</p>
-                <div class="commit-bar"><div class="commit-bar-fill" style="width: 89%;"></div></div>
-                <div style="display: flex; justify-content: space-between; margin-top: 6px; font-size: 10px;">
-                    <strong style="color: var(--success);">89%</strong>
-                    <span style="color: var(--light-gray);">156/175 xác nhận (Auto)</span>
-                </div>
-                <button class="edit-btn sm">✏️ Sửa nội dung</button>
-            </div>
-            
-            <div class="placeholder commit-card">
-                <div class="commit-status">✓ Đã xác thực</div>
-                <p style="font-size: 12px; margin-bottom: 8px;">"Nội dung cam kết khác..."</p>
-                <div class="commit-bar"><div class="commit-bar-fill" style="width: 92%;"></div></div>
-                <button class="edit-btn sm">✏️ Sửa nội dung</button>
-            </div>
-            
-            <button class="add-btn full">➕ Thêm cam kết mới</button>
-        </div>
-        
-        <div class="dev-note">
-            <strong>📝 Ghi chú cho Dev:</strong>
-            • Field: <code>commitment_text</code> (max 300 ký tự)<br>
-            • Phần trăm xác thực + số người xác nhận = TỰ ĐỘNG từ survey → KHÔNG cho sửa<br>
-            • Chỉ cho phép sửa nội dung text của cam kết
-        </div>
-    </div>
-</div>
+      </div>
+    </section>
 
-<!-- ============================================================ -->
-<!-- SECTION 6: Giá trị cốt lõi -->
-<!-- ============================================================ -->
-<div class="wireframe-section">
-    <div class="wireframe-title">SECTION 6: Giá trị cốt lõi</div>
-    <div class="wireframe-content">
-        
-        <div class="section-header">
-            <div>
-                <div class="section-label">GIÁ TRỊ CỐT LÕI</div>
-                <div class="section-title">Các nguyên tắc định hình văn hóa</div>
-            </div>
-            <div class="section-controls">
-                <button class="edit-btn sm outline">👁️ Ẩn</button>
-                <button class="edit-btn sm outline">↕️ Vị trí</button>
-                <button class="edit-btn sm">✏️ Sửa tiêu đề</button>
-            </div>
-        </div>
-        
-        <div class="grid-2">
-            <div class="placeholder value-card">
-                <div class="placeholder-img" style="height: 80px; margin-bottom: 10px;">Ảnh 600×250</div>
-                <div class="content">
-                    <div class="value-num">01</div>
-                    <h4>Tên giá trị</h4>
-                    <p>Mô tả giá trị + ví dụ cụ thể...</p>
-                </div>
-                <button class="edit-btn sm">✏️ Sửa</button>
-            </div>
-            
-            <div class="placeholder value-card">
-                <div class="placeholder-img" style="height: 80px; margin-bottom: 10px;">Ảnh 600×250</div>
-                <div class="content">
-                    <div class="value-num">02</div>
-                    <h4>Tên giá trị</h4>
-                    <p>Mô tả giá trị + ví dụ cụ thể...</p>
-                </div>
-                <button class="edit-btn sm">✏️ Sửa</button>
-            </div>
-            
-            <button class="add-btn full">➕ Thêm giá trị cốt lõi</button>
-        </div>
-        
-        <div class="dev-note">
-            <strong>📝 Ghi chú cho Dev:</strong>
-            • Mảng <code>values[]</code> gồm: <code>image</code> (600×250), <code>title</code> (max 50), <code>description</code> (max 200), <code>example</code> (max 300)<br>
-            • Số thứ tự (<code>number</code>) tự động tăng dần<br>
-            • Hỗ trợ kéo thả để sắp xếp lại thứ tự
-        </div>
-    </div>
-</div>
+    <!-- Jobs Section -->
+    <section class="jobs-section">
+      <div class="section-header">
+        <h2 class="section-title">Việc làm phù hợp</h2>
+        <span class="results-count">127 việc làm</span>
+      </div>
 
-<!-- ============================================================ -->
-<!-- SECTION 7: Nhịp làm việc -->
-<!-- ============================================================ -->
-<div class="wireframe-section">
-    <div class="wireframe-title">SECTION 7: Nhịp làm việc (Một ngày điển hình)</div>
-    <div class="wireframe-content">
-        
-        <div class="section-header">
-            <div>
-                <div class="section-label">NHỊP LÀM VIỆC</div>
-                <div class="section-title">Một ngày điển hình</div>
+      <!-- Job 1 -->
+      <a href="job-detail-1.html" class="job-card">
+        <div class="company-header">
+          <div class="company-logo">JT</div>
+          <div class="company-info">
+            <div class="company-name-row">
+              <span class="company-name">JoyTea Studio</span>
+              <span class="verified-badge">Xác minh</span>
             </div>
-            <div class="section-controls">
-                <button class="edit-btn sm outline">👁️ Ẩn</button>
-                <button class="edit-btn sm outline">↕️ Vị trí</button>
-                <button class="edit-btn sm">✏️ Sửa tiêu đề</button>
+            <div class="company-stats">
+              <span class="recommend-stat">92% recommend</span> • 145 người xem
             </div>
+          </div>
         </div>
-        
-        <div class="grid-3">
-            <div class="placeholder">
-                <div class="placeholder-img" style="height: 60px; margin-bottom: 8px;">Ảnh 400×200</div>
-                <div style="font-size: 16px; font-weight: 700; color: var(--primary);">8:30</div>
-                <h4 style="font-size: 12px;">Tiêu đề hoạt động</h4>
-                <p>Mô tả ngắn...</p>
-                <button class="edit-btn sm">✏️</button>
-            </div>
-            
-            <div class="placeholder">
-                <div class="placeholder-img" style="height: 60px; margin-bottom: 8px;">Ảnh 400×200</div>
-                <div style="font-size: 16px; font-weight: 700; color: var(--primary);">9:00</div>
-                <h4 style="font-size: 12px;">Tiêu đề hoạt động</h4>
-                <p>Mô tả ngắn...</p>
-                <button class="edit-btn sm">✏️</button>
-            </div>
-            
-            <div class="placeholder">
-                <div class="placeholder-img" style="height: 60px; margin-bottom: 8px;">Ảnh 400×200</div>
-                <div style="font-size: 16px; font-weight: 700; color: var(--primary);">12:00</div>
-                <h4 style="font-size: 12px;">Tiêu đề hoạt động</h4>
-                <p>Mô tả ngắn...</p>
-                <button class="edit-btn sm">✏️</button>
-            </div>
-            
-            <button class="add-btn full-3">➕ Thêm mốc thời gian</button>
-        </div>
-        
-        <div class="dev-note">
-            <strong>📝 Ghi chú cho Dev:</strong>
-            • Mảng <code>day_schedule[]</code> gồm: <code>time</code>, <code>title</code>, <code>description</code>, <code>image</code> (400×200)<br>
-            • Hỗ trợ kéo thả sắp xếp lại thứ tự
-        </div>
-    </div>
-</div>
 
-<!-- ============================================================ -->
-<!-- SECTION 8: Ban lãnh đạo + Chỉ số -->
-<!-- ============================================================ -->
-<div class="wireframe-section">
-    <div class="wireframe-title">SECTION 8: Ban lãnh đạo + Chỉ số minh bạch</div>
-    <div class="wireframe-content">
-        
-        <div class="section-header">
-            <div>
-                <div class="section-label">BAN LÃNH ĐẠO</div>
-                <div class="section-title">Những người định hướng văn hóa</div>
-            </div>
-            <div class="section-controls">
-                <button class="edit-btn sm outline">👁️ Ẩn</button>
-                <button class="edit-btn sm outline">↕️ Vị trí</button>
-                <button class="edit-btn sm">✏️ Sửa tiêu đề</button>
-            </div>
-        </div>
-        
-        <div class="grid-3">
-            <div class="placeholder" style="text-align: center;">
-                <div class="placeholder-img" style="height: 90px; margin-bottom: 8px;">Ảnh 400×300</div>
-                <h4>Tên lãnh đạo</h4>
-                <div style="font-size: 10px; color: var(--gray); margin-bottom: 6px;">Chức danh</div>
-                <p style="font-style: italic;">"Quote..."</p>
-                <button class="edit-btn sm">✏️ Sửa</button>
-            </div>
+        <div class="job-content">
+          <div class="job-main">
+            <h3 class="job-title">Senior Marketing Executive – Thương hiệu F&B trẻ</h3>
             
-            <div class="placeholder" style="text-align: center;">
-                <div class="placeholder-img" style="height: 90px; margin-bottom: 8px;">Ảnh 400×300</div>
-                <h4>Tên lãnh đạo</h4>
-                <div style="font-size: 10px; color: var(--gray); margin-bottom: 6px;">Chức danh</div>
-                <p style="font-style: italic;">"Quote..."</p>
-                <button class="edit-btn sm">✏️ Sửa</button>
+            <div class="job-meta">
+              <span class="salary-pill">18–25 triệu/tháng</span>
+              <span class="type-pill">Marketing</span>
+              <span class="dot">•</span>
+              <span>Hà Nội</span>
+              <span class="dot">•</span>
+              <span>Toàn thời gian</span>
             </div>
-            
-            <div class="placeholder" style="text-align: center;">
-                <div class="placeholder-img" style="height: 90px; margin-bottom: 8px;">Ảnh 400×300</div>
-                <h4>Tên lãnh đạo</h4>
-                <div style="font-size: 10px; color: var(--gray); margin-bottom: 6px;">Chức danh</div>
-                <p style="font-style: italic;">"Quote..."</p>
-                <button class="edit-btn sm">✏️ Sửa</button>
-            </div>
-            
-            <button class="add-btn full-3">➕ Thêm thành viên lãnh đạo</button>
-        </div>
-        
-        <!-- Chỉ số minh bạch -->
-        <h4 style="margin: 20px 0 12px; font-size: 14px;">📊 Chỉ số minh bạch</h4>
-        <div class="grid-4">
-            <div class="stat-box">
-                <div class="value">2.8%</div>
-                <div class="label">Tỉ lệ nghỉ việc</div>
-                <button class="edit-btn sm">✏️</button>
-            </div>
-            <div class="stat-box">
-                <div class="value">52</div>
-                <div class="label">Điểm eNPS</div>
-                <button class="edit-btn sm">✏️</button>
-            </div>
-            <div class="stat-box">
-                <div class="value">45%</div>
-                <div class="label">Tỉ lệ nữ</div>
-                <button class="edit-btn sm">✏️</button>
-            </div>
-            <div class="stat-box">
-                <div class="value">1.8</div>
-                <div class="label">Năm TB thăng tiến</div>
-                <button class="edit-btn sm">✏️</button>
-            </div>
-        </div>
-        <button class="add-btn" style="margin-top: 12px;">➕ Thêm chỉ số</button>
-        
-        <div class="dev-note">
-            <strong>📝 Ghi chú cho Dev:</strong>
-            • Leaders: mảng <code>leaders[]</code> gồm <code>photo</code>, <code>name</code>, <code>role</code>, <code>quote</code> (max 150)<br>
-            • Metrics: mảng <code>metrics[]</code> gồm <code>value</code>, <code>label</code>, <code>trend</code> (up/down/stable)
-        </div>
-    </div>
-</div>
 
-<!-- ============================================================ -->
-<!-- SECTION 9: Tiếng nói nhân viên -->
-<!-- ============================================================ -->
-<div class="wireframe-section">
-    <div class="wireframe-title">SECTION 9: Tiếng nói nhân viên (Testimonials)</div>
-    <div class="wireframe-content">
-        
-        <div class="section-header">
-            <div>
-                <div class="section-label">TIẾNG NÓI NHÂN VIÊN</div>
-                <div class="section-title">Nghe từ chính người trong cuộc</div>
+            <div class="vibe-highlights">
+              <div class="vibe-title">Văn hoá thật từ nhân viên</div>
+              <ul class="vibe-list">
+                <li>Team trẻ, vui vẻ, ít drama. Hay mua trà sữa cho nhau khi ai đó "chiến thắng".</li>
+                <li>Sếp thích coaching, feedback thẳng nhưng tôn trọng. Lộ trình rõ ràng.</li>
+              </ul>
             </div>
-            <div class="section-controls">
-                <button class="edit-btn sm outline">👁️ Ẩn</button>
-                <button class="edit-btn sm outline">↕️ Vị trí</button>
-                <button class="edit-btn sm">✏️ Sửa tiêu đề</button>
-            </div>
-        </div>
-        
-        <div class="grid-3">
-            <div class="placeholder">
-                <div class="placeholder-img" style="height: 90px; margin-bottom: 10px;">Ảnh/Video 600×400</div>
-                <p style="font-style: italic; margin-bottom: 10px;">"Quote của nhân viên, tối đa 200 ký tự..."</p>
-                <div style="display: flex; align-items: center; gap: 8px;">
-                    <div style="width: 28px; height: 28px; background: var(--bg); border-radius: 50%;"></div>
-                    <div>
-                        <div style="font-size: 11px; font-weight: 600;">Tên nhân viên</div>
-                        <div style="font-size: 9px; color: var(--gray);">Chức danh • Thâm niên</div>
-                    </div>
-                </div>
-                <button class="edit-btn sm">✏️ Sửa</button>
-            </div>
-            
-            <div class="placeholder">
-                <div class="placeholder-img" style="height: 90px; margin-bottom: 10px;">Ảnh/Video 600×400</div>
-                <p style="font-style: italic; margin-bottom: 10px;">"Quote của nhân viên..."</p>
-                <div style="display: flex; align-items: center; gap: 8px;">
-                    <div style="width: 28px; height: 28px; background: var(--bg); border-radius: 50%;"></div>
-                    <div>
-                        <div style="font-size: 11px; font-weight: 600;">Tên nhân viên</div>
-                        <div style="font-size: 9px; color: var(--gray);">Chức danh • Thâm niên</div>
-                    </div>
-                </div>
-                <button class="edit-btn sm">✏️ Sửa</button>
-            </div>
-            
-            <div class="placeholder">
-                <div class="placeholder-img" style="height: 90px; margin-bottom: 10px;">Ảnh/Video 600×400</div>
-                <p style="font-style: italic; margin-bottom: 10px;">"Quote của nhân viên..."</p>
-                <div style="display: flex; align-items: center; gap: 8px;">
-                    <div style="width: 28px; height: 28px; background: var(--bg); border-radius: 50%;"></div>
-                    <div>
-                        <div style="font-size: 11px; font-weight: 600;">Tên nhân viên</div>
-                        <div style="font-size: 9px; color: var(--gray);">Chức danh • Thâm niên</div>
-                    </div>
-                </div>
-                <button class="edit-btn sm">✏️ Sửa</button>
-            </div>
-            
-            <button class="add-btn full-3">➕ Thêm testimonial</button>
-        </div>
-        
-        <div class="dev-note">
-            <strong>📝 Ghi chú cho Dev:</strong>
-            • Mảng <code>testimonials[]</code> gồm:<br>
-            &nbsp;&nbsp;- <code>media_type</code>: "image" hoặc "video"<br>
-            &nbsp;&nbsp;- <code>media_url</code>: URL ảnh/video<br>
-            &nbsp;&nbsp;- <code>quote</code>: max 200 ký tự<br>
-            &nbsp;&nbsp;- <code>author_name</code>, <code>author_role</code>, <code>author_avatar</code>, <code>tenure</code>
-        </div>
-    </div>
-</div>
 
-<!-- ============================================================ -->
-<!-- SECTION 10: Chế độ đãi ngộ -->
-<!-- ============================================================ -->
-<div class="wireframe-section">
-    <div class="wireframe-title">SECTION 10: Chế độ đãi ngộ (Lương + Phúc lợi)</div>
-    <div class="wireframe-content">
-        
-        <div class="section-header">
-            <div>
-                <div class="section-label">CHẾ ĐỘ ĐÃI NGỘ</div>
-                <div class="section-title">Triết lý lương thưởng & Phúc lợi</div>
+            <div class="job-badges">
+              <span class="badge">Minh bạch lương</span>
+              <span class="badge">Không OT cuối tuần</span>
+              <span class="badge">Có mentor</span>
             </div>
-            <div class="section-controls">
-                <button class="edit-btn sm outline">👁️ Ẩn</button>
-                <button class="edit-btn sm outline">↕️ Vị trí</button>
-                <button class="edit-btn sm">✏️ Sửa tiêu đề</button>
-            </div>
+          </div>
+
+          <div class="job-actions">
+            <button class="btn-secondary">Xem chi tiết</button>
+            <button class="btn-apply">Ứng tuyển</button>
+          </div>
         </div>
-        
-        <div class="grid-2">
-            <!-- Bảng lương -->
-            <div>
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                    <h4 style="font-size: 14px;">💰 Khung lương</h4>
-                    <button class="edit-btn sm">✏️ Sửa bảng</button>
-                </div>
-                <table class="data-table">
-                    <thead>
-                        <tr><th>Cấp bậc</th><th>Mức lương</th><th>Điều kiện</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Junior</td><td>15-25tr</td><td>0-2 năm</td></tr>
-                        <tr><td>Mid-level</td><td>30-50tr</td><td>2-4 năm</td></tr>
-                        <tr><td>Senior</td><td>50-80tr</td><td>4-7 năm</td></tr>
-                    </tbody>
-                </table>
+      </a>
+
+      <!-- Job 2 -->
+      <a href="job-detail-2.html" class="job-card">
+        <div class="company-header">
+          <div class="company-logo">AN</div>
+          <div class="company-info">
+            <div class="company-name-row">
+              <span class="company-name">An Nhiên Books</span>
+              <span class="verified-badge">Xác minh</span>
             </div>
+            <div class="company-stats">
+              <span class="recommend-stat">88% recommend</span> • 89 người xem
+            </div>
+          </div>
+        </div>
+
+        <div class="job-content">
+          <div class="job-main">
+            <h3 class="job-title">Content Writer – Nhà sách độc lập yêu văn học</h3>
             
-            <!-- Phúc lợi -->
-            <div>
-                <h4 style="font-size: 14px; margin-bottom: 12px;">🎁 Phúc lợi</h4>
-                <div class="grid-2">
-                    <div class="placeholder">
-                        <div class="placeholder-img" style="height: 60px; margin-bottom: 8px;">Ảnh 400×200</div>
-                        <h4 style="font-size: 12px;">Tên phúc lợi</h4>
-                        <p>Mô tả ngắn...</p>
-                        <button class="edit-btn sm">✏️</button>
-                    </div>
-                    <div class="placeholder">
-                        <div class="placeholder-img" style="height: 60px; margin-bottom: 8px;">Ảnh 400×200</div>
-                        <h4 style="font-size: 12px;">Tên phúc lợi</h4>
-                        <p>Mô tả ngắn...</p>
-                        <button class="edit-btn sm">✏️</button>
-                    </div>
-                </div>
-                <button class="add-btn">➕ Thêm phúc lợi</button>
+            <div class="job-meta">
+              <span class="salary-pill">12–18 triệu/tháng</span>
+              <span class="type-pill">Content</span>
+              <span class="dot">•</span>
+              <span>Hà Nội (Hybrid)</span>
+              <span class="dot">•</span>
+              <span>Toàn thời gian</span>
             </div>
-        </div>
-        
-        <!-- Tradeoff box -->
-        <div class="warning-box" style="margin-top: 16px; position: relative;">
-            <h4>⚠️ Đánh đổi của hệ thống này</h4>
-            <p>Giải thích về những điểm công ty không làm được hoặc đánh đổi...</p>
-            <button class="edit-btn sm" style="position: absolute; top: 8px; right: 8px;">✏️ Sửa</button>
-        </div>
-        
-        <div class="dev-note">
-            <strong>📝 Ghi chú cho Dev:</strong>
-            • Bảng lương: mảng <code>salary_ranges[]</code> gồm <code>level</code>, <code>salary_range</code>, <code>requirements</code><br>
-            • Phúc lợi: mảng <code>benefits[]</code> gồm <code>image</code>, <code>title</code>, <code>reason</code>, <code>description</code><br>
-            • Tradeoff: <code>tradeoff_text</code>
-        </div>
-    </div>
-</div>
 
-<!-- ============================================================ -->
-<!-- SECTION 11: FAQ + Vấn đề đang sửa -->
-<!-- ============================================================ -->
-<div class="wireframe-section">
-    <div class="wireframe-title">SECTION 11: FAQ + Vấn đề đang cải thiện</div>
-    <div class="wireframe-content">
-        
-        <div class="section-header">
-            <div>
-                <div class="section-label">CÂU HỎI & VẤN ĐỀ</div>
-                <div class="section-title">FAQ & Những điều đang cải thiện</div>
+            <div class="vibe-highlights">
+              <div class="vibe-title">Văn hoá thật từ nhân viên</div>
+              <ul class="vibe-list">
+                <li>Văn phòng ấm cúng, có góc đọc sách. Sếp là "mọt sách", rất tôn trọng writer.</li>
+                <li>Không deadline gấp gáp, được nghiên cứu kỹ. Review 2 chiều cởi mở.</li>
+              </ul>
             </div>
-            <div class="section-controls">
-                <button class="edit-btn sm outline">👁️ Ẩn</button>
-                <button class="edit-btn sm outline">↕️ Vị trí</button>
-                <button class="edit-btn sm">✏️ Sửa tiêu đề</button>
+
+            <div class="job-badges">
+              <span class="badge">Môi trường văn học</span>
+              <span class="badge">Hybrid 2 ngày WFH</span>
+              <span class="badge">Sách miễn phí</span>
             </div>
+          </div>
+
+          <div class="job-actions">
+            <button class="btn-secondary">Xem chi tiết</button>
+            <button class="btn-apply">Ứng tuyển</button>
+          </div>
         </div>
-        
-        <div class="grid-2">
-            <!-- FAQ -->
-            <div>
-                <h4 style="font-size: 14px; margin-bottom: 12px;">❓ FAQ</h4>
-                
-                <div class="placeholder" style="margin-bottom: 8px;">
-                    <strong style="font-size: 12px;">Câu hỏi thường gặp #1?</strong>
-                    <p style="display: none;">Câu trả lời (ẩn khi collapse)</p>
-                    <button class="edit-btn sm">✏️</button>
-                </div>
-                
-                <div class="placeholder" style="margin-bottom: 8px;">
-                    <strong style="font-size: 12px;">Câu hỏi thường gặp #2?</strong>
-                    <button class="edit-btn sm">✏️</button>
-                </div>
-                
-                <div class="placeholder" style="margin-bottom: 8px;">
-                    <strong style="font-size: 12px;">Câu hỏi thường gặp #3?</strong>
-                    <button class="edit-btn sm">✏️</button>
-                </div>
-                
-                <button class="add-btn">➕ Thêm FAQ</button>
+      </a>
+
+      <!-- Job 3 -->
+      <a href="job-detail-3.html" class="job-card">
+        <div class="company-header">
+          <div class="company-logo">GL</div>
+          <div class="company-info">
+            <div class="company-name-row">
+              <span class="company-name">Gạo Lành Mart</span>
+              <span class="verified-badge">Xác minh</span>
             </div>
+            <div class="company-stats">
+              <span class="recommend-stat">85% recommend</span> • 67 người xem
+            </div>
+          </div>
+        </div>
+
+        <div class="job-content">
+          <div class="job-main">
+            <h3 class="job-title">Nhân viên Kinh doanh B2B – Nông sản sạch</h3>
             
-            <!-- Problems -->
-            <div>
-                <h4 style="font-size: 14px; margin-bottom: 12px;">⚠️ Đang cố sửa</h4>
-                
-                <div class="placeholder problem-card" style="margin-bottom: 8px;">
-                    <div class="problem-score">3.2/5</div>
-                    <h4 style="font-size: 12px;">Tên vấn đề</h4>
-                    <p>Mô tả vấn đề + kế hoạch sửa...</p>
-                    <button class="edit-btn sm">✏️</button>
-                </div>
-                
-                <div class="placeholder problem-card" style="margin-bottom: 8px;">
-                    <div class="problem-score">2.8/5</div>
-                    <h4 style="font-size: 12px;">Tên vấn đề khác</h4>
-                    <p>Mô tả vấn đề + kế hoạch sửa...</p>
-                    <button class="edit-btn sm">✏️</button>
-                </div>
-                
-                <button class="add-btn">➕ Thêm vấn đề</button>
+            <div class="job-meta">
+              <span class="salary-pill">15–20tr + hoa hồng</span>
+              <span class="type-pill">Sales B2B</span>
+              <span class="dot">•</span>
+              <span>TP.HCM</span>
+              <span class="dot">•</span>
+              <span>Toàn thời gian</span>
             </div>
-        </div>
-        
-        <div class="dev-note">
-            <strong>📝 Ghi chú cho Dev:</strong>
-            • FAQ: mảng <code>faq[]</code> gồm <code>question</code>, <code>answer</code><br>
-            • Problems: mảng <code>problems[]</code> gồm <code>score</code> (1-5), <code>title</code>, <code>problem_desc</code>, <code>plan</code>, <code>owner</code>, <code>target_date</code>
-        </div>
-    </div>
-</div>
 
-<!-- ============================================================ -->
-<!-- SECTION 12: Gallery văn phòng -->
-<!-- ============================================================ -->
-<div class="wireframe-section">
-    <div class="wireframe-title">SECTION 12: Gallery văn phòng</div>
-    <div class="wireframe-content">
-        
-        <div class="section-header">
-            <div>
-                <div class="section-label">VĂN PHÒNG</div>
-                <div class="section-title">Không gian làm việc</div>
+            <div class="vibe-highlights">
+              <div class="vibe-title">Văn hoá thật từ nhân viên</div>
+              <ul class="vibe-list">
+                <li>Công ty gia đình nhưng chuyên nghiệp. Sếp hay khuyến khích học hỏi.</li>
+                <li>Không áp lực doanh số phi lý. Target dựa trên thị trường thực tế.</li>
+              </ul>
             </div>
-            <div class="section-controls">
-                <button class="edit-btn sm outline">👁️ Ẩn</button>
-                <button class="edit-btn sm outline">↕️ Vị trí</button>
-                <button class="edit-btn sm">✏️ Sửa tiêu đề</button>
-            </div>
-        </div>
-        
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                Ảnh lớn (Featured)
-                <div class="btns">
-                    <button class="edit-btn sm">📷</button>
-                    <button class="edit-btn sm danger">🗑️</button>
-                </div>
-            </div>
-            <div class="gallery-item">
-                Ảnh 2
-                <div class="btns">
-                    <button class="edit-btn sm">📷</button>
-                    <button class="edit-btn sm danger">🗑️</button>
-                </div>
-            </div>
-            <div class="gallery-item">
-                Ảnh 3
-                <div class="btns">
-                    <button class="edit-btn sm">📷</button>
-                    <button class="edit-btn sm danger">🗑️</button>
-                </div>
-            </div>
-            <div class="gallery-item">
-                Ảnh 4
-                <div class="btns">
-                    <button class="edit-btn sm">📷</button>
-                    <button class="edit-btn sm danger">🗑️</button>
-                </div>
-            </div>
-            <div class="gallery-item">
-                Ảnh 5
-                <div class="btns">
-                    <button class="edit-btn sm">📷</button>
-                    <button class="edit-btn sm danger">🗑️</button>
-                </div>
-            </div>
-        </div>
-        
-        <button class="add-btn" style="margin-top: 12px;">➕ Thêm ảnh văn phòng</button>
-        
-        <div class="dev-note">
-            <strong>📝 Ghi chú cho Dev:</strong>
-            • Mảng <code>gallery_images[]</code> — URLs ảnh<br>
-            • Ảnh đầu tiên = Featured (hiển thị lớn)<br>
-            • Kích thước tối thiểu: 800×600px<br>
-            • Hỗ trợ kéo thả để sắp xếp lại thứ tự
-        </div>
-    </div>
-</div>
 
+            <div class="job-badges">
+              <span class="badge">Hoa hồng hấp dẫn</span>
+              <span class="badge">Đào tạo bài bản</span>
+              <span class="badge">Sản phẩm chất lượng</span>
+            </div>
+          </div>
+
+          <div class="job-actions">
+            <button class="btn-secondary">Xem chi tiết</button>
+            <button class="btn-apply">Ứng tuyển</button>
+          </div>
+        </div>
+      </a>
+
+      <!-- Job 4 -->
+      <a href="job-detail-4.html" class="job-card">
+        <div class="company-header">
+          <div class="company-logo">CB</div>
+          <div class="company-info">
+            <div class="company-name-row">
+              <span class="company-name">CloudBase Tech</span>
+              <span class="verified-badge">Xác minh</span>
+            </div>
+            <div class="company-stats">
+              <span class="recommend-stat">95% recommend</span> • 203 người xem
+            </div>
+          </div>
+        </div>
+
+        <div class="job-content">
+          <div class="job-main">
+            <h3 class="job-title">Backend Developer (Node.js) – SaaS Platform</h3>
+            
+            <div class="job-meta">
+              <span class="salary-pill">25–35 triệu/tháng</span>
+              <span class="type-pill">Engineering</span>
+              <span class="dot">•</span>
+              <span>Remote (VN)</span>
+              <span class="dot">•</span>
+              <span>Toàn thời gian</span>
+            </div>
+
+            <div class="vibe-highlights">
+              <div class="vibe-title">Văn hoá thật từ nhân viên</div>
+              <ul class="vibe-list">
+                <li>Full remote, làm việc async. Ít meeting vô bổ, tài liệu rõ ràng.</li>
+                <li>Team tech 12 người, senior nhiều, review code chi tiết. Code quality là ưu tiên.</li>
+              </ul>
+            </div>
+
+            <div class="job-badges">
+              <span class="badge">Full remote</span>
+              <span class="badge">Tech stack hiện đại</span>
+              <span class="badge">Code review nghiêm túc</span>
+            </div>
+          </div>
+
+          <div class="job-actions">
+            <button class="btn-secondary">Xem chi tiết</button>
+            <button class="btn-apply">Ứng tuyển</button>
+          </div>
+        </div>
+      </a>
+
+      <!-- Job 5 -->
+      <a href="job-detail-5.html" class="job-card">
+        <div class="company-header">
+          <div class="company-logo">NM</div>
+          <div class="company-info">
+            <div class="company-name-row">
+              <span class="company-name">Nhà Mơ Education</span>
+              <span class="verified-badge">Xác minh</span>
+            </div>
+            <div class="company-stats">
+              <span class="recommend-stat">90% recommend</span> • 112 người xem
+            </div>
+          </div>
+        </div>
+
+        <div class="job-content">
+          <div class="job-main">
+            <h3 class="job-title">Giáo viên Toán – THCS (Trung học cơ sở)</h3>
+            
+            <div class="job-meta">
+              <span class="salary-pill">15–22 triệu/tháng</span>
+              <span class="type-pill">Giáo dục</span>
+              <span class="dot">•</span>
+              <span>Hà Nội</span>
+              <span class="dot">•</span>
+              <span>Toàn thời gian</span>
+            </div>
+
+            <div class="vibe-highlights">
+              <div class="vibe-title">Văn hoá thật từ nhân viên</div>
+              <ul class="vibe-list">
+                <li>Trường tư thục nhỏ, phát triển tư duy hơn học vẹt. 20–25 em/lớp.</li>
+                <li>Hiệu trưởng coi trọng giáo viên, lắng nghe. Không áp lực thành tích ảo.</li>
+              </ul>
+            </div>
+
+            <div class="job-badges">
+              <span class="badge">Lớp học nhỏ</span>
+              <span class="badge">Phương pháp mới</span>
+              <span class="badge">Đào tạo nghiệp vụ</span>
+            </div>
+          </div>
+
+          <div class="job-actions">
+            <button class="btn-secondary">Xem chi tiết</button>
+            <button class="btn-apply">Ứng tuyển</button>
+          </div>
+        </div>
+      </a>
+
+      <!-- Job 6 -->
+      <a href="job-detail-6.html" class="job-card">
+        <div class="company-header">
+          <div class="company-logo">CH</div>
+          <div class="company-info">
+            <div class="company-name-row">
+              <span class="company-name">Cozy Home Decor</span>
+              <span class="verified-badge">Xác minh</span>
+            </div>
+            <div class="company-stats">
+              <span class="recommend-stat">93% recommend</span> • 156 người xem
+            </div>
+          </div>
+        </div>
+
+        <div class="job-content">
+          <div class="job-main">
+            <h3 class="job-title">Graphic Designer – Thương hiệu nội thất Bắc Âu</h3>
+            
+            <div class="job-meta">
+              <span class="salary-pill">14–20 triệu/tháng</span>
+              <span class="type-pill">Design</span>
+              <span class="dot">•</span>
+              <span>Hà Nội</span>
+              <span class="dot">•</span>
+              <span>Toàn thời gian</span>
+            </div>
+
+            <div class="vibe-highlights">
+              <div class="vibe-title">Văn hoá thật từ nhân viên</div>
+              <ul class="vibe-list">
+                <li>Văn phòng đẹp, nhiều cây xanh. Làm với sản phẩm nội thất cao cấp.</li>
+                <li>Không làm banner giảm giá. Focus vào brand identity, lookbook chất lượng.</li>
+              </ul>
+            </div>
+
+            <div class="job-badges">
+              <span class="badge">Aesthetic workplace</span>
+              <span class="badge">Brand focus</span>
+              <span class="badge">Portfolio đẹp</span>
+            </div>
+          </div>
+
+          <div class="job-actions">
+            <button class="btn-secondary">Xem chi tiết</button>
+            <button class="btn-apply">Ứng tuyển</button>
+          </div>
+        </div>
+      </a>
+
+      <!-- Job 7 -->
+      <a href="job-detail-7.html" class="job-card">
+        <div class="company-header">
+          <div class="company-logo">XL</div>
+          <div class="company-info">
+            <div class="company-name-row">
+              <span class="company-name">Xanh Lá Media</span>
+              <span class="verified-badge">Xác minh</span>
+            </div>
+            <div class="company-stats">
+              <span class="recommend-stat">87% recommend</span> • 178 người xem
+            </div>
+          </div>
+        </div>
+
+        <div class="job-content">
+          <div class="job-main">
+            <h3 class="job-title">Account Executive – Agency marketing & branding</h3>
+            
+            <div class="job-meta">
+              <span class="salary-pill">16–24 triệu/tháng</span>
+              <span class="type-pill">Account Mgmt</span>
+              <span class="dot">•</span>
+              <span>TP.HCM</span>
+              <span class="dot">•</span>
+              <span>Toàn thời gian</span>
+            </div>
+
+            <div class="vibe-highlights">
+              <div class="vibe-title">Văn hoá thật từ nhân viên</div>
+              <ul class="vibe-list">
+                <li>Agency 30 người, client từ F&B, fashion, tech. Lựa chọn project kỹ.</li>
+                <li>Năng động nhưng không toxic. OT có nghỉ bù rõ ràng.</li>
+              </ul>
+            </div>
+
+            <div class="job-badges">
+              <span class="badge">Dự án đa dạng</span>
+              <span class="badge">Client chất lượng</span>
+              <span class="badge">Agency uy tín</span>
+            </div>
+          </div>
+
+          <div class="job-actions">
+            <button class="btn-secondary">Xem chi tiết</button>
+            <button class="btn-apply">Ứng tuyển</button>
+          </div>
+        </div>
+      </a>
+    </section>
+  </div>
 </body>
 </html>
